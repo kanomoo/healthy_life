@@ -1,0 +1,1423 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Health30D — โครงการวิจัยการยศาสตร์และพฤติกรรมสุขภาพ 30 วัน</title>
+  <meta name="description" content="ระบบสารานุกรมความรู้และห้องปฏิบัติการวิจัยการปรับโต๊ะทำงานร่วมกับพฤติกรรมการดูแลตนเอง เพื่อลด Office Syndrome (คอ บ่า ไหล่)" />
+
+  <!-- Favicon SVG -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2306b6d4' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M22 12h-4l-3 9L9 3l-3 9H2'/%3E%3C/svg%3E" />
+
+  <!-- Google Fonts: Chakra Petch, IBM Plex Sans Thai, JetBrains Mono (Identical to DSA Standard) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=IBM+Plex+Sans+Thai:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="/src/style.css" />
+</head>
+<body class="bg-[#0c0e14] text-slate-100 min-h-screen antialiased flex flex-col selection:bg-cyan-500/30 selection:text-cyan-200">
+
+  <!-- Ambient Hero Glow in Background -->
+  <div class="fixed top-0 left-1/2 -translate-x-1/2 w-[800px] h-[450px] bg-gradient-to-b from-cyan-500/10 via-indigo-500/5 to-transparent blur-3xl pointer-events-none -z-10"></div>
+
+  <!-- Top Sticky Glass Navbar -->
+  <header class="sticky top-0 z-40 backdrop-blur-xl bg-[#0e1017]/85 border-b border-[#242938] shadow-2xl transition-all">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex flex-wrap items-center justify-between gap-3">
+      
+      <!-- Brand & Student Meta -->
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center text-white shadow-lg shadow-cyan-500/25 ring-1 ring-cyan-400/40 font-heading font-extrabold text-lg tracking-wider">
+          30D
+        </div>
+        <div>
+          <div class="flex items-center gap-2 flex-wrap">
+            <span class="font-heading text-base sm:text-lg font-bold text-white tracking-tight leading-none">
+              Health30D Studio
+            </span>
+            <span class="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-cyan-950/80 text-cyan-300 border border-cyan-800">
+              Phase 1 & 2
+            </span>
+            <span class="text-[11px] font-medium text-slate-400">
+              Sec 2 · 6806021612037
+            </span>
+          </div>
+          <p class="text-xs text-slate-400 hidden sm:block mt-0.5">
+            การปรับโต๊ะทำงานร่วมกับการดูแลตนเอง ลด Office Syndrome (คอ บ่า ไหล่)
+          </p>
+        </div>
+      </div>
+
+      <!-- Quick Action Deck -->
+      <div class="flex items-center flex-wrap gap-2">
+        <div class="hidden md:flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-[#12151f] border border-[#242938] text-xs">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          <span class="text-slate-400">เวลาจริงไทย:</span>
+          <span id="navThailandClock" class="font-mono font-bold text-cyan-300">--:--:--</span>
+        </div>
+        <button id="btnLoadDemo" class="text-xs px-3 py-1.5 rounded-xl bg-[#161923] hover:bg-[#1d2232] text-cyan-300 border border-cyan-500/30 hover:border-cyan-400/60 transition flex items-center gap-1.5 font-medium shadow-sm active:scale-95">
+          <span>✨</span> โหลดข้อมูลตัวอย่าง Proposal (10/10)
+        </button>
+        <button id="btnExportExcel" class="text-xs px-3.5 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-semibold shadow-lg shadow-emerald-600/30 transition flex items-center gap-1.5 active:scale-95">
+          <span>📊</span> ส่งออก Excel (.xlsx 3 ชีต)
+        </button>
+        <button id="btnResetData" class="text-xs px-2.5 py-1.5 rounded-xl bg-[#161923]/80 hover:bg-rose-950/80 hover:text-rose-300 text-slate-400 border border-[#242938] hover:border-rose-800/80 transition" title="ล้างข้อมูลและเริ่มบันทึกใหม่">
+          ล้างข้อมูล
+        </button>
+      </div>
+    </div>
+
+    <!-- Segmented Navigation Pill Tabs (DSA Style) -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex overflow-x-auto gap-1.5 py-1.5 border-t border-[#1e2330] scrollbar-none">
+      <button data-tab="tab-dashboard" class="tab-btn active px-3.5 py-2 rounded-xl text-xs sm:text-sm font-medium border border-cyan-400 bg-cyan-500/15 text-cyan-300 shadow-[0_0_14px_rgba(6,182,212,0.25)] flex items-center gap-2 whitespace-nowrap transition cursor-pointer">
+        <span>📊</span> สรุปผล & 5 ตัวชี้วัด
+      </button>
+      <button data-tab="tab-angle" class="tab-btn px-3.5 py-2 rounded-xl text-xs sm:text-sm font-medium border border-transparent text-slate-400 hover:text-slate-200 hover:bg-slate-800/50 flex items-center gap-2 whitespace-nowrap transition cursor-pointer">
+        <span>📐</span> วิเคราะห์องศาท่านั่ง (ImageMeter)
+      </button>
+      <button data-tab="tab-timers" class="tab-btn px-3.5 py-2 rounded-xl text-xs sm:text-sm font-medium border border-transparent text-slate-400 hover:text-slate-200 hover:bg-slate-800/50 flex items-center gap-2 whitespace-nowrap transition cursor-pointer">
+        <span>⏱️</span> นาฬิกา & ผู้ช่วยพัก 45 นาที
+      </button>
+      <button data-tab="tab-logbook" class="tab-btn px-3.5 py-2 rounded-xl text-xs sm:text-sm font-medium border border-transparent text-slate-400 hover:text-slate-200 hover:bg-slate-800/50 flex items-center gap-2 whitespace-nowrap transition cursor-pointer">
+        <span>📅</span> สมุดบันทึกรายวัน (D1 - D30)
+      </button>
+      <button data-tab="tab-protocol" class="tab-btn px-3.5 py-2 rounded-xl text-xs sm:text-sm font-medium border border-transparent text-slate-400 hover:text-slate-200 hover:bg-slate-800/50 flex items-center gap-2 whitespace-nowrap transition cursor-pointer">
+        <span>📖</span> ท่าบริหาร & กฎความปลอดภัย
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Content Area -->
+  <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+    <!-- ========================================================================= -->
+    <!-- TAB 1: DASHBOARD & 5 KEY RESULTS -->
+    <!-- ========================================================================= -->
+    <section id="tab-dashboard" class="tab-content block space-y-8">
+      
+      <!-- DSA Style Hero Showcase Banner -->
+      <div class="text-center max-w-3xl mx-auto pt-2 pb-4">
+        <div class="badge-top mb-4">
+          <span>⚡</span>
+          <span>โครงการวิจัยการยศาสตร์และปรับเปลี่ยนพฤติกรรมสุขภาพส่วนบุคคล 30 วัน</span>
+        </div>
+        <h1 class="text-2xl sm:text-4xl lg:text-5xl font-extrabold hero-title-gradient leading-tight sm:leading-tight mb-3">
+          การปรับโต๊ะทำงานร่วมกับพฤติกรรมการดูแลตนเอง เพื่อลด Office Syndrome
+        </h1>
+        <p class="text-sm sm:text-base text-slate-400 leading-relaxed max-w-2xl mx-auto">
+          ระบบสารานุกรมและการวิจัยรายบุคคลแบบวัดผลก่อนและหลัง (Single-Subject Pre-Post Design)<br class="hidden sm:inline" />
+          ประเมินผลผ่าน 5 ตัวชี้วัดมาตรฐานสากล พร้อมเครื่องมือคำนวณองศาการยศาสตร์ 90-90-90
+        </p>
+      </div>
+
+      <!-- Researcher Info & Hypothesis Score Banner -->
+      <div class="glass-panel p-5 sm:p-6 flex flex-col md:flex-row md:items-center justify-between gap-5 shadow-xl">
+        <div class="space-y-1.5">
+          <div class="text-xs uppercase tracking-wider text-cyan-400 font-semibold flex items-center gap-1.5">
+            <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
+            ข้อมูลผู้วิจัยและโครงร่างการศึกษา
+          </div>
+          <h2 class="text-lg sm:text-xl font-bold text-white">
+            นายปภาวิน ธิติชุณหกุล (รหัส 6806021612037) Section 2
+          </h2>
+          <p class="text-xs sm:text-sm text-slate-300">
+            หัวข้อ: การปรับโต๊ะทำงานร่วมกับพฤติกรรมการดูแลตนเอง เพื่อลดอาการ Office Syndrome (คอ บ่า ไหล่)
+          </p>
+        </div>
+        <div class="flex items-center gap-3 flex-wrap">
+          <div class="bg-[#12151f] px-4 py-3 rounded-2xl border border-[#242938] text-center min-w-[120px]">
+            <div class="text-[11px] text-slate-400">เกณฑ์คะแนนโครงร่าง</div>
+            <div class="text-lg font-heading font-bold text-emerald-400">10 / 10 เต็ม</div>
+          </div>
+          <div class="bg-[#12151f] px-4 py-3 rounded-2xl border border-[#242938] text-center min-w-[150px]">
+            <div class="text-[11px] text-slate-400">สถานะสมมติฐาน</div>
+            <div id="overallGoalBadge" class="text-sm font-semibold text-cyan-300">กำลังประเมิน</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2 Major Studio Hub Cards (DSA Style Showcase Cards) -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        
+        <!-- Card 1: Angle Studio Hub -->
+        <div class="hub-card cursor-pointer group" data-jump-tab="tab-angle">
+          <div class="card-icon-box text-cyan-400">📐</div>
+          <h3 class="text-xl font-heading font-bold text-white mb-2 group-hover:text-cyan-300 transition">
+            สตูดิโอวิเคราะห์องศาท่านั่ง (Image Posture Studio)
+          </h3>
+          <p class="text-xs sm:text-sm text-slate-400 leading-relaxed">
+            ระบบวิเคราะห์ภาพถ่ายท่านั่งจากด้านข้าง เทียบเคียงมาตรฐาน ImageMeter ลากจุดข้อต่อ 3 จุดเพื่อคำนวณองศาและประเมินเกณฑ์ 90-90-90 อัตโนมัติแบบเรียลไทม์
+          </p>
+          <ul class="card-features">
+            <li><span class="feat-check">✓</span><span>ตรวจสอบเกณฑ์การยศาสตร์ 90-90-90 (ข้อศอก 90-100°, สะโพก 90-100°, เข่า ~90°, สายตา)</span></li>
+            <li><span class="feat-check">✓</span><span>ซิงค์และบันทึกผลลงวันสำคัญ D1, D7, D14, D21, D30 เพื่อพล็อตเส้นพัฒนาการในกราฟ</span></li>
+            <li><span class="feat-check">✓</span><span>รองรับการอัปโหลดภาพจริง หรือกดโหลดภาพตัวอย่าง Baseline ตาม Proposal</span></li>
+            <li><span class="feat-check">✓</span><span>ดาวน์โหลดภาพถ่ายพร้อมเส้นกำกับองศาและกริดการยศาสตร์ (Annotated PNG)</span></li>
+          </ul>
+          <div class="card-btn">
+            <span>🚀 เปิดห้องปฏิบัติการวิเคราะห์ท่านั่ง</span>
+            <span>→</span>
+          </div>
+        </div>
+
+        <!-- Card 2: Timers & Guided Routines Hub -->
+        <div class="hub-card hub-purple cursor-pointer group" data-jump-tab="tab-timers">
+          <div class="card-icon-box text-purple-400">⏱️</div>
+          <h3 class="text-xl font-heading font-bold text-white mb-2 group-hover:text-purple-300 transition">
+            ศูนย์ควบคุมเวลา & ผู้ช่วยกายบริหาร (Timers & Guided Hub)
+          </h3>
+          <p class="text-xs sm:text-sm text-slate-400 leading-relaxed">
+            ระบบจับเวลาการใช้หน้าจอพร้อมแจ้งเตือนพักทุก 45 นาที, ผู้ช่วยนวดคลึงด้วยตนเอง 3 บริเวณ 6 นาที, และโปรแกรมนับรอบบริหาร 6 ท่าโดยไม่ใช้อุปกรณ์
+          </p>
+          <ul class="card-features">
+            <li><span class="feat-check">✓</span><span>ระบบจับเวลาหน้าจอเรียลไทม์ พร้อมตัวนับถอยหลังพัก 45 นาที และผู้ช่วยลุกเดิน 2 นาที</span></li>
+            <li><span class="feat-check">✓</span><span>ผู้ช่วยนวดคลึงผ่อนคลาย 3 บริเวณ 6 นาที (Upper Trap, Infraspinatus, Pectoralis) พร้อมเสียงสัญญาณ</span></li>
+            <li><span class="feat-check">✓</span><span>สไลเดอร์วัดคะแนนปวด NRS ก่อน-หลังนวด พร้อมคำนวณ % ผลลดปวดทันที (Immediate Relief)</span></li>
+            <li><span class="feat-check">✓</span><span>ระบบนำทำ 6 ท่าบริหาร นับจำนวนครั้ง (Reps) และนับการเกร็งค้าง (Hold 5s/20s) อัตโนมัติ</span></li>
+          </ul>
+          <div class="card-btn">
+            <span>⚡ เปิดศูนย์ควบคุมเวลาและผู้ช่วยกายบริหาร</span>
+            <span>→</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Section Title: 5 Key Results -->
+      <div>
+        <div class="section-title">
+          <span>🎯</span>
+          <span>5 ตัวชี้วัดความสำเร็จของโครงการ (5 Key Results KPIs)</span>
+        </div>
+
+        <!-- 5 KPI Cards Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+          
+          <!-- KPI 1: อาการปวด -->
+          <div class="kpi-card">
+            <div class="flex items-center justify-between text-xs text-slate-400 mb-2">
+              <span class="text-[11px] font-semibold text-rose-400">ตัวชี้วัดที่ 1 (NRS)</span>
+              <span id="kpi1-status" class="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-950 text-emerald-300 border border-emerald-800">ผ่าน</span>
+            </div>
+            <h4 class="text-sm font-bold text-white">อาการปวดคอบ่า</h4>
+            <div class="my-2 flex items-baseline gap-1.5">
+              <span id="kpi1-value" class="text-3xl font-heading font-extrabold text-rose-400">33.3%</span>
+              <span class="text-xs text-slate-400">ลดลง</span>
+            </div>
+            <div class="pt-2 border-t border-[#242938] text-[11px] text-slate-300 space-y-1">
+              <div class="flex justify-between">
+                <span class="text-slate-400">D1 ➔ D28-30:</span>
+                <span id="kpi1-sub" class="font-mono font-medium">6 ➔ 4.0</span>
+              </div>
+              <div class="flex justify-between text-cyan-400">
+                <span>เป้าหมาย:</span>
+                <span>ลดลง ≥ 30%</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- KPI 2: ท่านั่งทำงาน -->
+          <div class="kpi-card">
+            <div class="flex items-center justify-between text-xs text-slate-400 mb-2">
+              <span class="text-[11px] font-semibold text-blue-400">ตัวชี้วัดที่ 2 (Ergonomics)</span>
+              <span id="kpi2-status" class="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-950 text-emerald-300 border border-emerald-800">ผ่าน</span>
+            </div>
+            <h4 class="text-sm font-bold text-white">ท่านั่งถูกต้อง</h4>
+            <div class="my-2 flex items-baseline gap-1.5">
+              <span id="kpi2-value" class="text-3xl font-heading font-extrabold text-blue-400">100%</span>
+              <span class="text-xs text-slate-400">ณ วัน D30</span>
+            </div>
+            <div class="pt-2 border-t border-[#242938] text-[11px] text-slate-300 space-y-1">
+              <div class="flex justify-between">
+                <span class="text-slate-400">ฐาน D1 ➔ D30:</span>
+                <span id="kpi2-sub" class="font-mono font-medium">25% ➔ 100%</span>
+              </div>
+              <div class="flex justify-between text-cyan-400">
+                <span>เป้าหมาย:</span>
+                <span>ผ่านเกณฑ์ ≥ 75%</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- KPI 3: การพักขยับตัว -->
+          <div class="kpi-card">
+            <div class="flex items-center justify-between text-xs text-slate-400 mb-2">
+              <span class="text-[11px] font-semibold text-emerald-400">ตัวชี้วัดที่ 3 (45-Min Break)</span>
+              <span id="kpi3-status" class="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-950 text-emerald-300 border border-emerald-800">ผ่าน</span>
+            </div>
+            <h4 class="text-sm font-bold text-white">การพักขยับตัว</h4>
+            <div class="my-2 flex items-baseline gap-1.5">
+              <span id="kpi3-value" class="text-3xl font-heading font-extrabold text-emerald-400">87.5%</span>
+              <span class="text-xs text-slate-400">เฉลี่ย D2-D30</span>
+            </div>
+            <div class="pt-2 border-t border-[#242938] text-[11px] text-slate-300 space-y-1">
+              <div class="flex justify-between">
+                <span class="text-slate-400">สูตรคำนวณ:</span>
+                <span class="font-medium">พักจริง ÷ ควรพัก</span>
+              </div>
+              <div class="flex justify-between text-cyan-400">
+                <span>เป้าหมาย:</span>
+                <span>เฉลี่ย ≥ 80%</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- KPI 4: การทำโปรแกรมครบ -->
+          <div class="kpi-card">
+            <div class="flex items-center justify-between text-xs text-slate-400 mb-2">
+              <span class="text-[11px] font-semibold text-purple-400">ตัวชี้วัดที่ 4 (Adherence)</span>
+              <span id="kpi4-status" class="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-950 text-emerald-300 border border-emerald-800">ผ่าน</span>
+            </div>
+            <h4 class="text-sm font-bold text-white">ทำโปรแกรมครบ</h4>
+            <div class="my-2 flex items-baseline gap-1.5">
+              <span id="kpi4-value" class="text-3xl font-heading font-extrabold text-purple-400">86.7%</span>
+              <span class="text-xs text-slate-400">26/30 วัน</span>
+            </div>
+            <div class="pt-2 border-t border-[#242938] text-[11px] text-slate-300 space-y-1">
+              <div class="flex justify-between">
+                <span class="text-slate-400">นวด + 6 ท่า:</span>
+                <span id="kpi4-sub" class="font-mono font-medium">26 วัน</span>
+              </div>
+              <div class="flex justify-between text-cyan-400">
+                <span>เป้าหมาย:</span>
+                <span>ครบ ≥ 85% (≥26วัน)</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- KPI 5: ผลทันทีจากการนวด -->
+          <div class="kpi-card">
+            <div class="flex items-center justify-between text-xs text-slate-400 mb-2">
+              <span class="text-[11px] font-semibold text-amber-400">ตัวชี้วัดที่ 5 (สำรวจ)</span>
+              <span id="kpi5-status" class="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-950 text-emerald-300 border border-emerald-800">ผ่าน</span>
+            </div>
+            <h4 class="text-sm font-bold text-white">ผลทันทีจากการนวด</h4>
+            <div class="my-2 flex items-baseline gap-1.5">
+              <span id="kpi5-value" class="text-3xl font-heading font-extrabold text-amber-400">20.0%</span>
+              <span class="text-xs text-slate-400">ลดทันที</span>
+            </div>
+            <div class="pt-2 border-t border-[#242938] text-[11px] text-slate-300 space-y-1">
+              <div class="flex justify-between">
+                <span class="text-slate-400">ก่อน ➔ หลัง:</span>
+                <span class="font-medium">(ก่อน-หลัง)÷ก่อน</span>
+              </div>
+              <div class="flex justify-between text-cyan-400">
+                <span>เป้าหมาย:</span>
+                <span>เฉลี่ย ≥ 20%</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Section Title: Charts -->
+      <div>
+        <div class="section-title">
+          <span>📈</span>
+          <span>การวิเคราะห์ข้อมูลและแนวโน้มทางสถิติ (Statistical Analytics & Trends)</span>
+        </div>
+
+        <!-- Charts Section: Two Column Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+          
+          <!-- Chart 1: Pain Progression -->
+          <div class="glass-panel p-5 shadow-xl">
+            <div class="flex items-center justify-between mb-4">
+              <div>
+                <h3 class="text-base font-bold text-white flex items-center gap-2">
+                  <span>📉</span> ระดับความปวดตลอด 30 วัน (NRS Pain Score)
+                </h3>
+                <p class="text-xs text-slate-400">เปรียบเทียบคะแนนก่อนนวดและหลังนวด (เป้าหมาย D28-D30 ลดลง ≥ 30%)</p>
+              </div>
+              <span class="text-[11px] px-2.5 py-1 rounded-full bg-[#12151f] border border-[#242938] text-slate-300">0 = ไม่ปวด, 10 = มากสุด</span>
+            </div>
+            <div class="h-64 sm:h-72 w-full">
+              <canvas id="chartPain"></canvas>
+            </div>
+          </div>
+
+          <!-- Chart 2: Breaks & Screen Time Compliance -->
+          <div class="glass-panel p-5 shadow-xl">
+            <div class="flex items-center justify-between mb-4">
+              <div>
+                <h3 class="text-base font-bold text-white flex items-center gap-2">
+                  <span>⏱️</span> การพักขยับตัวทุก 45 นาที (Break Compliance)
+                </h3>
+                <p class="text-xs text-slate-400">จำนวนครั้งที่พักจริง เทียบกับเกณฑ์ที่ควรพัก (นาทีใช้จอ ÷ 45)</p>
+              </div>
+              <span class="text-[11px] px-2.5 py-1 rounded-full bg-cyan-950 text-cyan-300 border border-cyan-800 font-semibold">เป้าหมาย ≥ 80%</span>
+            </div>
+            <div class="h-64 sm:h-72 w-full">
+              <canvas id="chartBreaks"></canvas>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Chart 3: Posture Angles Trajectory Across Milestones -->
+        <div class="glass-panel p-5 shadow-xl">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
+            <div>
+              <h3 class="text-base font-bold text-white flex items-center gap-2">
+                <span>📐</span> พัฒนาการมุมข้อต่อในวันสำคัญ (D1, D7, D14, D21, D30)
+              </h3>
+              <p class="text-xs text-slate-400">เกณฑ์การยศาสตร์ 90-90-90 (ศอก 90-100°, สะโพก 90-100°, เข่า ~90°)</p>
+            </div>
+            <button id="btnJumpToAngleTool" class="text-xs px-3.5 py-2 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white font-semibold transition flex items-center gap-1.5 self-start sm:self-auto shadow-md shadow-cyan-600/30">
+              เปิดเครื่องมือวัดมุม ➔
+            </button>
+          </div>
+          <div class="h-64 sm:h-80 w-full">
+            <canvas id="chartAngles"></canvas>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Module Quick Launcher Strip (DSA Architecture) -->
+      <div>
+        <div class="section-title">
+          <span>⚡</span>
+          <span>ทางลัดเข้าสู่ห้องปฏิบัติการและโมดูลการทำงาน (Module Quick Launchers)</span>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          
+          <!-- Quick 1: Posture Angle -->
+          <div data-jump-tab="tab-angle" class="p-4 rounded-2xl bg-[#141723] hover:bg-[#1b2030] border border-[#242938] hover:border-cyan-500/60 transition group flex flex-col justify-between shadow-lg cursor-pointer">
+            <div class="space-y-1.5">
+              <div class="flex items-center justify-between">
+                <span class="text-[11px] font-mono font-bold text-cyan-400 uppercase tracking-wider">Ergonomics · 90-90-90</span>
+                <span class="text-xs text-slate-500 group-hover:text-cyan-400 group-hover:translate-x-1 transition-all">→</span>
+              </div>
+              <div class="text-sm font-bold text-white group-hover:text-cyan-300 transition flex items-center gap-1.5 font-heading">
+                <span>📐</span> เครื่องมือวิเคราะห์องศาท่านั่ง (ImageMeter)
+              </div>
+              <p class="text-xs text-slate-400 leading-relaxed">
+                ลากจุด 3 ข้อต่อ วิเคราะห์มุมศอก สะโพก เข่า และระดับสายตา พร้อมดาวน์โหลดภาพ annotated
+              </p>
+            </div>
+          </div>
+
+          <!-- Quick 2: Screen Time -->
+          <div data-jump-tab="tab-timers" data-subtab="screen" class="p-4 rounded-2xl bg-[#141723] hover:bg-[#1b2030] border border-[#242938] hover:border-cyan-500/60 transition group flex flex-col justify-between shadow-lg cursor-pointer">
+            <div class="space-y-1.5">
+              <div class="flex items-center justify-between">
+                <span class="text-[11px] font-mono font-bold text-cyan-400 uppercase tracking-wider">Screen Timer · 45 Min</span>
+                <span class="text-xs text-slate-500 group-hover:text-cyan-400 group-hover:translate-x-1 transition-all">→</span>
+              </div>
+              <div class="text-sm font-bold text-white group-hover:text-cyan-300 transition flex items-center gap-1.5 font-heading">
+                <span>⏱️</span> ระบบจับเวลาหน้าจอ & เตือนพัก 45 นาที
+              </div>
+              <p class="text-xs text-slate-400 leading-relaxed">
+                จับเวลานาทีใช้จอจริง พร้อมตัวนับถอยหลังเตือนพัก และผู้ช่วยลุกเดิน 2 นาที
+              </p>
+            </div>
+          </div>
+
+          <!-- Quick 3: Massage -->
+          <div data-jump-tab="tab-timers" data-subtab="massage" class="p-4 rounded-2xl bg-[#141723] hover:bg-[#1b2030] border border-[#242938] hover:border-emerald-500/60 transition group flex flex-col justify-between shadow-lg cursor-pointer">
+            <div class="space-y-1.5">
+              <div class="flex items-center justify-between">
+                <span class="text-[11px] font-mono font-bold text-emerald-400 uppercase tracking-wider">Therapy · 6 Minutes</span>
+                <span class="text-xs text-slate-500 group-hover:text-emerald-400 group-hover:translate-x-1 transition-all">→</span>
+              </div>
+              <div class="text-sm font-bold text-white group-hover:text-emerald-300 transition flex items-center gap-1.5 font-heading">
+                <span>💆</span> ผู้ช่วยนวดคลึงด้วยตนเอง 3 บริเวณ
+              </div>
+              <p class="text-xs text-slate-400 leading-relaxed">
+                นวดคลึงบ่า หลังไหล่ อกบน 6 นาที พร้อมวัดคะแนนปวด NRS ก่อน-หลัง และคำนวณ Immediate Relief
+              </p>
+            </div>
+          </div>
+
+          <!-- Quick 4: Exercises -->
+          <div data-jump-tab="tab-timers" data-subtab="exercise" class="p-4 rounded-2xl bg-[#141723] hover:bg-[#1b2030] border border-[#242938] hover:border-purple-500/60 transition group flex flex-col justify-between shadow-lg cursor-pointer">
+            <div class="space-y-1.5">
+              <div class="flex items-center justify-between">
+                <span class="text-[11px] font-mono font-bold text-purple-400 uppercase tracking-wider">Exercise · 6 Routines</span>
+                <span class="text-xs text-slate-500 group-hover:text-purple-400 group-hover:translate-x-1 transition-all">→</span>
+              </div>
+              <div class="text-sm font-bold text-white group-hover:text-purple-300 transition flex items-center gap-1.5 font-heading">
+                <span>🏃</span> ผู้ช่วยบริหาร 6 ท่าไม่ใช้อุปกรณ์
+              </div>
+              <p class="text-xs text-slate-400 leading-relaxed">
+                นับจำนวนครั้ง (Reps) และนับการเกร็งค้าง (Hold 5s/20s) มีเสียงสัญญาณและบันทึกลงสมุดรายวัน
+              </p>
+            </div>
+          </div>
+
+          <!-- Quick 5: Logbook -->
+          <div data-jump-tab="tab-logbook" class="p-4 rounded-2xl bg-[#141723] hover:bg-[#1b2030] border border-[#242938] hover:border-amber-500/60 transition group flex flex-col justify-between shadow-lg cursor-pointer">
+            <div class="space-y-1.5">
+              <div class="flex items-center justify-between">
+                <span class="text-[11px] font-mono font-bold text-amber-400 uppercase tracking-wider">Logbook · D1 - D30</span>
+                <span class="text-xs text-slate-500 group-hover:text-amber-400 group-hover:translate-x-1 transition-all">→</span>
+              </div>
+              <div class="text-sm font-bold text-white group-hover:text-amber-300 transition flex items-center gap-1.5 font-heading">
+                <span>📅</span> สมุดบันทึกรายวัน & Excel Export
+              </div>
+              <p class="text-xs text-slate-400 leading-relaxed">
+                ตารางบันทึก 30 วัน ปรับแก้ออนไลน์ได้ทันที และส่งออกไฟล์ .xlsx 3 ชีตมาตรฐานงานวิจัย
+              </p>
+            </div>
+          </div>
+
+          <!-- Quick 6: Protocol -->
+          <div data-jump-tab="tab-protocol" class="p-4 rounded-2xl bg-[#141723] hover:bg-[#1b2030] border border-[#242938] hover:border-rose-500/60 transition group flex flex-col justify-between shadow-lg cursor-pointer">
+            <div class="space-y-1.5">
+              <div class="flex items-center justify-between">
+                <span class="text-[11px] font-mono font-bold text-rose-400 uppercase tracking-wider">Safety · Clinical Protocol</span>
+                <span class="text-xs text-slate-500 group-hover:text-rose-400 group-hover:translate-x-1 transition-all">→</span>
+              </div>
+              <div class="text-sm font-bold text-white group-hover:text-rose-300 transition flex items-center gap-1.5 font-heading">
+                <span>⚠️</span> กฎความปลอดภัย & ข้อควรระวัง
+              </div>
+              <p class="text-xs text-slate-400 leading-relaxed">
+                ข้อควรระวังทางการแพทย์ จุดที่ห้ามนวด สัญญาณเตือนที่ต้องพบแพทย์ และคำอธิบายกล้ามเนื้อ
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- TAB 2: INTERACTIVE IMAGE POSTURE ANGLE MEASUREMENT TOOL -->
+    <!-- ========================================================================= -->
+    <section id="tab-angle" class="tab-content hidden space-y-6">
+      <div class="glass-panel p-5 sm:p-6 shadow-2xl">
+        
+        <!-- Header & Action Buttons -->
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-5 border-b border-[#242938]">
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="text-xs font-semibold px-2 py-0.5 rounded-full bg-cyan-950 text-cyan-300 border border-cyan-800">ImageMeter Biometrics</span>
+              <span class="text-xs text-slate-400">วิเคราะห์มุมข้อต่อ 90-90-90</span>
+            </div>
+            <h2 class="text-xl font-heading font-bold text-white mt-1 flex items-center gap-2">
+              <span>📐</span> เครื่องมือใส่ภาพและวัดองศาท่านั่ง (Image Posture Angle Tool)
+            </h2>
+            <p class="text-xs text-slate-400 mt-1">
+              แทนการใช้แอป ImageMeter ในมือถือ สามารถใส่รูปท่านั่งจากด้านข้าง ลากจุดข้อต่อ 3 จุด แล้วระบบจะคำนวณองศาและประเมินเกณฑ์ 90-90-90 ทันที
+            </p>
+          </div>
+
+          <!-- Controls: Image Load & Presets -->
+          <div class="flex flex-wrap items-center gap-2">
+            <label class="cursor-pointer text-xs px-3.5 py-2 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white font-semibold transition flex items-center gap-1.5 shadow-lg shadow-cyan-600/25">
+              <span>📷</span> อัปโหลดรูปภาพ
+              <input type="file" id="imageUploadInput" accept="image/*" class="hidden" />
+            </label>
+            <button id="btnLoadSampleImg" class="text-xs px-3 py-2 rounded-xl bg-[#161923] hover:bg-[#1d2232] text-slate-200 border border-[#242938] transition font-medium">
+              โหลดภาพ Baseline (Proposal)
+            </button>
+            <button id="btnResetPosture90" class="text-xs px-3 py-2 rounded-xl bg-[#161923] hover:bg-[#1d2232] text-emerald-300 border border-emerald-900/60 transition font-medium">
+              ปรับเป็นท่า 90-90-90
+            </button>
+            <button id="btnDownloadAnnotated" class="text-xs px-3 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-semibold transition flex items-center gap-1 shadow-md shadow-emerald-600/20">
+              💾 บันทึกรูปพร้อมองศา
+            </button>
+          </div>
+        </div>
+
+        <!-- Filter angles & instructions -->
+        <div class="py-3 flex flex-wrap items-center justify-between gap-3 text-xs text-slate-300">
+          <div class="flex items-center gap-2 flex-wrap">
+            <span class="text-slate-400 font-medium">กรองการแสดงผล:</span>
+            <div class="inline-flex rounded-xl bg-[#0c0e14] p-1 border border-[#242938]">
+              <button data-filter="all" class="filter-angle-btn active px-3 py-1 rounded-lg text-cyan-400 bg-cyan-950/60 border border-cyan-800/80 font-medium">ทุกมุม</button>
+              <button data-filter="elbow" class="filter-angle-btn px-3 py-1 rounded-lg text-slate-400 hover:text-white transition">ข้อศอก</button>
+              <button data-filter="hip" class="filter-angle-btn px-3 py-1 rounded-lg text-slate-400 hover:text-white transition">สะโพก</button>
+              <button data-filter="knee" class="filter-angle-btn px-3 py-1 rounded-lg text-slate-400 hover:text-white transition">เข่า</button>
+              <button data-filter="eye" class="filter-angle-btn px-3 py-1 rounded-lg text-slate-400 hover:text-white transition">สายตา</button>
+            </div>
+          </div>
+
+          <div class="text-slate-400 italic text-[11px]">
+            💡 วิธีใช้: คลิก/แตะค้างที่จุดกลมเพื่อลากตำแหน่งข้อต่อ หรือคลิกที่พื้นว่างเพื่อเลื่อนภาพ (Pan)
+          </div>
+        </div>
+
+        <!-- Canvas Container & Live Evaluation Card -->
+        <div class="grid grid-cols-1 lg:grid-cols-4 gap-5 mt-2">
+          
+          <!-- Canvas Area (3 Cols) -->
+          <div class="lg:col-span-3 bg-[#0a0c12] rounded-2xl border border-[#242938] overflow-hidden relative shadow-2xl min-h-[520px] flex items-center justify-center">
+            <canvas id="postureCanvas" class="w-full h-full block select-none cursor-crosshair"></canvas>
+            
+            <!-- Quick Floating Status -->
+            <div class="absolute bottom-4 left-4 bg-[#0e1017]/90 backdrop-blur-md px-3.5 py-2 rounded-xl border border-[#242938] text-xs text-slate-300 flex items-center gap-3 shadow-lg">
+              <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span> สีเขียว = ผ่านเกณฑ์</span>
+              <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-rose-500"></span> สีแดง/ส้ม = ปรับปรุง</span>
+            </div>
+          </div>
+
+          <!-- Evaluation Card & Save to Milestone (1 Col) -->
+          <div class="space-y-4">
+            <div class="glass-panel p-4 shadow-lg space-y-4">
+              <div class="flex items-center justify-between pb-3 border-b border-[#242938]">
+                <h3 class="font-bold text-white text-sm">ผลประเมินท่านั่ง (4 ข้อ)</h3>
+                <span id="postureTotalScoreBadge" class="text-xs px-2.5 py-1 rounded-full font-bold bg-cyan-950 text-cyan-300 border border-cyan-800">
+                  ผ่าน 4 / 4 (100%)
+                </span>
+              </div>
+
+              <!-- Item 1: Elbow -->
+              <div class="space-y-1 text-xs">
+                <div class="flex items-center justify-between">
+                  <span class="font-medium text-slate-300">1. มุมข้อศอก:</span>
+                  <span id="angleElbowVal" class="font-mono font-bold text-white text-sm">95°</span>
+                </div>
+                <div class="flex items-center justify-between text-[11px]">
+                  <span class="text-slate-400">เป้าหมาย 90°-100°</span>
+                  <span id="badgeElbow" class="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-950 text-emerald-300 border border-emerald-800">ผ่าน</span>
+                </div>
+                <div id="feedbackElbow" class="text-[11px] text-slate-400 bg-[#0c0e14] p-2 rounded-xl border border-[#1e2330]">
+                  ศอกอยู่มุมเหมาะสม ไม่เอื้อมคีย์บอร์ด
+                </div>
+              </div>
+
+              <!-- Item 2: Hip -->
+              <div class="space-y-1 text-xs pt-2 border-t border-[#242938]">
+                <div class="flex items-center justify-between">
+                  <span class="font-medium text-slate-300">2. มุมสะโพก/หลัง:</span>
+                  <span id="angleHipVal" class="font-mono font-bold text-white text-sm">95°</span>
+                </div>
+                <div class="flex items-center justify-between text-[11px]">
+                  <span class="text-slate-400">เป้าหมาย 90°-100°</span>
+                  <span id="badgeHip" class="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-950 text-emerald-300 border border-emerald-800">ผ่าน</span>
+                </div>
+                <div id="feedbackHip" class="text-[11px] text-slate-400 bg-[#0c0e14] p-2 rounded-xl border border-[#1e2330]">
+                  สะโพกและหลังชิดพนักพิง ไม่ไถลตัว
+                </div>
+              </div>
+
+              <!-- Item 3: Knee -->
+              <div class="space-y-1 text-xs pt-2 border-t border-[#242938]">
+                <div class="flex items-center justify-between">
+                  <span class="font-medium text-slate-300">3. มุมเข่า/เท้า:</span>
+                  <span id="angleKneeVal" class="font-mono font-bold text-white text-sm">90°</span>
+                </div>
+                <div class="flex items-center justify-between text-[11px]">
+                  <span class="text-slate-400">เป้าหมาย 85°-100° & เท้าราบ</span>
+                  <span id="badgeKnee" class="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-950 text-emerald-300 border border-emerald-800">ผ่าน</span>
+                </div>
+                <div id="feedbackKnee" class="text-[11px] text-slate-400 bg-[#0c0e14] p-2 rounded-xl border border-[#1e2330]">
+                  เข่าประมาณ 90° วางเท้าราบกับพื้น
+                </div>
+              </div>
+
+              <!-- Item 4: Eye Level -->
+              <div class="space-y-1.5 text-xs pt-2 border-t border-[#242938]">
+                <div class="flex items-center justify-between">
+                  <span class="font-medium text-slate-300">4. ระดับสายตา:</span>
+                  <span id="badgeEye" class="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-950 text-emerald-300 border border-emerald-800">ผ่าน</span>
+                </div>
+                <label class="flex items-center gap-2 cursor-pointer text-slate-300 text-[11px]">
+                  <input type="checkbox" id="checkEyeLevelPass" checked class="w-4 h-4 rounded border-slate-700 text-cyan-500 accent-cyan-500 focus:ring-cyan-400" />
+                  <span>กึ่งกลางจออยู่ในระดับสายตา (ดี)</span>
+                </label>
+              </div>
+
+              <!-- Save to Milestone Day -->
+              <div class="pt-3 border-t border-[#242938] space-y-2">
+                <label class="text-xs text-slate-400 block font-medium">บันทึกค่าองศานี้ลงในวันสำคัญ:</label>
+                <div class="flex items-center gap-2">
+                  <select id="selectMilestoneDay" class="bg-[#12151f] border border-[#242938] rounded-xl px-2.5 py-2 text-xs text-white flex-1 focus:ring-2 focus:ring-cyan-500 font-mono">
+                    <option value="1">D1 (Baseline)</option>
+                    <option value="7">D7 (สัปดาห์ที่ 1)</option>
+                    <option value="14">D14 (สัปดาห์ที่ 2)</option>
+                    <option value="21">D21 (สัปดาห์ที่ 3)</option>
+                    <option value="30" selected>D30 (สิ้นสุดโครงการ)</option>
+                  </select>
+                  <button id="btnSaveAngleToDay" class="px-3.5 py-2 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white font-semibold text-xs shadow-md shadow-cyan-600/25 transition">
+                    บันทึก
+                  </button>
+                </div>
+                <p id="saveAngleNotice" class="text-[11px] text-emerald-400 hidden text-center pt-1 font-medium">
+                  ✓ บันทึกองศาลงในวันเรียบร้อยแล้ว
+                </p>
+              </div>
+
+            </div>
+
+            <!-- Ergonomics 90-90-90 Quick Checklist -->
+            <div class="glass-panel p-4 text-xs text-slate-300 space-y-2">
+              <div class="font-semibold text-cyan-300 flex items-center gap-1.5 font-heading">
+                <span>📋</span> หลักการยศาสตร์ 90-90-90
+              </div>
+              <ul class="space-y-1.5 text-slate-400 text-[11px]">
+                <li class="flex items-start gap-1.5"><span class="text-cyan-400">▸</span>ดึงเมาส์และคีย์บอร์ดเข้าหาตัวจนข้อศอกได้ 90°-100°</li>
+                <li class="flex items-start gap-1.5"><span class="text-cyan-400">▸</span>เลื่อนสะโพกและหลังให้ชิดพนักพิง ไม่นั่งไถลตัว</li>
+                <li class="flex items-start gap-1.5"><span class="text-cyan-400">▸</span>วางเท้าราบกับพื้น หากขาลอยให้ปรับระดับเก้าอี้</li>
+                <li class="flex items-start gap-1.5"><span class="text-cyan-400">▸</span>กึ่งกลางหน้าจอต้องอยู่ในระดับสายตา ไม่ก้มคอ</li>
+              </ul>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- TAB 3: TIMERS (SCREEN 45-MIN BREAK, 6-MIN MASSAGE, 6 EXERCISES) -->
+    <!-- ========================================================================= -->
+    <section id="tab-timers" class="tab-content hidden space-y-6">
+      
+      <!-- Sub-Tabs for Timers -->
+      <div class="flex space-x-2 border-b border-[#242938] pb-3">
+        <button id="subtab-screen-btn" class="subtab-btn active px-4 py-2 rounded-xl text-xs font-semibold bg-cyan-950 text-cyan-300 border border-cyan-800 transition cursor-pointer">
+          ⏱️ จับเวลาจอ & เตือนพัก 45 นาที
+        </button>
+        <button id="subtab-massage-btn" class="subtab-btn px-4 py-2 rounded-xl text-xs font-semibold bg-[#161923] text-slate-300 hover:text-white border border-transparent transition cursor-pointer">
+          💆 ผู้ช่วยนวด 3 จุด 6 นาที
+        </button>
+        <button id="subtab-exercise-btn" class="subtab-btn px-4 py-2 rounded-xl text-xs font-semibold bg-[#161923] text-slate-300 hover:text-white border border-transparent transition cursor-pointer">
+          🏃 ผู้ช่วยบริหาร 6 ท่า
+        </button>
+      </div>
+
+      <!-- TIMER 1: SCREEN TIME & 45-MINUTE BREAK -->
+      <div id="timer-screen-pane" class="space-y-6">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          
+          <!-- Big Screen Clock -->
+          <div class="lg:col-span-2 glass-panel p-6 sm:p-8 shadow-2xl flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between">
+                <span class="text-xs uppercase tracking-wider text-cyan-400 font-semibold flex items-center gap-1.5">
+                  <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
+                  ระบบจับเวลาใช้หน้าจอ (Screen Time Tracker)
+                </span>
+                <span id="screenTimerStatus" class="text-xs px-3 py-1 rounded-full bg-[#12151f] text-slate-300 border border-[#242938] font-medium">
+                  พร้อมใช้งาน
+                </span>
+              </div>
+
+              <!-- Thailand Live Clock & Start Time Tracker Bar -->
+              <div class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+                <div class="flex items-center justify-between px-3.5 py-2.5 rounded-xl bg-[#0c0e14] border border-[#242938]">
+                  <span class="text-slate-400 flex items-center gap-1.5 font-medium">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                    เวลาจริงประเทศไทย:
+                  </span>
+                  <span id="screenLiveThailandClock" class="font-mono font-bold text-cyan-300 text-sm">--:--:--</span>
+                </div>
+                <div class="flex items-center justify-between px-3.5 py-2.5 rounded-xl bg-[#0c0e14] border border-[#242938]">
+                  <span class="text-slate-400 flex items-center gap-1.5 font-medium">
+                    <span>🕒</span> เริ่มใช้จอ (เวลาจริงไทย):
+                  </span>
+                  <div class="flex items-center gap-2">
+                    <span id="screenTimerStartTimeDisplay" class="font-mono font-bold text-amber-300 bg-amber-950/60 px-2 py-0.5 rounded border border-amber-800/80">--:--</span>
+                    <button type="button" id="btnSetTimerStartTimeNow" class="text-[10px] px-2 py-1 rounded bg-cyan-950 hover:bg-cyan-900 text-cyan-300 border border-cyan-800 transition cursor-pointer" title="บันทึกเวลาจริงประเทศไทยขณะนี้เป็นเวลาเริ่มใช้จอ">
+                      ดึงเวลาปัจจุบัน
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Digital Display -->
+              <div class="my-6 text-center">
+                <div id="screenClockDisplay" class="text-6xl sm:text-8xl font-mono font-bold tracking-tight text-white drop-shadow-[0_0_20px_rgba(6,182,212,0.3)]">
+                  00:00:00
+                </div>
+                <div class="text-sm text-slate-400 mt-2">
+                  เวลารวม: <span id="screenTimeMinutesText" class="font-mono font-bold text-cyan-400 text-base">0</span> นาที (เกณฑ์วิจัยบันทึกเป็นนาที)
+                </div>
+              </div>
+
+              <!-- 45-Min Break Countdown Progress -->
+              <div class="space-y-2 bg-[#0c0e14] p-5 rounded-2xl border border-[#242938]">
+                <div class="flex justify-between items-center text-xs">
+                  <span class="text-slate-300 font-medium">เตือนพักรอบถัดไป (รอบละ 45 นาที):</span>
+                  <span id="breakCountdownDisplay" class="font-mono font-bold text-amber-400 text-base">45:00</span>
+                </div>
+                <div class="w-full bg-[#1e2330] rounded-full h-3 overflow-hidden">
+                  <div id="breakProgressBar" class="bg-gradient-to-r from-cyan-500 to-amber-500 h-full rounded-full transition-all duration-300" style="width: 0%"></div>
+                </div>
+                <div class="flex justify-between text-[11px] text-slate-400 pt-1">
+                  <span>ลุกยืนและเดินเบาๆ 2 นาที</span>
+                  <span>หมุนไหล่ไปด้านหลัง 10 ครั้ง</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Timer Action Buttons -->
+            <div class="mt-8 flex flex-wrap items-center justify-center gap-3">
+              <button id="btnStartScreenTimer" class="px-6 py-2.5 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white font-semibold text-sm shadow-lg shadow-cyan-600/30 transition flex items-center gap-2 active:scale-95">
+                <span>▶</span> เริ่มจับเวลา
+              </button>
+              <button id="btnPauseScreenTimer" class="px-6 py-2.5 rounded-xl bg-slate-700 hover:bg-slate-600 text-white font-semibold text-sm transition hidden active:scale-95">
+                <span>⏸</span> พักชั่วคราว
+              </button>
+              <button id="btnResetScreenTimer" class="px-4 py-2.5 rounded-xl bg-[#161923] hover:bg-[#1d2232] text-slate-300 border border-[#242938] text-sm transition">
+                รีเซ็ต
+              </button>
+              
+              <div class="w-px h-6 bg-[#242938] mx-1 hidden sm:block"></div>
+
+              <button id="btnAdd15m" class="px-3.5 py-2 rounded-xl bg-[#161923] hover:bg-[#1d2232] text-xs text-slate-300 border border-[#242938] transition font-mono">
+                +15 นาที
+              </button>
+              <button id="btnAdd45m" class="px-3.5 py-2 rounded-xl bg-[#161923] hover:bg-[#1d2232] text-xs text-cyan-300 border border-cyan-800/80 transition font-mono">
+                +45 นาที
+              </button>
+            </div>
+          </div>
+
+          <!-- Break Metric & 2-Min Break Assistant -->
+          <div class="space-y-4">
+            
+            <!-- Break Rate Card -->
+            <div class="glass-panel p-5 shadow-xl space-y-4">
+              <div class="flex items-center justify-between">
+                <h3 class="font-bold text-white text-sm">การคำนวณการพักวันนี้</h3>
+                <span id="breakRateBadge" class="text-xs px-2.5 py-0.5 rounded-full bg-emerald-950 text-emerald-300 border border-emerald-800 font-mono font-bold">
+                  0%
+                </span>
+              </div>
+
+              <div class="grid grid-cols-2 gap-3 text-center">
+                <div class="bg-[#0c0e14] p-3 rounded-xl border border-[#242938]">
+                  <div class="text-[11px] text-slate-400">จำนวนที่ควรพัก</div>
+                  <div id="targetBreaksText" class="text-2xl font-mono font-bold text-slate-200 mt-1">0</div>
+                  <div class="text-[10px] text-slate-400 mt-0.5">(นาทีใช้จอ ÷ 45)</div>
+                </div>
+                <div class="bg-[#0c0e14] p-3 rounded-xl border border-[#242938]">
+                  <div class="text-[11px] text-slate-400">จำนวนที่พักจริง</div>
+                  <div id="actualBreaksText" class="text-2xl font-mono font-bold text-emerald-400 mt-1">0</div>
+                  <div class="text-[10px] text-slate-400 mt-0.5">ครั้งที่ลุกขยับตัว</div>
+                </div>
+              </div>
+
+              <!-- Button to log break -->
+              <button id="btnLogBreakNow" class="w-full py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs shadow-lg shadow-emerald-600/25 transition flex items-center justify-center gap-2 active:scale-95">
+                <span>✅</span> ยืนยันว่าพักจริงแล้ว (+1 ครั้ง)
+              </button>
+
+              <!-- Apply to today's logbook -->
+              <div class="pt-2 border-t border-[#242938] space-y-2">
+                <div class="flex items-center gap-2">
+                  <select id="selectDayForTimer" class="bg-[#0c0e14] border border-[#242938] rounded-xl px-2.5 py-1.5 text-xs text-white flex-1 font-mono">
+                    <!-- Generated days D1 to D30 -->
+                  </select>
+                  <button id="btnSyncTimerToDay" class="px-3.5 py-1.5 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white font-semibold text-xs transition shadow cursor-pointer active:scale-95">
+                    บันทึกลงวัน
+                  </button>
+                  <button id="btnLoadFromSelectedDay" class="px-2.5 py-1.5 rounded-xl bg-[#161923] hover:bg-[#1d2232] text-slate-300 hover:text-cyan-300 border border-[#242938] text-xs transition font-medium cursor-pointer flex items-center gap-1" title="ดึงเวลาที่เคยบันทึกไว้ของวันนี้มานับต่อ">
+                    <span>🔄</span> นับต่อ
+                  </button>
+                </div>
+                <div class="flex items-center justify-between text-[11px] text-slate-400 bg-[#0c0e14] px-3 py-1.5 rounded-xl border border-[#1e2330]">
+                  <span class="flex items-center gap-1.5 text-emerald-400 font-medium">
+                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                    บันทึกอัตโนมัติ (Auto-Saved)
+                  </span>
+                  <span class="text-[10px] text-slate-400">ปิดคอมแล้วกลับมานับต่อได้</span>
+                </div>
+                <p id="timerAutoSaveNotice" class="text-[11px] text-cyan-400 hidden text-center font-medium"></p>
+                <p id="timerSyncNotice" class="text-[11px] text-emerald-400 hidden text-center font-medium">✓ อัปเดตข้อมูลเข้าสมุดรายวันแล้ว</p>
+              </div>
+            </div>
+
+            <!-- 2-Minute Break Assistant Card -->
+            <div class="glass-panel p-5 shadow-xl space-y-3 border-amber-900/40 bg-gradient-to-br from-amber-950/20 to-slate-900/90">
+              <div class="flex items-center justify-between">
+                <h4 class="font-bold text-amber-300 text-sm flex items-center gap-1.5">
+                  <span>🔔</span> ผู้ช่วยพัก 2 นาที (ทุก 45 นาที)
+                </h4>
+                <span id="breakTimerCountdown" class="font-mono font-bold text-white text-base">02:00</span>
+              </div>
+              <div class="text-xs text-slate-300 space-y-1.5">
+                <div class="flex items-center gap-1.5 text-emerald-400 font-medium">
+                  <span>✓</span> 1. ลุกยืนขึ้นและเดินเบาๆ รอบโต๊ะ 2 นาที
+                </div>
+                <div class="flex items-center gap-1.5 text-cyan-400 font-medium">
+                  <span>✓</span> 2. หมุนไหล่ไปด้านหลังช้าๆ 10 ครั้ง
+                </div>
+              </div>
+              <div class="flex gap-2 pt-1">
+                <button id="btnStart2MinBreak" class="flex-1 py-2 rounded-xl bg-amber-600 hover:bg-amber-500 text-white font-semibold text-xs transition shadow active:scale-95">
+                  เริ่มจับเวลาพัก 2 นาที
+                </button>
+                <button id="btnStop2MinBreak" class="px-3 py-2 rounded-xl bg-[#161923] hover:bg-[#1d2232] text-slate-300 border border-[#242938] text-xs transition">
+                  หยุด
+                </button>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+      <!-- TIMER 2: GUIDED SELF-MASSAGE 6 MINUTES -->
+      <div id="timer-massage-pane" class="space-y-6 hidden">
+        <div class="glass-panel p-6 sm:p-8 shadow-2xl space-y-6">
+          
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-4 border-b border-[#242938]">
+            <div>
+              <span class="text-xs font-semibold px-2 py-0.5 rounded-full bg-cyan-950 text-cyan-400 border border-cyan-800">
+                วิธีปฏิบัติหลังเลิกใช้จอ (D1-D30)
+              </span>
+              <h3 class="text-xl font-bold text-white mt-1">
+                💆 การนวดผ่อนคลายด้วยตนเอง 3 บริเวณ (ข้างละ 30 วินาที × 2 รอบ = 6 นาที)
+              </h3>
+              <p class="text-xs text-slate-400 mt-0.5">
+                ระดับความปวดระหว่างนวดต้องไม่เกิน 3/10 (นวดเบาๆ สบายๆ ไม่ขยี้แรง)
+              </p>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="text-xs text-slate-400">รอบที่:</span>
+              <span id="massageRoundBadge" class="text-sm font-mono font-bold px-3 py-1 rounded-xl bg-[#0c0e14] text-cyan-300 border border-[#242938]">1 / 2</span>
+            </div>
+          </div>
+
+          <!-- Pre-Massage Pain Rating Slider (ก่อนนวด) -->
+          <div class="bg-[#0c0e14] p-4 rounded-2xl border border-[#242938] space-y-3">
+            <div class="flex items-center justify-between">
+              <label class="text-xs font-bold text-rose-300 flex items-center gap-1.5">
+                <span>⚡</span> ให้คะแนนความปวดก่อนนวด (NRS 0 - 10):
+              </label>
+              <span id="massagePrePainDisplay" class="text-lg font-mono font-bold text-rose-400">5 / 10</span>
+            </div>
+            <input type="range" id="massagePrePainSlider" min="0" max="10" step="1" value="5" class="w-full accent-rose-500 cursor-pointer" />
+            <div class="flex justify-between text-[10px] text-slate-400 font-mono">
+              <span>0 = ไม่ปวดเลย</span>
+              <span>5 = ปวดปานกลาง</span>
+              <span>10 = ปวดรุนแรงที่สุด</span>
+            </div>
+          </div>
+
+          <!-- Active Step Display -->
+          <div class="bg-gradient-to-r from-blue-950/30 via-slate-900 to-blue-950/30 border border-blue-800/40 rounded-3xl p-6 sm:p-8 text-center space-y-3">
+            <div class="text-xs uppercase tracking-wider text-cyan-400 font-semibold" id="massageStepNumber">
+              ขั้นตอนที่ 1 จาก 12
+            </div>
+            <h4 class="text-2xl sm:text-3xl font-bold text-white font-heading" id="massageAreaName">
+              บีบคลึงกล้ามเนื้อระหว่างคอกับหัวไหล่
+            </h4>
+            <div class="inline-block px-4 py-1 rounded-full bg-cyan-950/80 border border-cyan-700 text-cyan-300 font-semibold text-sm" id="massageSideBadge">
+              ข้างซ้าย (30 วินาที)
+            </div>
+            <p class="text-sm text-slate-300 max-w-xl mx-auto" id="massageDesc">
+              ใช้นิ้วมือขวาบีบคลึงเบาๆ บริเวณบ่าซ้าย ระดับความปวดต้องไม่เกิน 3/10
+            </p>
+
+            <!-- Countdown Display -->
+            <div class="py-4">
+              <div id="massageSecondsDisplay" class="text-6xl sm:text-8xl font-mono font-bold text-amber-400 drop-shadow-[0_0_20px_rgba(245,158,11,0.3)]">
+                30
+              </div>
+              <div class="text-xs text-slate-400 mt-1">วินาที</div>
+            </div>
+
+            <!-- Progress Bar -->
+            <div class="w-full max-w-md mx-auto bg-[#0c0e14] rounded-full h-2.5 overflow-hidden">
+              <div id="massageOverallBar" class="bg-gradient-to-r from-cyan-500 to-emerald-500 h-full rounded-full transition-all duration-300" style="width: 0%"></div>
+            </div>
+          </div>
+
+          <!-- Controls -->
+          <div class="flex flex-wrap items-center justify-center gap-3">
+            <button id="btnPrevMassage" class="px-4 py-2 rounded-xl bg-[#161923] hover:bg-[#1d2232] text-slate-300 border border-[#242938] text-xs transition">
+              ◀ ย้อนกลับ
+            </button>
+            <button id="btnStartMassage" class="px-6 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-sm shadow-lg shadow-emerald-600/30 transition active:scale-95">
+              ▶ เริ่มต้นนวด
+            </button>
+            <button id="btnPauseMassage" class="px-6 py-2.5 rounded-xl bg-slate-700 hover:bg-slate-600 text-white font-semibold text-sm transition hidden active:scale-95">
+              ⏸ พัก
+            </button>
+            <button id="btnNextMassage" class="px-4 py-2 rounded-xl bg-[#161923] hover:bg-[#1d2232] text-slate-300 border border-[#242938] text-xs transition">
+              ถัดไป ▶
+            </button>
+            <button id="btnResetMassage" class="px-3 py-2 rounded-xl bg-[#161923]/60 hover:bg-[#1d2232] text-slate-400 text-xs transition">
+              รีเซ็ต
+            </button>
+          </div>
+
+          <!-- Post-Massage Pain Rating Slider (หลังนวด) -->
+          <div class="bg-[#0c0e14] p-4 rounded-2xl border border-[#242938] space-y-3">
+            <div class="flex items-center justify-between">
+              <label class="text-xs font-bold text-emerald-300 flex items-center gap-1.5">
+                <span>💆</span> ให้คะแนนความปวดหลังนวดและพัก 2 นาที (NRS 0 - 10):
+              </label>
+              <span id="massagePostPainDisplay" class="text-lg font-mono font-bold text-emerald-400">4 / 10</span>
+            </div>
+            <input type="range" id="massagePostPainSlider" min="0" max="10" step="1" value="4" class="w-full accent-emerald-500 cursor-pointer" />
+            
+            <div class="flex items-center justify-between text-xs pt-1">
+              <span class="text-slate-400">ผลลดปวดทันที (Immediate Relief):</span>
+              <span id="massageImmReliefDisplay" class="font-mono font-bold text-cyan-400">ลดลง 20% (ผ่านเกณฑ์ ≥ 20%)</span>
+            </div>
+
+            <button id="btnSaveMassageToToday" class="w-full py-2.5 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white font-semibold text-xs transition shadow mt-2 active:scale-95">
+              ✓ บันทึกผลการนวดและติ๊ก "นวดครบ 6 นาที" ลงสมุดรายวัน
+            </button>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- TIMER 3: GUIDED 6 EXERCISES ROUTINE -->
+      <div id="timer-exercise-pane" class="space-y-6 hidden">
+        <div class="glass-panel p-6 sm:p-8 shadow-2xl space-y-6">
+          
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-4 border-b border-[#242938]">
+            <div>
+              <span class="text-xs font-semibold px-2 py-0.5 rounded-full bg-purple-950 text-purple-300 border border-purple-800">
+                ท่าบริหารโดยไม่ใช้อุปกรณ์ (6 ท่า)
+              </span>
+              <h3 class="text-xl font-bold text-white mt-1">
+                🏃 ผู้ช่วยบริหารและนับจำนวนครั้ง (Reps & Hold Counter)
+              </h3>
+              <p class="text-xs text-slate-400 mt-0.5">
+                ทำช้าและถูกท่า ไม่กระชากคอหรือแอ่นหลัง หากปวดเกิน 4/10 ให้หยุดทันที
+              </p>
+            </div>
+            <div class="text-xs text-slate-400">
+              ความคืบหน้า: <span id="exerciseProgressText" class="font-mono font-bold text-purple-400">ท่าที่ 1 จาก 6</span>
+            </div>
+          </div>
+
+          <!-- Active Exercise Card -->
+          <div class="bg-gradient-to-r from-purple-950/25 via-slate-900 to-purple-950/25 border border-purple-800/40 rounded-3xl p-6 sm:p-8 text-center space-y-4">
+            <div class="text-xs uppercase tracking-wider text-purple-400 font-semibold" id="exerciseTypeBadge">
+              ฝึกเกร็งค้าง (Isometric Hold)
+            </div>
+            <h4 class="text-2xl sm:text-3xl font-bold text-white font-heading" id="exerciseNameDisplay">
+              1. ดึงคางกลับ (Chin Tuck)
+            </h4>
+            
+            <div class="flex items-center justify-center gap-3">
+              <span class="px-3.5 py-1 rounded-full bg-[#0c0e14] border border-purple-700 text-purple-300 font-mono font-bold text-sm" id="exerciseRepBadge">
+                ครั้งที่ 1 / 10
+              </span>
+              <span class="px-3.5 py-1 rounded-full bg-[#0c0e14] border border-[#242938] text-slate-300 text-xs font-medium" id="exerciseSideBadge">
+                กลาง
+              </span>
+            </div>
+
+            <p class="text-sm text-slate-300 max-w-xl mx-auto" id="exerciseDescDisplay">
+              นั่งหลังตรงและมองไปข้างหน้า เลื่อนศีรษะตรงไปข้างหลังจนคางร่นเข้า คล้ายทำคางสองชั้น โดยไม่ก้มและไม่เงย
+            </p>
+
+            <!-- Big Countdown Display -->
+            <div class="py-4">
+              <div class="text-xs uppercase tracking-widest text-slate-400 mb-1" id="exercisePhaseLabel">ค้างไว้ (HOLD)</div>
+              <div id="exerciseSecondsDisplay" class="text-6xl sm:text-8xl font-mono font-bold text-cyan-400 drop-shadow-[0_0_20px_rgba(6,182,212,0.3)]">
+                5
+              </div>
+              <div class="text-xs text-slate-400 mt-1">วินาที</div>
+            </div>
+
+            <!-- Overall Progress Bar -->
+            <div class="w-full max-w-md mx-auto bg-[#0c0e14] rounded-full h-2.5 overflow-hidden">
+              <div id="exerciseOverallBar" class="bg-gradient-to-r from-purple-500 to-cyan-400 h-full rounded-full transition-all duration-300" style="width: 16%"></div>
+            </div>
+          </div>
+
+          <!-- Controls -->
+          <div class="flex flex-wrap items-center justify-center gap-3">
+            <button id="btnPrevEx" class="px-4 py-2 rounded-xl bg-[#161923] hover:bg-[#1d2232] text-slate-300 border border-[#242938] text-xs transition">
+              ◀ ท่าก่อนหน้า
+            </button>
+            <button id="btnStartEx" class="px-6 py-2.5 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-semibold text-sm shadow-lg shadow-purple-600/30 transition active:scale-95">
+              ▶ เริ่มบริหารท่านี้
+            </button>
+            <button id="btnPauseEx" class="px-6 py-2.5 rounded-xl bg-slate-700 hover:bg-slate-600 text-white font-semibold text-sm transition hidden active:scale-95">
+              ⏸ พัก
+            </button>
+            <button id="btnNextEx" class="px-4 py-2 rounded-xl bg-[#161923] hover:bg-[#1d2232] text-slate-300 border border-[#242938] text-xs transition">
+              ท่าถัดไป ▶
+            </button>
+            <button id="btnResetEx" class="px-3 py-2 rounded-xl bg-[#161923]/60 hover:bg-[#1d2232] text-slate-400 text-xs transition">
+              รีเซ็ต
+            </button>
+          </div>
+
+          <!-- Complete button -->
+          <div class="pt-4 border-t border-[#242938]">
+            <button id="btnSaveExercisesToToday" class="w-full py-2.5 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-semibold text-xs transition shadow flex items-center justify-center gap-2 active:scale-95">
+              <span>🏆</span> ติ๊ก "ทำท่าบริหารครบ 6 ท่า" ลงในสมุดรายวันของวันนี้
+            </button>
+          </div>
+
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- TAB 4: 30-DAY DAILY LOGBOOK (D1 TO D30) -->
+    <!-- ========================================================================= -->
+    <section id="tab-logbook" class="tab-content hidden space-y-6">
+      <div class="glass-panel p-5 sm:p-6 shadow-2xl space-y-4">
+        
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-4 border-b border-[#242938]">
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="text-xs font-semibold px-2 py-0.5 rounded-full bg-cyan-950 text-cyan-300 border border-cyan-800">Daily Logbook</span>
+              <span class="text-xs text-slate-400">ฐานข้อมูลการวิจัย 30 วัน</span>
+            </div>
+            <h2 class="text-xl font-heading font-bold text-white mt-1 flex items-center gap-2">
+              <span>📅</span> ตารางบันทึกรายวัน (Daily Logbook D1 - D30)
+            </h2>
+            <p class="text-xs text-slate-400 mt-0.5">
+              บันทึกเวลาใช้จอ, จำนวนครั้งที่พัก, อาการปวด NRS ก่อน/หลังนวด, และการทำโปรแกรม (เชื่อมโยง Excel ชีต 1)
+            </p>
+          </div>
+          
+          <!-- Filter buttons -->
+          <div class="flex flex-wrap items-center gap-1.5 text-xs">
+            <button data-log-filter="all" class="log-filter-btn active px-3 py-1.5 rounded-xl bg-cyan-950 text-cyan-300 border border-cyan-800 font-semibold cursor-pointer">ทั้งหมด 30 วัน</button>
+            <button data-log-filter="w1" class="log-filter-btn px-3 py-1.5 rounded-xl bg-[#161923] text-slate-300 hover:text-white border border-[#242938] transition cursor-pointer">D1-D7</button>
+            <button data-log-filter="w2" class="log-filter-btn px-3 py-1.5 rounded-xl bg-[#161923] text-slate-300 hover:text-white border border-[#242938] transition cursor-pointer">D8-D14</button>
+            <button data-log-filter="w3" class="log-filter-btn px-3 py-1.5 rounded-xl bg-[#161923] text-slate-300 hover:text-white border border-[#242938] transition cursor-pointer">D15-D21</button>
+            <button data-log-filter="w4" class="log-filter-btn px-3 py-1.5 rounded-xl bg-[#161923] text-slate-300 hover:text-white border border-[#242938] transition cursor-pointer">D22-D30</button>
+            <button data-log-filter="milestones" class="log-filter-btn px-3 py-1.5 rounded-xl bg-amber-950/70 text-amber-300 border border-amber-800/80 font-semibold cursor-pointer">⭐ เฉพาะวัดมุม</button>
+          </div>
+        </div>
+
+        <!-- Table Container with Rounded Corners -->
+        <div class="overflow-x-auto rounded-2xl border border-[#242938] bg-[#0c0e14]/60">
+          <table class="w-full text-left text-xs text-slate-300 border-collapse logbook-table">
+            <thead class="bg-[#121520] text-slate-400 uppercase text-[11px] font-semibold border-b border-[#242938]">
+              <tr>
+                <th class="py-3 px-3 font-mono">วัน</th>
+                <th class="py-3 px-2.5 font-mono">วันที่</th>
+                <th class="py-3 px-2.5 text-cyan-300 font-mono">เริ่มใช้จอ</th>
+                <th class="py-3 px-2.5">นาทีใช้จอ</th>
+                <th class="py-3 px-2 font-mono">ควรพัก</th>
+                <th class="py-3 px-2 font-mono">พักจริง</th>
+                <th class="py-3 px-2.5 font-mono">% พัก</th>
+                <th class="py-3 px-2 text-rose-400 font-mono">ปวดก่อน</th>
+                <th class="py-3 px-2 text-emerald-400 font-mono">ปวดหลัง</th>
+                <th class="py-3 px-2.5 text-cyan-300 font-mono">% ลดทันที</th>
+                <th class="py-3 px-2 text-center">นวด 3 จุด</th>
+                <th class="py-3 px-2.5 text-center">บริหาร (6 ท่า)</th>
+                <th class="py-3 px-2 text-center">สถานะ</th>
+                <th class="py-3 px-2.5 text-center">แก้ไข</th>
+              </tr>
+            </thead>
+            <tbody id="logbookTableBody" class="divide-y divide-[#1e2330]">
+              <!-- Dynamically populated rows -->
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- TAB 5: PROTOCOL, EXERCISES GUIDE & SAFETY RULES -->
+    <!-- ========================================================================= -->
+    <section id="tab-protocol" class="tab-content hidden space-y-6">
+      
+      <!-- SAFETY ALERT BOX (From PDF) -->
+      <div class="bg-rose-950/30 border border-rose-600/50 rounded-2xl p-6 shadow-2xl space-y-3 relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-32 h-32 bg-rose-500/10 rounded-bl-full pointer-events-none"></div>
+        <div class="flex items-center gap-2.5 text-rose-400 font-bold text-lg font-heading">
+          <span class="text-2xl">⚠️</span> ข้อควรระวังและความปลอดภัยตามหลักเวชศาสตร์ (Safety Protocol)
+        </div>
+        <div class="text-xs sm:text-sm text-rose-200/90 leading-relaxed space-y-2.5">
+          <p>
+            <strong>บริเวณที่ห้ามนวดเด็ดขาด:</strong> ด้านหน้าและด้านข้างของลำคอ, แนวกระดูกสันหลัง, กระดูกไหปลาร้า, รักแร้, บริเวณที่มีอาการบวม ช้ำ หรือมีแผลเปิด
+          </p>
+          <p>
+            <strong>เกณฑ์การหยุดทำทันที:</strong> หากทำท่าบริหารหรือนวดแล้วมีอาการปวดเกิน 4/10 หรือมีอาการปวดตกค้างนานเกิน 45 นาที ให้หยุดทำทันที
+          </p>
+          <p>
+            <strong>สัญญาณเตือนที่ต้องพบแพทย์หรือนักกายภาพบำบัด:</strong> มีอาการชา, ปวดร้าวลงแขนหรือปลายนิ้ว, แขนหรือมืออ่อนแรง, มีอาการเวียนศีรษะ บ้านหมุน หรือตาพร่ามัว
+          </p>
+        </div>
+      </div>
+
+      <!-- 6 Exercises Cards Grid -->
+      <div class="space-y-4">
+        <div class="section-title">
+          <span>🏃</span>
+          <span>คู่มือ 6 ท่าบริหารโดยไม่ใช้อุปกรณ์ (Exercise Guide)</span>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+          
+          <!-- Ex 1 -->
+          <div class="glass-panel p-5 space-y-2.5 hover:border-purple-500/40 transition">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-purple-400 font-heading">ท่าที่ 1</span>
+              <span class="text-[11px] px-2 py-0.5 rounded-full bg-purple-950 text-purple-300 border border-purple-800 font-mono">ค้าง 5s × 10 ครั้ง</span>
+            </div>
+            <h4 class="text-base font-bold text-white font-heading">ดึงคางกลับ (Chin Tuck)</h4>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              นั่งหลังตรง มองตรง เลื่อนศีรษะตรงไปข้างหลังจนคางร่นเข้า คล้ายทำคางสองชั้น ไม่ก้มและไม่เงยหน้า
+            </p>
+            <div class="text-[11px] text-cyan-400 pt-2 border-t border-[#242938]">
+              🎯 กล้ามเนื้องอคอด้านลึก (Deep Neck Flexors)
+            </div>
+          </div>
+
+          <!-- Ex 2 -->
+          <div class="glass-panel p-5 space-y-2.5 hover:border-purple-500/40 transition">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-purple-400 font-heading">ท่าที่ 2</span>
+              <span class="text-[11px] px-2 py-0.5 rounded-full bg-purple-950 text-purple-300 border border-purple-800 font-mono">ค้าง 5s × 10 ครั้ง</span>
+            </div>
+            <h4 class="text-base font-bold text-white font-heading">บีบสะบัก (Scapular Retraction)</h4>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              นั่งหรือยืนตรง ปล่อยแขนข้างลำตัว ดึงสะบักเข้าหากันและดึงลงเล็กน้อย ระวังไม่ยักไหล่และไม่แอ่นหลัง
+            </p>
+            <div class="text-[11px] text-cyan-400 pt-2 border-t border-[#242938]">
+              🎯 กล้ามเนื้อสะบัก (Rhomboids & Mid Trapezius)
+            </div>
+          </div>
+
+          <!-- Ex 3 -->
+          <div class="glass-panel p-5 space-y-2.5 hover:border-purple-500/40 transition">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-purple-400 font-heading">ท่าที่ 3</span>
+              <span class="text-[11px] px-2 py-0.5 rounded-full bg-purple-950 text-purple-300 border border-purple-800 font-mono">10 ครั้ง</span>
+            </div>
+            <h4 class="text-base font-bold text-white font-heading">เลื่อนแขนบนผนัง (Wall Slide)</h4>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              ยืนหันหน้าเข้าผนัง ศอกงอ 90° วางท่อนแขนกว้างเท่าไหล่ เลื่อนแขนขึ้นช้าๆ เท่าที่ไม่เจ็บและไม่ยักไหล่ แล้วเลื่อนลง
+            </p>
+            <div class="text-[11px] text-cyan-400 pt-2 border-t border-[#242938]">
+              🎯 กล้ามเนื้อ Serratus Anterior และสะบัก
+            </div>
+          </div>
+
+          <!-- Ex 4 -->
+          <div class="glass-panel p-5 space-y-2.5 hover:border-purple-500/40 transition">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-purple-400 font-heading">ท่าที่ 4</span>
+              <span class="text-[11px] px-2 py-0.5 rounded-full bg-purple-950 text-purple-300 border border-purple-800 font-mono">ข้างละ 20s × 2 ครั้ง</span>
+            </div>
+            <h4 class="text-base font-bold text-white font-heading">ยืดบ่าด้านข้าง (Side Neck Stretch)</h4>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              มือซ้ายจับขอบเก้าอี้เพื่อยึดไหล่ไม่ให้ยก แล้วเอียงศีรษะไปทางขวาจนตึงบ่าซ้าย สลับข้างโดยไม่ใช้มือดึงศีรษะ
+            </p>
+            <div class="text-[11px] text-cyan-400 pt-2 border-t border-[#242938]">
+              🎯 กล้ามเนื้อบ่าด้านบน (Upper Trapezius)
+            </div>
+          </div>
+
+          <!-- Ex 5 -->
+          <div class="glass-panel p-5 space-y-2.5 hover:border-purple-500/40 transition">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-purple-400 font-heading">ท่าที่ 5</span>
+              <span class="text-[11px] px-2 py-0.5 rounded-full bg-purple-950 text-purple-300 border border-purple-800 font-mono">ข้างละ 20s × 2 ครั้ง</span>
+            </div>
+            <h4 class="text-base font-bold text-white font-heading">ยืดกล้ามเนื้อยกสะบัก (Levator Scapulae)</h4>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              หันหน้า 45° แล้วก้มศีรษะเฉียงคล้ายมองรักแร้จนตึงหลังคอ สลับอีกข้าง โดยไม่ใช้มือกดหรือดึงศีรษะแรง
+            </p>
+            <div class="text-[11px] text-cyan-400 pt-2 border-t border-[#242938]">
+              🎯 กล้ามเนื้อยกสะบัก (Levator Scapulae)
+            </div>
+          </div>
+
+          <!-- Ex 6 -->
+          <div class="glass-panel p-5 space-y-2.5 hover:border-purple-500/40 transition">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-purple-400 font-heading">ท่าที่ 6</span>
+              <span class="text-[11px] px-2 py-0.5 rounded-full bg-purple-950 text-purple-300 border border-purple-800 font-mono">ข้างละ 20s × 2 ครั้ง</span>
+            </div>
+            <h4 class="text-base font-bold text-white font-heading">ยืดหน้าอกกับผนัง (Chest Wall Stretch)</h4>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              ยืนหันข้างเข้าผนัง วางฝ่ามือและท่อนแขนบนผนัง ศอกระดับเดียวกับไหล่ หมุนตัวออกจากผนังจนตึงอกแต่ไม่เจ็บไหล่
+            </p>
+            <div class="text-[11px] text-cyan-400 pt-2 border-t border-[#242938]">
+              🎯 กล้ามเนื้อหน้าอก (Pectoralis Major/Minor)
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- 3 Massage Zones -->
+      <div class="glass-panel p-6 shadow-xl space-y-4">
+        <div class="section-title mb-0">
+          <span>💆</span>
+          <span>คู่มือการนวดด้วยตนเอง 3 บริเวณ (Self-Massage Protocol)</span>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+          <div class="bg-[#0c0e14] p-4 rounded-xl border border-[#242938] space-y-1.5">
+            <span class="font-bold text-cyan-400 text-sm font-heading">จุดที่ 1: คอกับหัวไหล่</span>
+            <p class="text-slate-300 leading-relaxed">
+              บีบคลึงกล้ามเนื้อระหว่างคอกับหัวไหล่ (Upper Trapezius) เบาๆ 30 วินาทีต่อข้าง ทำ 2 รอบ
+            </p>
+          </div>
+          <div class="bg-[#0c0e14] p-4 rounded-xl border border-[#242938] space-y-1.5">
+            <span class="font-bold text-cyan-400 text-sm font-heading">จุดที่ 2: ด้านหลังหัวไหล่</span>
+            <p class="text-slate-300 leading-relaxed">
+              ใช้ปลายนิ้วนวดวนกลมๆ บนกล้ามเนื้อด้านหลังหัวไหล่ (Infraspinatus) 30 วินาทีต่อข้าง ทำ 2 รอบ
+            </p>
+          </div>
+          <div class="bg-[#0c0e14] p-4 rounded-xl border border-[#242938] space-y-1.5">
+            <span class="font-bold text-cyan-400 text-sm font-heading">จุดที่ 3: หน้าอกส่วนบน</span>
+            <p class="text-slate-300 leading-relaxed">
+              นวดวนเบาๆ บนกล้ามเนื้อหน้าอกส่วนบนใกล้หัวไหล่ ใต้กระดูกไหปลาร้า 30 วินาทีต่อข้าง ทำ 2 รอบ
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- Edit Day Modal Dialog -->
+  <div id="modalEditDay" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
+    <div class="glass-panel max-w-lg w-full p-6 shadow-2xl space-y-4 max-h-[90vh] overflow-y-auto border-[#2e3448]">
+      <div class="flex items-center justify-between pb-3 border-b border-[#242938]">
+        <div>
+          <h3 class="text-lg font-heading font-bold text-white" id="modalDayTitle">แก้ไขบันทึก D1</h3>
+          <p class="text-xs text-slate-400 font-mono" id="modalDayDate">2026-09-14</p>
+        </div>
+        <button id="btnCloseModal" class="text-slate-400 hover:text-white text-lg font-bold px-2 py-1 cursor-pointer">✕</button>
+      </div>
+
+      <div class="space-y-4 text-xs">
+        
+        <!-- Screen Time & Breaks -->
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <div class="flex items-center justify-between mb-1">
+              <label class="text-slate-300 font-medium">เริ่มใช้จอ (เวลา)</label>
+              <button type="button" id="btnModalSetNowThTime" class="text-[10px] text-cyan-400 hover:text-cyan-300 flex items-center gap-1 cursor-pointer hover:underline" title="ตั้งค่าเป็นเวลาประเทศไทย ณ ขณะนี้">
+                <span>🕒</span> ดึงเวลาจริงไทย
+              </button>
+            </div>
+            <input type="time" id="modalStartTime" class="w-full bg-[#0c0e14] border border-[#242938] rounded-xl px-3 py-2 text-white font-mono" />
+            <div class="text-[10px] text-slate-500 font-mono mt-0.5" id="modalThLiveTimeHint">เวลาจริงไทยขณะนี้: <span id="modalLiveThClock">--:--:--</span> น.</div>
+          </div>
+          <div>
+            <label class="text-slate-300 font-medium block mb-1">นาทีใช้จอรวม</label>
+            <input type="number" id="modalScreenMins" min="0" max="1440" class="w-full bg-[#0c0e14] border border-[#242938] rounded-xl px-3 py-2 text-white font-mono" />
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="text-slate-300 font-medium block mb-1">ควรพัก (นาที ÷ 45)</label>
+            <input type="number" id="modalTargetBreaks" readonly class="w-full bg-[#12151f] border border-[#1e2330] rounded-xl px-3 py-2 text-slate-400 cursor-not-allowed font-mono" />
+          </div>
+          <div>
+            <label class="text-slate-300 font-medium block mb-1">พักจริง (ครั้ง)</label>
+            <input type="number" id="modalActualBreaks" min="0" class="w-full bg-[#0c0e14] border border-[#242938] rounded-xl px-3 py-2 text-white font-mono" />
+          </div>
+        </div>
+
+        <!-- Pain NRS -->
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="text-rose-300 font-medium block mb-1">คะแนนปวดก่อนนวด (0-10)</label>
+            <input type="number" id="modalPrePain" min="0" max="10" class="w-full bg-[#0c0e14] border border-[#242938] rounded-xl px-3 py-2 text-white font-mono" />
+          </div>
+          <div>
+            <label class="text-emerald-300 font-medium block mb-1">คะแนนปวดหลังนวด (0-10)</label>
+            <input type="number" id="modalPostPain" min="0" max="10" class="w-full bg-[#0c0e14] border border-[#242938] rounded-xl px-3 py-2 text-white font-mono" />
+          </div>
+        </div>
+
+        <!-- Activity Checkboxes -->
+        <div class="bg-[#0c0e14] p-3 rounded-xl border border-[#242938] space-y-2.5">
+          <!-- Massage Checkbox -->
+          <label class="flex items-center gap-2 cursor-pointer pb-2 border-b border-[#1e2330]">
+            <input type="checkbox" id="modalCheckMassage" class="w-4 h-4 rounded border-slate-700 text-cyan-500 accent-cyan-500 cursor-pointer" />
+            <span class="text-slate-200 font-medium text-xs">นวดด้วยตนเองครบ 3 บริเวณ (6 นาที)</span>
+          </label>
+
+          <!-- 6 Ergonomics Exercises -->
+          <div>
+            <div class="flex items-center justify-between mb-1.5">
+              <span class="text-slate-200 font-medium text-xs flex items-center gap-1.5">
+                <span>ท่าบริหารกาย 6 ท่า</span>
+                <span id="modalExerciseCountBadge" class="text-[10px] px-1.5 py-0.5 rounded font-mono bg-cyan-950 text-cyan-300 border border-cyan-800 font-semibold">0/6 ท่า</span>
+              </span>
+              <div class="flex items-center gap-1">
+                <button type="button" id="btnModalCheckAllEx" class="px-2 py-0.5 rounded bg-[#161923] hover:bg-cyan-950 text-cyan-400 hover:text-cyan-300 text-[10px] border border-[#242938] hover:border-cyan-800 transition cursor-pointer">
+                  ติ๊กครบ 6 ท่า
+                </button>
+                <button type="button" id="btnModalUncheckAllEx" class="px-2 py-0.5 rounded bg-[#161923] hover:bg-slate-800 text-slate-400 text-[10px] border border-[#242938] transition cursor-pointer">
+                  ล้าง
+                </button>
+              </div>
+            </div>
+
+            <!-- Hidden compatibility input -->
+            <input type="checkbox" id="modalCheckExercises" class="hidden" />
+
+            <div class="grid grid-cols-2 gap-1.5 text-[11px]">
+              <label class="flex items-center gap-1.5 p-1.5 rounded-lg bg-[#121520] hover:bg-[#161a28] cursor-pointer border border-[#1e2330]">
+                <input type="checkbox" id="modalEx0" class="modal-ex-cb w-3.5 h-3.5 rounded border-slate-700 text-cyan-500 accent-cyan-500 cursor-pointer" />
+                <span class="text-slate-300 truncate">1. ดึงคางกลับ (Chin Tuck)</span>
+              </label>
+              <label class="flex items-center gap-1.5 p-1.5 rounded-lg bg-[#121520] hover:bg-[#161a28] cursor-pointer border border-[#1e2330]">
+                <input type="checkbox" id="modalEx1" class="modal-ex-cb w-3.5 h-3.5 rounded border-slate-700 text-cyan-500 accent-cyan-500 cursor-pointer" />
+                <span class="text-slate-300 truncate">2. บีบสะบัก (Scapular)</span>
+              </label>
+              <label class="flex items-center gap-1.5 p-1.5 rounded-lg bg-[#121520] hover:bg-[#161a28] cursor-pointer border border-[#1e2330]">
+                <input type="checkbox" id="modalEx2" class="modal-ex-cb w-3.5 h-3.5 rounded border-slate-700 text-cyan-500 accent-cyan-500 cursor-pointer" />
+                <span class="text-slate-300 truncate">3. เลื่อนแขนผนัง (Wall Slide)</span>
+              </label>
+              <label class="flex items-center gap-1.5 p-1.5 rounded-lg bg-[#121520] hover:bg-[#161a28] cursor-pointer border border-[#1e2330]">
+                <input type="checkbox" id="modalEx3" class="modal-ex-cb w-3.5 h-3.5 rounded border-slate-700 text-cyan-500 accent-cyan-500 cursor-pointer" />
+                <span class="text-slate-300 truncate">4. ยืดบ่าข้าง (Side Neck)</span>
+              </label>
+              <label class="flex items-center gap-1.5 p-1.5 rounded-lg bg-[#121520] hover:bg-[#161a28] cursor-pointer border border-[#1e2330]">
+                <input type="checkbox" id="modalEx4" class="modal-ex-cb w-3.5 h-3.5 rounded border-slate-700 text-cyan-500 accent-cyan-500 cursor-pointer" />
+                <span class="text-slate-300 truncate">5. ยืดกล้ามเนื้อยกสะบัก</span>
+              </label>
+              <label class="flex items-center gap-1.5 p-1.5 rounded-lg bg-[#121520] hover:bg-[#161a28] cursor-pointer border border-[#1e2330]">
+                <input type="checkbox" id="modalEx5" class="modal-ex-cb w-3.5 h-3.5 rounded border-slate-700 text-cyan-500 accent-cyan-500 cursor-pointer" />
+                <span class="text-slate-300 truncate">6. ยืดอกกับผนัง (Chest Wall)</span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Notes -->
+        <div>
+          <label class="text-slate-300 font-medium block mb-1">หมายเหตุ / อาการผิดปกติ</label>
+          <textarea id="modalNotes" rows="2" class="w-full bg-[#0c0e14] border border-[#242938] rounded-xl px-3 py-2 text-white resize-none" placeholder="เช่น ปรับระดับเก้าอี้ลง, รู้สึกผ่อนคลายขึ้น"></textarea>
+        </div>
+
+      </div>
+
+      <div class="flex items-center justify-end gap-2 pt-3 border-t border-[#242938]">
+        <button id="btnCancelModal" class="px-4 py-2 rounded-xl bg-[#161923] hover:bg-[#1d2232] text-slate-300 border border-[#242938] text-xs transition cursor-pointer">
+          ยกเลิก
+        </button>
+        <button id="btnSaveModal" class="px-5 py-2 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white font-semibold text-xs shadow transition cursor-pointer active:scale-95">
+          บันทึกการแก้ไข
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div id="toastContainer" class="fixed bottom-5 right-5 z-50 space-y-2 pointer-events-none"></div>
+
+  <!-- Footer (DSA Style Standard) -->
+  <footer class="border-t border-[#242938] py-8 mt-12 bg-[#0a0c12]/80 text-center text-xs text-slate-500">
+    <div class="max-w-7xl mx-auto px-4 space-y-2">
+      <div class="text-slate-400 font-medium">
+        โครงการวิจัยการยศาสตร์และปรับเปลี่ยนพฤติกรรมสุขภาพส่วนบุคคล 30 วัน (Health30D Research Portal)
+      </div>
+      <div>
+        Section 2 · รหัส 6806021612037 · นายปภาวิน ธิติชุณหกุล · คณะวิศวกรรมศาสตร์
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
