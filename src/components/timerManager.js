@@ -1,16 +1,112 @@
 // Timers: Screen Time / 45-min Break Reminder, 6-min Self-Massage, and 6 Exercises Guided Routine
+// Enhanced with Web Worker Heartbeat & Wall-Clock Drift Correction (Never stops when minimized or tab switched)
 import { sound } from '../utils/audio.js';
 import confetti from 'canvas-confetti';
 import { getThailandTime, getThailandDate } from '../data/storage.js';
 
 const TIMER_STORAGE_KEY = 'health30d_screen_timer_session';
 
+// Desktop Notification Helper
+export function requestNotificationPermission() {
+  if (typeof window !== 'undefined' && 'Notification' in window) {
+    if (Notification.permission === 'default') {
+      Notification.requestPermission();
+    }
+  }
+}
+
+export function showDesktopNotification(title, body) {
+  if (typeof window !== 'undefined' && 'Notification' in window && Notification.permission === 'granted') {
+    try {
+      new Notification(title, {
+        body,
+        icon: '/sample_baseline.png',
+        silent: false
+      });
+    } catch (e) {}
+  }
+}
+
+// Global Timer Heartbeat: Uses an inline Web Worker that runs uninterrupted in background/minimized windows
+class BackgroundHeartbeat {
+  constructor() {
+    this.worker = null;
+    this.fallbackInterval = null;
+    this.subscribers = new Set();
+    this.init();
+  }
+
+  init() {
+    if (typeof window === 'undefined') return;
+    try {
+      // Blob Worker to avoid separate asset fetch issues
+      const workerCode = `
+        let timer = null;
+        self.onmessage = function(e) {
+          if (e.data === 'start') {
+            if (!timer) {
+              timer = setInterval(function() {
+                self.postMessage('tick');
+              }, 1000);
+            }
+          } else if (e.data === 'stop') {
+            if (timer) {
+              clearInterval(timer);
+              timer = null;
+            }
+          }
+        };
+      `;
+      const blob = new Blob([workerCode], { type: 'application/javascript' });
+      this.worker = new Worker(URL.createObjectURL(blob));
+      this.worker.onmessage = () => {
+        this.notify();
+      };
+    } catch (e) {
+      console.warn('Web Worker heartbeat unavailable, falling back to interval:', e);
+      this.worker = null;
+    }
+  }
+
+  notify() {
+    this.subscribers.forEach(cb => {
+      try { cb(); } catch (err) { console.error('Heartbeat subscriber error:', err); }
+    });
+  }
+
+  subscribe(callback) {
+    this.subscribers.add(callback);
+    if (this.subscribers.size === 1) {
+      if (this.worker) {
+        this.worker.postMessage('start');
+      } else if (!this.fallbackInterval) {
+        this.fallbackInterval = setInterval(() => this.notify(), 1000);
+      }
+    }
+    return () => {
+      this.subscribers.delete(callback);
+      if (this.subscribers.size === 0) {
+        if (this.worker) {
+          this.worker.postMessage('stop');
+        } else if (this.fallbackInterval) {
+          clearInterval(this.fallbackInterval);
+          this.fallbackInterval = null;
+        }
+      }
+    };
+  }
+}
+
+const heartbeat = new BackgroundHeartbeat();
+
 export class ScreenTimer {
   constructor(options = {}) {
     this.totalSeconds = 0; // Cumulative screen time
     this.breakCountdown = 45 * 60; // 45 minutes in seconds
     this.isRunning = false;
-    this.timerId = null;
+    this.lastTickTime = null;
+    this.unsubscribeHeartbeat = null;
+    this.fallbackInterval = null;
     this.breaksActual = 0;
     this.startTime = null;
     this.targetDay = options.targetDay || 1;
@@ -21,22 +117,27 @@ export class ScreenTimer {
     // 2-minute break countdown timer
     this.breakTimerRunning = false;
     this.breakTimerSeconds = 120;
-    this.breakTimerId = null;
+    this.breakLastTickTime = null;
+    this.breakIntervalId = null;
     this.onBreakTick = options.onBreakTick || (() => {});
 
     // Load any saved active session for today (prevents data loss on computer shutdown/refresh)
     this.hasRestoredSession = this.loadSavedSession();
 
-    // Auto-save on window close or beforeunload
+    // Auto-save & background resync listeners
     if (typeof window !== 'undefined') {
       window.addEventListener('beforeunload', () => {
         this.saveState();
       });
       document.addEventListener('visibilitychange', () => {
-        if (document.visibilityState === 'hidden') {
+        if (document.visibilityState === 'visible') {
+          this.sync();
+        } else {
           this.saveState();
         }
       });
+      window.addEventListener('focus', () => this.sync());
+      window.addEventListener('pageshow', () => this.sync());
     }
   }
 
@@ -94,35 +195,80 @@ export class ScreenTimer {
       this.startTime = getThailandTime();
     }
     sound.playBeep(520, 0.1);
+    this.lastTickTime = Date.now();
     this.saveState();
 
-    this.timerId = setInterval(() => {
-      this.totalSeconds++;
-      this.breakCountdown--;
+    // Subscribe to background worker heartbeat
+    this.unsubscribeHeartbeat = heartbeat.subscribe(() => {
+      this.tick();
+    });
 
-      if (this.breakCountdown <= 0) {
-        this.breakCountdown = 45 * 60; // reset next 45 min interval
-        sound.playBreakAlert();
-        this.onBreakTrigger();
-      }
-
-      // Auto-save every 5 seconds while running to survive sudden power cuts or browser crashes
-      if (this.totalSeconds % 5 === 0) {
-        this.saveState();
-      }
-
-      this.onTick(this.getState());
+    // Also keep local fallback interval
+    if (this.fallbackInterval) clearInterval(this.fallbackInterval);
+    this.fallbackInterval = setInterval(() => {
+      this.tick();
     }, 1000);
 
     this.onTick(this.getState());
   }
 
+  // Wall-clock drift-corrected tick function: guarantees accurate time even when minimized for hours
+  tick() {
+    if (!this.isRunning) return;
+    const now = Date.now();
+    if (!this.lastTickTime) {
+      this.lastTickTime = now;
+      return;
+    }
+
+    const elapsed = Math.floor((now - this.lastTickTime) / 1000);
+    if (elapsed <= 0) return;
+
+    this.lastTickTime += elapsed * 1000;
+    this.totalSeconds += elapsed;
+
+    // Handle 45-min break trigger
+    let tempBreak = this.breakCountdown - elapsed;
+    while (tempBreak <= 0) {
+      sound.playBreakAlert();
+      this.onBreakTrigger();
+      showDesktopNotification(
+        '🔔 ครบ 45 นาทีแล้ว! (พักขยับตัว)',
+        'ได้เวลาลุกยืนเดิน 2 นาที และหมุนไหล่ 10 ครั้งตามข้อกำหนด Proposal'
+      );
+      tempBreak += 45 * 60; // reset next 45 min interval
+    }
+    this.breakCountdown = tempBreak;
+
+    // Auto-save frequently
+    if (this.totalSeconds % 5 === 0 || elapsed > 2) {
+      this.saveState();
+    }
+
+    this.onTick(this.getState());
+  }
+
+  // Resync immediately upon tab focus or un-minimizing
+  sync() {
+    if (this.isRunning) {
+      this.tick();
+    }
+    if (this.breakTimerRunning) {
+      this.tickBreak();
+    }
+  }
+
   pause() {
     this.isRunning = false;
-    if (this.timerId) {
-      clearInterval(this.timerId);
-      this.timerId = null;
+    if (this.unsubscribeHeartbeat) {
+      this.unsubscribeHeartbeat();
+      this.unsubscribeHeartbeat = null;
     }
+    if (this.fallbackInterval) {
+      clearInterval(this.fallbackInterval);
+      this.fallbackInterval = null;
+    }
+    this.lastTickTime = null;
     this.saveState();
     this.onTick(this.getState());
   }
@@ -171,20 +317,38 @@ export class ScreenTimer {
   start2MinBreak() {
     this.breakTimerRunning = true;
     this.breakTimerSeconds = 120;
-    if (this.breakTimerId) clearInterval(this.breakTimerId);
+    this.breakLastTickTime = Date.now();
+    if (this.breakIntervalId) clearInterval(this.breakIntervalId);
 
-    this.breakTimerId = setInterval(() => {
-      this.breakTimerSeconds--;
-      if (this.breakTimerSeconds <= 0) {
-        clearInterval(this.breakTimerId);
-        this.breakTimerRunning = false;
-        sound.playSuccess();
-      }
-      this.onBreakTick({
-        secondsLeft: this.breakTimerSeconds,
-        running: this.breakTimerRunning
-      });
-    }, 1000);
+    const checkBreak = () => {
+      this.tickBreak();
+    };
+
+    this.breakIntervalId = setInterval(checkBreak, 1000);
+    this.onBreakTick({
+      secondsLeft: this.breakTimerSeconds,
+      running: this.breakTimerRunning
+    });
+  }
+
+  tickBreak() {
+    if (!this.breakTimerRunning) return;
+    const now = Date.now();
+    if (!this.breakLastTickTime) {
+      this.breakLastTickTime = now;
+      return;
+    }
+    const elapsed = Math.floor((now - this.breakLastTickTime) / 1000);
+    if (elapsed <= 0) return;
+
+    this.breakLastTickTime += elapsed * 1000;
+    this.breakTimerSeconds = Math.max(0, this.breakTimerSeconds - elapsed);
+
+    if (this.breakTimerSeconds <= 0) {
+      this.stop2MinBreak();
+      sound.playSuccess();
+      showDesktopNotification('✓ ครบเวลาพัก 2 นาทีแล้ว!', 'คุณสามารถเริ่มทำงานรอบใหม่ได้อย่างสดชื่น');
+    }
 
     this.onBreakTick({
       secondsLeft: this.breakTimerSeconds,
@@ -193,8 +357,12 @@ export class ScreenTimer {
   }
 
   stop2MinBreak() {
-    if (this.breakTimerId) clearInterval(this.breakTimerId);
+    if (this.breakIntervalId) {
+      clearInterval(this.breakIntervalId);
+      this.breakIntervalId = null;
+    }
     this.breakTimerRunning = false;
+    this.breakLastTickTime = null;
     this.onBreakTick({ secondsLeft: this.breakTimerSeconds, running: false });
   }
 
@@ -242,47 +410,86 @@ export class MassageRoutineRunner {
     this.stepIndex = 0;
     this.secondsLeft = 30;
     this.isRunning = false;
-    this.timerId = null;
+    this.lastTickTime = null;
+    this.unsubscribeHeartbeat = null;
+    this.fallbackInterval = null;
     this.onUpdate = options.onUpdate || (() => {});
     this.onComplete = options.onComplete || (() => {});
+
+    if (typeof window !== 'undefined') {
+      document.addEventListener('visibilitychange', () => {
+        if (document.visibilityState === 'visible' && this.isRunning) {
+          this.tick();
+        }
+      });
+      window.addEventListener('focus', () => {
+        if (this.isRunning) this.tick();
+      });
+    }
   }
 
   start() {
     if (this.isRunning) return;
     this.isRunning = true;
     sound.playBeep(660, 0.2);
+    this.lastTickTime = Date.now();
 
-    this.timerId = setInterval(() => {
-      this.secondsLeft--;
-      if (this.secondsLeft <= 3 && this.secondsLeft > 0) {
-        sound.playCountdownTick();
-      }
+    this.unsubscribeHeartbeat = heartbeat.subscribe(() => {
+      this.tick();
+    });
 
-      if (this.secondsLeft <= 0) {
-        this.stepIndex++;
-        if (this.stepIndex >= MASSAGE_STEPS.length) {
-          this.pause();
-          this.stepIndex = MASSAGE_STEPS.length - 1;
-          this.secondsLeft = 0;
-          sound.playSuccess();
-          this.onComplete();
-        } else {
-          sound.playBeep(880, 0.25);
-          this.secondsLeft = MASSAGE_STEPS[this.stepIndex].dur;
-        }
-      }
-      this.onUpdate(this.getState());
+    if (this.fallbackInterval) clearInterval(this.fallbackInterval);
+    this.fallbackInterval = setInterval(() => {
+      this.tick();
     }, 1000);
 
     this.onUpdate(this.getState());
   }
 
+  tick() {
+    if (!this.isRunning) return;
+    const now = Date.now();
+    if (!this.lastTickTime) {
+      this.lastTickTime = now;
+      return;
+    }
+    const elapsed = Math.floor((now - this.lastTickTime) / 1000);
+    if (elapsed <= 0) return;
+
+    this.lastTickTime += elapsed * 1000;
+    this.secondsLeft -= elapsed;
+
+    if (this.secondsLeft <= 3 && this.secondsLeft > 0) {
+      sound.playCountdownTick();
+    }
+
+    if (this.secondsLeft <= 0) {
+      this.stepIndex++;
+      if (this.stepIndex >= MASSAGE_STEPS.length) {
+        this.pause();
+        this.stepIndex = MASSAGE_STEPS.length - 1;
+        this.secondsLeft = 0;
+        sound.playSuccess();
+        this.onComplete();
+      } else {
+        sound.playBeep(880, 0.25);
+        this.secondsLeft = MASSAGE_STEPS[this.stepIndex].dur;
+      }
+    }
+    this.onUpdate(this.getState());
+  }
+
   pause() {
     this.isRunning = false;
-    if (this.timerId) {
-      clearInterval(this.timerId);
-      this.timerId = null;
+    if (this.unsubscribeHeartbeat) {
+      this.unsubscribeHeartbeat();
+      this.unsubscribeHeartbeat = null;
     }
+    if (this.fallbackInterval) {
+      clearInterval(this.fallbackInterval);
+      this.fallbackInterval = null;
+    }
+    this.lastTickTime = null;
     this.onUpdate(this.getState());
   }
 
@@ -297,6 +504,7 @@ export class MassageRoutineRunner {
     if (this.stepIndex < MASSAGE_STEPS.length - 1) {
       this.stepIndex++;
       this.secondsLeft = MASSAGE_STEPS[this.stepIndex].dur;
+      this.lastTickTime = Date.now();
       sound.playBeep(700, 0.1);
       this.onUpdate(this.getState());
     }
@@ -306,6 +514,7 @@ export class MassageRoutineRunner {
     if (this.stepIndex > 0) {
       this.stepIndex--;
       this.secondsLeft = MASSAGE_STEPS[this.stepIndex].dur;
+      this.lastTickTime = Date.now();
       sound.playBeep(500, 0.1);
       this.onUpdate(this.getState());
     }
@@ -320,7 +529,7 @@ export class MassageRoutineRunner {
       currentStep,
       stepIndex: this.stepIndex,
       totalSteps: MASSAGE_STEPS.length,
-      secondsLeft: this.secondsLeft,
+      secondsLeft: Math.max(0, this.secondsLeft),
       isRunning: this.isRunning,
       progressPct: Math.min(100, progressPct),
       isFinished: this.stepIndex >= MASSAGE_STEPS.length - 1 && this.secondsLeft === 0
@@ -402,9 +611,22 @@ export class WorkoutPlayer {
     this.phase = 'ready'; // 'ready', 'hold', 'rest', 'completed'
     this.secondsLeft = 5;
     this.isRunning = false;
-    this.timerId = null;
+    this.lastTickTime = null;
+    this.unsubscribeHeartbeat = null;
+    this.fallbackInterval = null;
     this.onUpdate = options.onUpdate || (() => {});
     this.onComplete = options.onComplete || (() => {});
+
+    if (typeof window !== 'undefined') {
+      document.addEventListener('visibilitychange', () => {
+        if (document.visibilityState === 'visible' && this.isRunning) {
+          this.tick();
+        }
+      });
+      window.addEventListener('focus', () => {
+        if (this.isRunning) this.tick();
+      });
+    }
   }
 
   start() {
@@ -412,28 +634,54 @@ export class WorkoutPlayer {
     this.isRunning = true;
     this.setupExercisePhase();
     sound.playBeep(600, 0.15);
+    this.lastTickTime = Date.now();
 
-    this.timerId = setInterval(() => {
-      this.secondsLeft--;
-      if (this.secondsLeft <= 3 && this.secondsLeft > 0) {
-        sound.playCountdownTick();
-      }
+    this.unsubscribeHeartbeat = heartbeat.subscribe(() => {
+      this.tick();
+    });
 
-      if (this.secondsLeft <= 0) {
-        this.nextPhase();
-      }
-      this.onUpdate(this.getState());
+    if (this.fallbackInterval) clearInterval(this.fallbackInterval);
+    this.fallbackInterval = setInterval(() => {
+      this.tick();
     }, 1000);
 
     this.onUpdate(this.getState());
   }
 
+  tick() {
+    if (!this.isRunning) return;
+    const now = Date.now();
+    if (!this.lastTickTime) {
+      this.lastTickTime = now;
+      return;
+    }
+    const elapsed = Math.floor((now - this.lastTickTime) / 1000);
+    if (elapsed <= 0) return;
+
+    this.lastTickTime += elapsed * 1000;
+    this.secondsLeft -= elapsed;
+
+    if (this.secondsLeft <= 3 && this.secondsLeft > 0) {
+      sound.playCountdownTick();
+    }
+
+    if (this.secondsLeft <= 0) {
+      this.nextPhase();
+    }
+    this.onUpdate(this.getState());
+  }
+
   pause() {
     this.isRunning = false;
-    if (this.timerId) {
-      clearInterval(this.timerId);
-      this.timerId = null;
+    if (this.unsubscribeHeartbeat) {
+      this.unsubscribeHeartbeat();
+      this.unsubscribeHeartbeat = null;
     }
+    if (this.fallbackInterval) {
+      clearInterval(this.fallbackInterval);
+      this.fallbackInterval = null;
+    }
+    this.lastTickTime = null;
     this.onUpdate(this.getState());
   }
 
@@ -449,6 +697,7 @@ export class WorkoutPlayer {
       this.phase = 'hold';
       this.secondsLeft = ex.holdSeconds;
     }
+    this.lastTickTime = Date.now();
   }
 
   nextPhase() {
@@ -462,12 +711,14 @@ export class WorkoutPlayer {
         } else {
           this.phase = 'rest';
           this.secondsLeft = ex.restSeconds;
+          this.lastTickTime = Date.now();
         }
       } else {
         // rest ended -> next rep
         this.currentRep++;
         this.phase = 'hold';
         this.secondsLeft = ex.holdSeconds;
+        this.lastTickTime = Date.now();
         sound.playBeep(550, 0.1);
       }
     } else if (ex.type === 'reps_dynamic') {
@@ -478,12 +729,14 @@ export class WorkoutPlayer {
         this.currentRep++;
         this.phase = 'hold';
         this.secondsLeft = ex.cadenceSeconds;
+        this.lastTickTime = Date.now();
       }
     } else if (ex.type === 'bilateral_timed') {
       sound.playBeep(880, 0.15);
       if (this.currentSide === 'left') {
         this.currentSide = 'right';
         this.secondsLeft = ex.holdSeconds;
+        this.lastTickTime = Date.now();
       } else {
         // right side finished
         if (this.currentRep >= ex.targetReps) {
@@ -492,6 +745,7 @@ export class WorkoutPlayer {
           this.currentRep++;
           this.currentSide = 'left';
           this.secondsLeft = ex.holdSeconds;
+          this.lastTickTime = Date.now();
         }
       }
     }
@@ -551,7 +805,7 @@ export class WorkoutPlayer {
       currentRep: this.currentRep,
       currentSide: this.currentSide,
       phase: this.phase,
-      secondsLeft: this.secondsLeft,
+      secondsLeft: Math.max(0, this.secondsLeft),
       isRunning: this.isRunning,
       overallProgress,
       isFinished: this.phase === 'completed'

@@ -1,0 +1,794 @@
+- generic [ref=f1e1]:
+  - banner [ref=f1e2]:
+    - generic [ref=f1e3]:
+      - generic [ref=f1e4]:
+        - generic [ref=f1e5]: 30D
+        - generic [ref=f1e6]:
+          - generic [ref=f1e7]:
+            - generic [ref=f1e8]: Health30D Studio
+            - generic [ref=f1e9]: Phase 1 & 2
+            - generic [ref=f1e10]: Sec 2 · 6806021612037
+          - paragraph [ref=f1e11]: การปรับโต๊ะทำงานร่วมกับการดูแลตนเอง ลด Office Syndrome (คอ บ่า ไหล่)
+      - generic [ref=f1e12]:
+        - generic [ref=f1e13]:
+          - generic [ref=f1e15]: "เวลาจริงไทย:"
+          - generic [ref=f1e16]: 21:22:08
+        - button "✨ โหลดข้อมูลตัวอย่าง Proposal (10/10)" [ref=f1e17]:
+          - generic [ref=f1e18]: ✨
+          - text: โหลดข้อมูลตัวอย่าง Proposal (10/10)
+        - button "📊 ส่งออก Excel (.xlsx 3 ชีต)" [ref=f1e19]:
+          - generic [ref=f1e20]: 📊
+          - text: ส่งออก Excel (.xlsx 3 ชีต)
+        - button "ล้างข้อมูล" [ref=f1e21]
+    - generic [ref=f1e22]:
+      - button "📊 สรุปผล & 5 ตัวชี้วัด" [ref=f1e23] [cursor=pointer]:
+        - generic [ref=f1e24]: 📊
+        - text: สรุปผล & 5 ตัวชี้วัด
+      - button "📐 วิเคราะห์องศาท่านั่ง (ImageMeter)" [ref=f1e25] [cursor=pointer]:
+        - generic [ref=f1e26]: 📐
+        - text: วิเคราะห์องศาท่านั่ง (ImageMeter)
+      - button "⏱️ นาฬิกา & ผู้ช่วยพัก 45 นาที" [ref=f1e27] [cursor=pointer]:
+        - generic [ref=f1e28]: ⏱️
+        - text: นาฬิกา & ผู้ช่วยพัก 45 นาที
+      - button "📅 สมุดบันทึกรายวัน (D1 - D30)" [active] [ref=f1e29] [cursor=pointer]:
+        - generic [ref=f1e30]: 📅
+        - text: สมุดบันทึกรายวัน (D1 - D30)
+      - button "📖 ท่าบริหาร & กฎความปลอดภัย" [ref=f1e31] [cursor=pointer]:
+        - generic [ref=f1e32]: 📖
+        - text: ท่าบริหาร & กฎความปลอดภัย
+  - main [ref=f1e33]:
+    - generic [ref=f1e649]:
+      - generic [ref=f1e650]:
+        - generic [ref=f1e651]:
+          - generic [ref=f1e652]:
+            - generic [ref=f1e653]: Daily Logbook
+            - generic [ref=f1e654]: ฐานข้อมูลการวิจัย 30 วัน
+          - heading "📅 ตารางบันทึกรายวัน (Daily Logbook D1 - D30)" [level=2] [ref=f1e655]:
+            - generic [ref=f1e656]: 📅
+            - text: ตารางบันทึกรายวัน (Daily Logbook D1 - D30)
+          - paragraph [ref=f1e657]: บันทึกเวลาใช้จอ, จำนวนครั้งที่พัก, อาการปวด NRS ก่อน/หลังนวด, และการทำโปรแกรม (เชื่อมโยง Excel ชีต 1)
+        - generic [ref=f1e658]:
+          - button "ทั้งหมด 30 วัน" [ref=f1e659] [cursor=pointer]
+          - button "D1-D7" [ref=f1e660] [cursor=pointer]
+          - button "D8-D14" [ref=f1e661] [cursor=pointer]
+          - button "D15-D21" [ref=f1e662] [cursor=pointer]
+          - button "D22-D30" [ref=f1e663] [cursor=pointer]
+          - button "⭐ เฉพาะวัดมุม" [ref=f1e664] [cursor=pointer]
+      - table [ref=f1e666]:
+        - rowgroup [ref=f1e667]:
+          - row [ref=f1e668]:
+            - columnheader "วัน" [ref=f1e669]
+            - columnheader "วันที่" [ref=f1e670]
+            - columnheader "เริ่มใช้จอ" [ref=f1e671]
+            - columnheader "นาทีใช้จอ" [ref=f1e672]
+            - columnheader "ควรพัก" [ref=f1e673]
+            - columnheader "พักจริง" [ref=f1e674]
+            - columnheader "% พัก" [ref=f1e675]
+            - columnheader "ปวดก่อน" [ref=f1e676]
+            - columnheader "ปวดหลัง" [ref=f1e677]
+            - columnheader "% ลดทันที" [ref=f1e678]
+            - columnheader "นวด 3 จุด" [ref=f1e679]
+            - columnheader "บริหาร (6 ท่า)" [ref=f1e680]
+            - columnheader "สถานะ" [ref=f1e681]
+            - columnheader "ภาพหลักฐาน" [ref=f1e682]
+            - columnheader "แก้ไข" [ref=f1e683]
+        - rowgroup [ref=f1e684]:
+          - row [ref=f1e1500]:
+            - cell "D1 วัดมุม" [ref=f1e1501]:
+              - generic [ref=f1e1502]: D1
+              - generic [ref=f1e1503]: วัดมุม
+            - cell "2026-09-15" [ref=f1e1504]
+            - cell "🕒 21:18" [ref=f1e1505]
+            - cell "3 น." [ref=f1e1506]
+            - cell "0" [ref=f1e1507]
+            - cell "7" [ref=f1e1508]
+            - cell "0%" [ref=f1e1509]
+            - cell "6" [ref=f1e1510]
+            - cell "5" [ref=f1e1511]
+            - cell "16.7%" [ref=f1e1512]
+            - cell [ref=f1e1513]:
+              - checkbox "นวดด้วยตนเองครบ 3 บริเวณ (6 นาที)" [checked] [ref=f1e1514] [cursor=pointer]
+            - cell [ref=f1e1515]:
+              - generic [ref=f1e1516]:
+                - checkbox "ติ๊กครบ/ไม่ครบ ทั้ง 6 ท่า" [checked] [ref=f1e1517] [cursor=pointer]
+                - button "6/6 ท่า" [ref=f1e1518] [cursor=pointer]
+            - cell "ครบ ✓" [ref=f1e1519]
+            - cell [ref=f1e1520]:
+              - button "📷 ดูรูป D1" [ref=f1e1521] [cursor=pointer]:
+                - generic [ref=f1e1522]: 📷
+                - text: ดูรูป D1
+            - cell [ref=f1e1523]:
+              - button "✏️ แก้" [ref=f1e1524] [cursor=pointer]:
+                - generic [ref=f1e1525]: ✏️
+                - text: แก้
+          - row [ref=f1e1526]:
+            - cell "D2" [ref=f1e1527]
+            - cell "2026-09-16" [ref=f1e1529]
+            - cell "🕒 09:00" [ref=f1e1530]
+            - cell "390 น." [ref=f1e1531]
+            - cell "8" [ref=f1e1532]
+            - cell "7" [ref=f1e1533]
+            - cell "87.5%" [ref=f1e1534]
+            - cell "6" [ref=f1e1535]
+            - cell "5" [ref=f1e1536]
+            - cell "16.7%" [ref=f1e1537]
+            - cell [ref=f1e1538]:
+              - checkbox "นวดด้วยตนเองครบ 3 บริเวณ (6 นาที)" [checked] [ref=f1e1539] [cursor=pointer]
+            - cell [ref=f1e1540]:
+              - generic [ref=f1e1541]:
+                - checkbox "ติ๊กครบ/ไม่ครบ ทั้ง 6 ท่า" [checked] [ref=f1e1542] [cursor=pointer]
+                - button "6/6 ท่า" [ref=f1e1543] [cursor=pointer]
+            - cell "ครบ ✓" [ref=f1e1544]
+            - cell "-" [ref=f1e1545]
+            - cell [ref=f1e1546]:
+              - button "✏️ แก้" [ref=f1e1547] [cursor=pointer]:
+                - generic [ref=f1e1548]: ✏️
+                - text: แก้
+          - row [ref=f1e1549]:
+            - cell "D3" [ref=f1e1550]
+            - cell "2026-09-17" [ref=f1e1552]
+            - cell "🕒 09:00" [ref=f1e1553]
+            - cell "405 น." [ref=f1e1554]
+            - cell "9" [ref=f1e1555]
+            - cell "8" [ref=f1e1556]
+            - cell "88.9%" [ref=f1e1557]
+            - cell "6" [ref=f1e1558]
+            - cell "5" [ref=f1e1559]
+            - cell "16.7%" [ref=f1e1560]
+            - cell [ref=f1e1561]:
+              - checkbox "นวดด้วยตนเองครบ 3 บริเวณ (6 นาที)" [checked] [ref=f1e1562] [cursor=pointer]
+            - cell [ref=f1e1563]:
+              - generic [ref=f1e1564]:
+                - checkbox "ติ๊กครบ/ไม่ครบ ทั้ง 6 ท่า" [checked] [ref=f1e1565] [cursor=pointer]
+                - button "6/6 ท่า" [ref=f1e1566] [cursor=pointer]
+            - cell "ครบ ✓" [ref=f1e1567]
+            - cell "-" [ref=f1e1568]
+            - cell [ref=f1e1569]:
+              - button "✏️ แก้" [ref=f1e1570] [cursor=pointer]:
+                - generic [ref=f1e1571]: ✏️
+                - text: แก้
+          - row [ref=f1e1572]:
+            - cell "D4" [ref=f1e1573]
+            - cell "2026-09-18" [ref=f1e1575]
+            - cell "🕒 09:00" [ref=f1e1576]
+            - cell "420 น." [ref=f1e1577]
+            - cell "9" [ref=f1e1578]
+            - cell "7" [ref=f1e1579]
+            - cell "77.8%" [ref=f1e1580]
+            - cell "5" [ref=f1e1581]
+            - cell "4" [ref=f1e1582]
+            - cell "20%" [ref=f1e1583]
+            - cell [ref=f1e1584]:
+              - checkbox "นวดด้วยตนเองครบ 3 บริเวณ (6 นาที)" [checked] [ref=f1e1585] [cursor=pointer]
+            - cell [ref=f1e1586]:
+              - generic [ref=f1e1587]:
+                - checkbox "ติ๊กครบ/ไม่ครบ ทั้ง 6 ท่า" [checked] [ref=f1e1588] [cursor=pointer]
+                - button "6/6 ท่า" [ref=f1e1589] [cursor=pointer]
+            - cell "ครบ ✓" [ref=f1e1590]
+            - cell "-" [ref=f1e1591]
+            - cell [ref=f1e1592]:
+              - button "✏️ แก้" [ref=f1e1593] [cursor=pointer]:
+                - generic [ref=f1e1594]: ✏️
+                - text: แก้
+          - row [ref=f1e1595]:
+            - cell "D5" [ref=f1e1596]
+            - cell "2026-09-19" [ref=f1e1598]
+            - cell "🕒 09:00" [ref=f1e1599]
+            - cell "360 น." [ref=f1e1600]
+            - cell "8" [ref=f1e1601]
+            - cell "7" [ref=f1e1602]
+            - cell "87.5%" [ref=f1e1603]
+            - cell "5" [ref=f1e1604]
+            - cell "4" [ref=f1e1605]
+            - cell "20%" [ref=f1e1606]
+            - cell [ref=f1e1607]:
+              - checkbox "นวดด้วยตนเองครบ 3 บริเวณ (6 นาที)" [checked] [ref=f1e1608] [cursor=pointer]
+            - cell [ref=f1e1609]:
+              - generic [ref=f1e1610]:
+                - checkbox "ติ๊กครบ/ไม่ครบ ทั้ง 6 ท่า" [checked] [ref=f1e1611] [cursor=pointer]
+                - button "6/6 ท่า" [ref=f1e1612] [cursor=pointer]
+            - cell "ครบ ✓" [ref=f1e1613]
+            - cell "-" [ref=f1e1614]
+            - cell [ref=f1e1615]:
+              - button "✏️ แก้" [ref=f1e1616] [cursor=pointer]:
+                - generic [ref=f1e1617]: ✏️
+                - text: แก้
+          - row [ref=f1e1618]:
+            - cell "D6" [ref=f1e1619]
+            - cell "2026-09-20" [ref=f1e1621]
+            - cell "🕒 09:00" [ref=f1e1622]
+            - cell "375 น." [ref=f1e1623]
+            - cell "8" [ref=f1e1624]
+            - cell "7" [ref=f1e1625]
+            - cell "87.5%" [ref=f1e1626]
+            - cell "5" [ref=f1e1627]
+            - cell "4" [ref=f1e1628]
+            - cell "20%" [ref=f1e1629]
+            - cell [ref=f1e1630]:
+              - checkbox "นวดด้วยตนเองครบ 3 บริเวณ (6 นาที)" [ref=f1e1631] [cursor=pointer]
+            - cell [ref=f1e1632]:
+              - generic [ref=f1e1633]:
+                - checkbox "ติ๊กครบ/ไม่ครบ ทั้ง 6 ท่า" [ref=f1e1634] [cursor=pointer]
+                - button "2/6 ท่า" [ref=f1e1635] [cursor=pointer]
+            - cell "ไม่ครบ" [ref=f1e1636]
+            - cell "-" [ref=f1e1637]
+            - cell [ref=f1e1638]:
+              - button "✏️ แก้" [ref=f1e1639] [cursor=pointer]:
+                - generic [ref=f1e1640]: ✏️
+                - text: แก้
+          - row [ref=f1e1641]:
+            - cell "D7 วัดมุม" [ref=f1e1642]:
+              - generic [ref=f1e1643]: D7
+              - generic [ref=f1e1644]: วัดมุม
+            - cell "2026-09-21" [ref=f1e1645]
+            - cell "🕒 09:00" [ref=f1e1646]
+            - cell "390 น." [ref=f1e1647]
+            - cell "8" [ref=f1e1648]
+            - cell "7" [ref=f1e1649]
+            - cell "87.5%" [ref=f1e1650]
+            - cell "5" [ref=f1e1651]
+            - cell "4" [ref=f1e1652]
+            - cell "20%" [ref=f1e1653]
+            - cell [ref=f1e1654]:
+              - checkbox "นวดด้วยตนเองครบ 3 บริเวณ (6 นาที)" [checked] [ref=f1e1655] [cursor=pointer]
+            - cell [ref=f1e1656]:
+              - generic [ref=f1e1657]:
+                - checkbox "ติ๊กครบ/ไม่ครบ ทั้ง 6 ท่า" [checked] [ref=f1e1658] [cursor=pointer]
+                - button "6/6 ท่า" [ref=f1e1659] [cursor=pointer]
+            - cell "ครบ ✓" [ref=f1e1660]
+            - cell [ref=f1e1661]:
+              - button "📷 ดูรูป D7" [ref=f1e1662] [cursor=pointer]:
+                - generic [ref=f1e1663]: 📷
+                - text: ดูรูป D7
+            - cell [ref=f1e1664]:
+              - button "✏️ แก้" [ref=f1e1665] [cursor=pointer]:
+                - generic [ref=f1e1666]: ✏️
+                - text: แก้
+          - row [ref=f1e1667]:
+            - cell "D8" [ref=f1e1668]
+            - cell "2026-09-22" [ref=f1e1670]
+            - cell "🕒 09:00" [ref=f1e1671]
+            - cell "405 น." [ref=f1e1672]
+            - cell "9" [ref=f1e1673]
+            - cell "8" [ref=f1e1674]
+            - cell "88.9%" [ref=f1e1675]
+            - cell "5" [ref=f1e1676]
+            - cell "4" [ref=f1e1677]
+            - cell "20%" [ref=f1e1678]
+            - cell [ref=f1e1679]:
+              - checkbox "นวดด้วยตนเองครบ 3 บริเวณ (6 นาที)" [checked] [ref=f1e1680] [cursor=pointer]
+            - cell [ref=f1e1681]:
+              - generic [ref=f1e1682]:
+                - checkbox "ติ๊กครบ/ไม่ครบ ทั้ง 6 ท่า" [checked] [ref=f1e1683] [cursor=pointer]
+                - button "6/6 ท่า" [ref=f1e1684] [cursor=pointer]
+            - cell "ครบ ✓" [ref=f1e1685]
+            - cell "-" [ref=f1e1686]
+            - cell [ref=f1e1687]:
+              - button "✏️ แก้" [ref=f1e1688] [cursor=pointer]:
+                - generic [ref=f1e1689]: ✏️
+                - text: แก้
+          - row [ref=f1e1690]:
+            - cell "D9" [ref=f1e1691]
+            - cell "2026-09-23" [ref=f1e1693]
+            - cell "🕒 09:00" [ref=f1e1694]
+            - cell "420 น." [ref=f1e1695]
+            - cell "9" [ref=f1e1696]
+            - cell "8" [ref=f1e1697]
+            - cell "88.9%" [ref=f1e1698]
+            - cell "4" [ref=f1e1699]
+            - cell "3" [ref=f1e1700]
+            - cell "25%" [ref=f1e1701]
+            - cell [ref=f1e1702]:
+              - checkbox "นวดด้วยตนเองครบ 3 บริเวณ (6 นาที)" [checked] [ref=f1e1703] [cursor=pointer]
+            - cell [ref=f1e1704]:
+              - generic [ref=f1e1705]:
+                - checkbox "ติ๊กครบ/ไม่ครบ ทั้ง 6 ท่า" [checked] [ref=f1e1706] [cursor=pointer]
+                - button "6/6 ท่า" [ref=f1e1707] [cursor=pointer]
+            - cell "ครบ ✓" [ref=f1e1708]
+            - cell "-" [ref=f1e1709]
+            - cell [ref=f1e1710]:
+              - button "✏️ แก้" [ref=f1e1711] [cursor=pointer]:
+                - generic [ref=f1e1712]: ✏️
+                - text: แก้
+          - row [ref=f1e1713]:
+            - cell "D10" [ref=f1e1714]
+            - cell "2026-09-24" [ref=f1e1716]
+            - cell "🕒 09:00" [ref=f1e1717]
+            - cell "360 น." [ref=f1e1718]
+            - cell "8" [ref=f1e1719]
+            - cell "7" [ref=f1e1720]
+            - cell "87.5%" [ref=f1e1721]
+            - cell "4" [ref=f1e1722]
+            - cell "3" [ref=f1e1723]
+            - cell "25%" [ref=f1e1724]
+            - cell [ref=f1e1725]:
+              - checkbox "นวดด้วยตนเองครบ 3 บริเวณ (6 นาที)" [checked] [ref=f1e1726] [cursor=pointer]
+            - cell [ref=f1e1727]:
+              - generic [ref=f1e1728]:
+                - checkbox "ติ๊กครบ/ไม่ครบ ทั้ง 6 ท่า" [checked] [ref=f1e1729] [cursor=pointer]
+                - button "6/6 ท่า" [ref=f1e1730] [cursor=pointer]
+            - cell "ครบ ✓" [ref=f1e1731]
+            - cell "-" [ref=f1e1732]
+            - cell [ref=f1e1733]:
+              - button "✏️ แก้" [ref=f1e1734] [cursor=pointer]:
+                - generic [ref=f1e1735]: ✏️
+                - text: แก้
+          - row [ref=f1e1736]:
+            - cell "D11" [ref=f1e1737]
+            - cell "2026-09-25" [ref=f1e1739]
+            - cell "🕒 09:00" [ref=f1e1740]
+            - cell "375 น." [ref=f1e1741]
+            - cell "8" [ref=f1e1742]
+            - cell "7" [ref=f1e1743]
+            - cell "87.5%" [ref=f1e1744]
+            - cell "4" [ref=f1e1745]
+            - cell "3" [ref=f1e1746]
+            - cell "25%" [ref=f1e1747]
+            - cell [ref=f1e1748]:
+              - checkbox "นวดด้วยตนเองครบ 3 บริเวณ (6 นาที)" [checked] [ref=f1e1749] [cursor=pointer]
+            - cell [ref=f1e1750]:
+              - generic [ref=f1e1751]:
+                - checkbox "ติ๊กครบ/ไม่ครบ ทั้ง 6 ท่า" [checked] [ref=f1e1752] [cursor=pointer]
+                - button "6/6 ท่า" [ref=f1e1753] [cursor=pointer]
+            - cell "ครบ ✓" [ref=f1e1754]
+            - cell "-" [ref=f1e1755]
+            - cell [ref=f1e1756]:
+              - button "✏️ แก้" [ref=f1e1757] [cursor=pointer]:
+                - generic [ref=f1e1758]: ✏️
+                - text: แก้
+          - row [ref=f1e1759]:
+            - cell "D12" [ref=f1e1760]
+            - cell "2026-09-26" [ref=f1e1762]
+            - cell "🕒 09:00" [ref=f1e1763]
+            - cell "390 น." [ref=f1e1764]
+            - cell "8" [ref=f1e1765]
+            - cell "6" [ref=f1e1766]
+            - cell "75%" [ref=f1e1767]
+            - cell "4" [ref=f1e1768]
+            - cell "3" [ref=f1e1769]
+            - cell "25%" [ref=f1e1770]
+            - cell [ref=f1e1771]:
+              - checkbox "นวดด้วยตนเองครบ 3 บริเวณ (6 นาที)" [checked] [ref=f1e1772] [cursor=pointer]
+            - cell [ref=f1e1773]:
+              - generic [ref=f1e1774]:
+                - checkbox "ติ๊กครบ/ไม่ครบ ทั้ง 6 ท่า" [checked] [ref=f1e1775] [cursor=pointer]
+                - button "6/6 ท่า" [ref=f1e1776] [cursor=pointer]
+            - cell "ครบ ✓" [ref=f1e1777]
+            - cell "-" [ref=f1e1778]
+            - cell [ref=f1e1779]:
+              - button "✏️ แก้" [ref=f1e1780] [cursor=pointer]:
+                - generic [ref=f1e1781]: ✏️
+                - text: แก้
+          - row [ref=f1e1782]:
+            - cell "D13" [ref=f1e1783]
+            - cell "2026-09-27" [ref=f1e1785]
+            - cell "🕒 09:00" [ref=f1e1786]
+            - cell "405 น." [ref=f1e1787]
+            - cell "9" [ref=f1e1788]
+            - cell "8" [ref=f1e1789]
+            - cell "88.9%" [ref=f1e1790]
+            - cell "4" [ref=f1e1791]
+            - cell "3" [ref=f1e1792]
+            - cell "25%" [ref=f1e1793]
+            - cell [ref=f1e1794]:
+              - checkbox "นวดด้วยตนเองครบ 3 บริเวณ (6 นาที)" [ref=f1e1795] [cursor=pointer]
+            - cell [ref=f1e1796]:
+              - generic [ref=f1e1797]:
+                - checkbox "ติ๊กครบ/ไม่ครบ ทั้ง 6 ท่า" [ref=f1e1798] [cursor=pointer]
+                - button "3/6 ท่า" [ref=f1e1799] [cursor=pointer]
+            - cell "ไม่ครบ" [ref=f1e1800]
+            - cell "-" [ref=f1e1801]
+            - cell [ref=f1e1802]:
+              - button "✏️ แก้" [ref=f1e1803] [cursor=pointer]:
+                - generic [ref=f1e1804]: ✏️
+                - text: แก้
+          - row [ref=f1e1805]:
+            - cell "D14 วัดมุม" [ref=f1e1806]:
+              - generic [ref=f1e1807]: D14
+              - generic [ref=f1e1808]: วัดมุม
+            - cell "2026-09-28" [ref=f1e1809]
+            - cell "🕒 09:00" [ref=f1e1810]
+            - cell "420 น." [ref=f1e1811]
+            - cell "9" [ref=f1e1812]
+            - cell "8" [ref=f1e1813]
+            - cell "88.9%" [ref=f1e1814]
+            - cell "4" [ref=f1e1815]
+            - cell "3" [ref=f1e1816]
+            - cell "25%" [ref=f1e1817]
+            - cell [ref=f1e1818]:
+              - checkbox "นวดด้วยตนเองครบ 3 บริเวณ (6 นาที)" [checked] [ref=f1e1819] [cursor=pointer]
+            - cell [ref=f1e1820]:
+              - generic [ref=f1e1821]:
+                - checkbox "ติ๊กครบ/ไม่ครบ ทั้ง 6 ท่า" [checked] [ref=f1e1822] [cursor=pointer]
+                - button "6/6 ท่า" [ref=f1e1823] [cursor=pointer]
+            - cell "ครบ ✓" [ref=f1e1824]
+            - cell [ref=f1e1825]:
+              - button "📷 ดูรูป D14" [ref=f1e1826] [cursor=pointer]:
+                - generic [ref=f1e1827]: 📷
+                - text: ดูรูป D14
+            - cell [ref=f1e1828]:
+              - button "✏️ แก้" [ref=f1e1829] [cursor=pointer]:
+                - generic [ref=f1e1830]: ✏️
+                - text: แก้
+          - row [ref=f1e1831]:
+            - cell "D15" [ref=f1e1832]
+            - cell "2026-09-29" [ref=f1e1834]
+            - cell "🕒 09:00" [ref=f1e1835]
+            - cell "360 น." [ref=f1e1836]
+            - cell "8" [ref=f1e1837]
+            - cell "7" [ref=f1e1838]
+            - cell "87.5%" [ref=f1e1839]
+            - cell "4" [ref=f1e1840]
+            - cell "3" [ref=f1e1841]
+            - cell "25%" [ref=f1e1842]
+            - cell [ref=f1e1843]:
+              - checkbox "นวดด้วยตนเองครบ 3 บริเวณ (6 นาที)" [checked] [ref=f1e1844] [cursor=pointer]
+            - cell [ref=f1e1845]:
+              - generic [ref=f1e1846]:
+                - checkbox "ติ๊กครบ/ไม่ครบ ทั้ง 6 ท่า" [checked] [ref=f1e1847] [cursor=pointer]
+                - button "6/6 ท่า" [ref=f1e1848] [cursor=pointer]
+            - cell "ครบ ✓" [ref=f1e1849]
+            - cell "-" [ref=f1e1850]
+            - cell [ref=f1e1851]:
+              - button "✏️ แก้" [ref=f1e1852] [cursor=pointer]:
+                - generic [ref=f1e1853]: ✏️
+                - text: แก้
+          - row [ref=f1e1854]:
+            - cell "D16" [ref=f1e1855]
+            - cell "2026-09-30" [ref=f1e1857]
+            - cell "🕒 09:00" [ref=f1e1858]
+            - cell "375 น." [ref=f1e1859]
+            - cell "8" [ref=f1e1860]
+            - cell "7" [ref=f1e1861]
+            - cell "87.5%" [ref=f1e1862]
+            - cell "4" [ref=f1e1863]
+            - cell "3" [ref=f1e1864]
+            - cell "25%" [ref=f1e1865]
+            - cell [ref=f1e1866]:
+              - checkbox "นวดด้วยตนเองครบ 3 บริเวณ (6 นาที)" [checked] [ref=f1e1867] [cursor=pointer]
+            - cell [ref=f1e1868]:
+              - generic [ref=f1e1869]:
+                - checkbox "ติ๊กครบ/ไม่ครบ ทั้ง 6 ท่า" [checked] [ref=f1e1870] [cursor=pointer]
+                - button "6/6 ท่า" [ref=f1e1871] [cursor=pointer]
+            - cell "ครบ ✓" [ref=f1e1872]
+            - cell "-" [ref=f1e1873]
+            - cell [ref=f1e1874]:
+              - button "✏️ แก้" [ref=f1e1875] [cursor=pointer]:
+                - generic [ref=f1e1876]: ✏️
+                - text: แก้
+          - row [ref=f1e1877]:
+            - cell "D17" [ref=f1e1878]
+            - cell "2026-10-01" [ref=f1e1880]
+            - cell "🕒 09:00" [ref=f1e1881]
+            - cell "390 น." [ref=f1e1882]
+            - cell "8" [ref=f1e1883]
+            - cell "7" [ref=f1e1884]
+            - cell "87.5%" [ref=f1e1885]
+            - cell "4" [ref=f1e1886]
+            - cell "3" [ref=f1e1887]
+            - cell "25%" [ref=f1e1888]
+            - cell [ref=f1e1889]:
+              - checkbox "นวดด้วยตนเองครบ 3 บริเวณ (6 นาที)" [checked] [ref=f1e1890] [cursor=pointer]
+            - cell [ref=f1e1891]:
+              - generic [ref=f1e1892]:
+                - checkbox "ติ๊กครบ/ไม่ครบ ทั้ง 6 ท่า" [checked] [ref=f1e1893] [cursor=pointer]
+                - button "6/6 ท่า" [ref=f1e1894] [cursor=pointer]
+            - cell "ครบ ✓" [ref=f1e1895]
+            - cell "-" [ref=f1e1896]
+            - cell [ref=f1e1897]:
+              - button "✏️ แก้" [ref=f1e1898] [cursor=pointer]:
+                - generic [ref=f1e1899]: ✏️
+                - text: แก้
+          - row [ref=f1e1900]:
+            - cell "D18" [ref=f1e1901]
+            - cell "2026-10-02" [ref=f1e1903]
+            - cell "🕒 09:00" [ref=f1e1904]
+            - cell "405 น." [ref=f1e1905]
+            - cell "9" [ref=f1e1906]
+            - cell "8" [ref=f1e1907]
+            - cell "88.9%" [ref=f1e1908]
+            - cell "4" [ref=f1e1909]
+            - cell "3" [ref=f1e1910]
+            - cell "25%" [ref=f1e1911]
+            - cell [ref=f1e1912]:
+              - checkbox "นวดด้วยตนเองครบ 3 บริเวณ (6 นาที)" [checked] [ref=f1e1913] [cursor=pointer]
+            - cell [ref=f1e1914]:
+              - generic [ref=f1e1915]:
+                - checkbox "ติ๊กครบ/ไม่ครบ ทั้ง 6 ท่า" [checked] [ref=f1e1916] [cursor=pointer]
+                - button "6/6 ท่า" [ref=f1e1917] [cursor=pointer]
+            - cell "ครบ ✓" [ref=f1e1918]
+            - cell "-" [ref=f1e1919]
+            - cell [ref=f1e1920]:
+              - button "✏️ แก้" [ref=f1e1921] [cursor=pointer]:
+                - generic [ref=f1e1922]: ✏️
+                - text: แก้
+          - row [ref=f1e1923]:
+            - cell "D19" [ref=f1e1924]
+            - cell "2026-10-03" [ref=f1e1926]
+            - cell "🕒 09:00" [ref=f1e1927]
+            - cell "420 น." [ref=f1e1928]
+            - cell "9" [ref=f1e1929]
+            - cell "8" [ref=f1e1930]
+            - cell "88.9%" [ref=f1e1931]
+            - cell "3" [ref=f1e1932]
+            - cell "2" [ref=f1e1933]
+            - cell "33.3%" [ref=f1e1934]
+            - cell [ref=f1e1935]:
+              - checkbox "นวดด้วยตนเองครบ 3 บริเวณ (6 นาที)" [checked] [ref=f1e1936] [cursor=pointer]
+            - cell [ref=f1e1937]:
+              - generic [ref=f1e1938]:
+                - checkbox "ติ๊กครบ/ไม่ครบ ทั้ง 6 ท่า" [checked] [ref=f1e1939] [cursor=pointer]
+                - button "6/6 ท่า" [ref=f1e1940] [cursor=pointer]
+            - cell "ครบ ✓" [ref=f1e1941]
+            - cell "-" [ref=f1e1942]
+            - cell [ref=f1e1943]:
+              - button "✏️ แก้" [ref=f1e1944] [cursor=pointer]:
+                - generic [ref=f1e1945]: ✏️
+                - text: แก้
+          - row [ref=f1e1946]:
+            - cell "D20" [ref=f1e1947]
+            - cell "2026-10-04" [ref=f1e1949]
+            - cell "🕒 09:00" [ref=f1e1950]
+            - cell "360 น." [ref=f1e1951]
+            - cell "8" [ref=f1e1952]
+            - cell "7" [ref=f1e1953]
+            - cell "87.5%" [ref=f1e1954]
+            - cell "4" [ref=f1e1955]
+            - cell "3" [ref=f1e1956]
+            - cell "25%" [ref=f1e1957]
+            - cell [ref=f1e1958]:
+              - checkbox "นวดด้วยตนเองครบ 3 บริเวณ (6 นาที)" [ref=f1e1959] [cursor=pointer]
+            - cell [ref=f1e1960]:
+              - generic [ref=f1e1961]:
+                - checkbox "ติ๊กครบ/ไม่ครบ ทั้ง 6 ท่า" [ref=f1e1962] [cursor=pointer]
+                - button "1/6 ท่า" [ref=f1e1963] [cursor=pointer]
+            - cell "ไม่ครบ" [ref=f1e1964]
+            - cell "-" [ref=f1e1965]
+            - cell [ref=f1e1966]:
+              - button "✏️ แก้" [ref=f1e1967] [cursor=pointer]:
+                - generic [ref=f1e1968]: ✏️
+                - text: แก้
+          - row [ref=f1e1969]:
+            - cell "D21 วัดมุม" [ref=f1e1970]:
+              - generic [ref=f1e1971]: D21
+              - generic [ref=f1e1972]: วัดมุม
+            - cell "2026-10-05" [ref=f1e1973]
+            - cell "🕒 09:00" [ref=f1e1974]
+            - cell "375 น." [ref=f1e1975]
+            - cell "8" [ref=f1e1976]
+            - cell "7" [ref=f1e1977]
+            - cell "87.5%" [ref=f1e1978]
+            - cell "3" [ref=f1e1979]
+            - cell "2" [ref=f1e1980]
+            - cell "33.3%" [ref=f1e1981]
+            - cell [ref=f1e1982]:
+              - checkbox "นวดด้วยตนเองครบ 3 บริเวณ (6 นาที)" [checked] [ref=f1e1983] [cursor=pointer]
+            - cell [ref=f1e1984]:
+              - generic [ref=f1e1985]:
+                - checkbox "ติ๊กครบ/ไม่ครบ ทั้ง 6 ท่า" [checked] [ref=f1e1986] [cursor=pointer]
+                - button "6/6 ท่า" [ref=f1e1987] [cursor=pointer]
+            - cell "ครบ ✓" [ref=f1e1988]
+            - cell [ref=f1e1989]:
+              - button "📷 ดูรูป D21" [ref=f1e1990] [cursor=pointer]:
+                - generic [ref=f1e1991]: 📷
+                - text: ดูรูป D21
+            - cell [ref=f1e1992]:
+              - button "✏️ แก้" [ref=f1e1993] [cursor=pointer]:
+                - generic [ref=f1e1994]: ✏️
+                - text: แก้
+          - row [ref=f1e1995]:
+            - cell "D22" [ref=f1e1996]
+            - cell "2026-10-06" [ref=f1e1998]
+            - cell "🕒 09:00" [ref=f1e1999]
+            - cell "390 น." [ref=f1e2000]
+            - cell "8" [ref=f1e2001]
+            - cell "6" [ref=f1e2002]
+            - cell "75%" [ref=f1e2003]
+            - cell "4" [ref=f1e2004]
+            - cell "3" [ref=f1e2005]
+            - cell "25%" [ref=f1e2006]
+            - cell [ref=f1e2007]:
+              - checkbox "นวดด้วยตนเองครบ 3 บริเวณ (6 นาที)" [checked] [ref=f1e2008] [cursor=pointer]
+            - cell [ref=f1e2009]:
+              - generic [ref=f1e2010]:
+                - checkbox "ติ๊กครบ/ไม่ครบ ทั้ง 6 ท่า" [checked] [ref=f1e2011] [cursor=pointer]
+                - button "6/6 ท่า" [ref=f1e2012] [cursor=pointer]
+            - cell "ครบ ✓" [ref=f1e2013]
+            - cell "-" [ref=f1e2014]
+            - cell [ref=f1e2015]:
+              - button "✏️ แก้" [ref=f1e2016] [cursor=pointer]:
+                - generic [ref=f1e2017]: ✏️
+                - text: แก้
+          - row [ref=f1e2018]:
+            - cell "D23" [ref=f1e2019]
+            - cell "2026-10-07" [ref=f1e2021]
+            - cell "🕒 09:00" [ref=f1e2022]
+            - cell "405 น." [ref=f1e2023]
+            - cell "9" [ref=f1e2024]
+            - cell "8" [ref=f1e2025]
+            - cell "88.9%" [ref=f1e2026]
+            - cell "3" [ref=f1e2027]
+            - cell "2" [ref=f1e2028]
+            - cell "33.3%" [ref=f1e2029]
+            - cell [ref=f1e2030]:
+              - checkbox "นวดด้วยตนเองครบ 3 บริเวณ (6 นาที)" [checked] [ref=f1e2031] [cursor=pointer]
+            - cell [ref=f1e2032]:
+              - generic [ref=f1e2033]:
+                - checkbox "ติ๊กครบ/ไม่ครบ ทั้ง 6 ท่า" [checked] [ref=f1e2034] [cursor=pointer]
+                - button "6/6 ท่า" [ref=f1e2035] [cursor=pointer]
+            - cell "ครบ ✓" [ref=f1e2036]
+            - cell "-" [ref=f1e2037]
+            - cell [ref=f1e2038]:
+              - button "✏️ แก้" [ref=f1e2039] [cursor=pointer]:
+                - generic [ref=f1e2040]: ✏️
+                - text: แก้
+          - row [ref=f1e2041]:
+            - cell "D24" [ref=f1e2042]
+            - cell "2026-10-08" [ref=f1e2044]
+            - cell "🕒 09:00" [ref=f1e2045]
+            - cell "420 น." [ref=f1e2046]
+            - cell "9" [ref=f1e2047]
+            - cell "8" [ref=f1e2048]
+            - cell "88.9%" [ref=f1e2049]
+            - cell "4" [ref=f1e2050]
+            - cell "3" [ref=f1e2051]
+            - cell "25%" [ref=f1e2052]
+            - cell [ref=f1e2053]:
+              - checkbox "นวดด้วยตนเองครบ 3 บริเวณ (6 นาที)" [checked] [ref=f1e2054] [cursor=pointer]
+            - cell [ref=f1e2055]:
+              - generic [ref=f1e2056]:
+                - checkbox "ติ๊กครบ/ไม่ครบ ทั้ง 6 ท่า" [checked] [ref=f1e2057] [cursor=pointer]
+                - button "6/6 ท่า" [ref=f1e2058] [cursor=pointer]
+            - cell "ครบ ✓" [ref=f1e2059]
+            - cell "-" [ref=f1e2060]
+            - cell [ref=f1e2061]:
+              - button "✏️ แก้" [ref=f1e2062] [cursor=pointer]:
+                - generic [ref=f1e2063]: ✏️
+                - text: แก้
+          - row [ref=f1e2064]:
+            - cell "D25" [ref=f1e2065]
+            - cell "2026-10-09" [ref=f1e2067]
+            - cell "🕒 09:00" [ref=f1e2068]
+            - cell "360 น." [ref=f1e2069]
+            - cell "8" [ref=f1e2070]
+            - cell "7" [ref=f1e2071]
+            - cell "87.5%" [ref=f1e2072]
+            - cell "3" [ref=f1e2073]
+            - cell "2" [ref=f1e2074]
+            - cell "33.3%" [ref=f1e2075]
+            - cell [ref=f1e2076]:
+              - checkbox "นวดด้วยตนเองครบ 3 บริเวณ (6 นาที)" [checked] [ref=f1e2077] [cursor=pointer]
+            - cell [ref=f1e2078]:
+              - generic [ref=f1e2079]:
+                - checkbox "ติ๊กครบ/ไม่ครบ ทั้ง 6 ท่า" [checked] [ref=f1e2080] [cursor=pointer]
+                - button "6/6 ท่า" [ref=f1e2081] [cursor=pointer]
+            - cell "ครบ ✓" [ref=f1e2082]
+            - cell "-" [ref=f1e2083]
+            - cell [ref=f1e2084]:
+              - button "✏️ แก้" [ref=f1e2085] [cursor=pointer]:
+                - generic [ref=f1e2086]: ✏️
+                - text: แก้
+          - row [ref=f1e2087]:
+            - cell "D26" [ref=f1e2088]
+            - cell "2026-10-10" [ref=f1e2090]
+            - cell "🕒 09:00" [ref=f1e2091]
+            - cell "375 น." [ref=f1e2092]
+            - cell "8" [ref=f1e2093]
+            - cell "7" [ref=f1e2094]
+            - cell "87.5%" [ref=f1e2095]
+            - cell "4" [ref=f1e2096]
+            - cell "3" [ref=f1e2097]
+            - cell "25%" [ref=f1e2098]
+            - cell [ref=f1e2099]:
+              - checkbox "นวดด้วยตนเองครบ 3 บริเวณ (6 นาที)" [ref=f1e2100] [cursor=pointer]
+            - cell [ref=f1e2101]:
+              - generic [ref=f1e2102]:
+                - checkbox "ติ๊กครบ/ไม่ครบ ทั้ง 6 ท่า" [ref=f1e2103] [cursor=pointer]
+                - button "1/6 ท่า" [ref=f1e2104] [cursor=pointer]
+            - cell "ไม่ครบ" [ref=f1e2105]
+            - cell "-" [ref=f1e2106]
+            - cell [ref=f1e2107]:
+              - button "✏️ แก้" [ref=f1e2108] [cursor=pointer]:
+                - generic [ref=f1e2109]: ✏️
+                - text: แก้
+          - row [ref=f1e2110]:
+            - cell "D27" [ref=f1e2111]
+            - cell "2026-10-11" [ref=f1e2113]
+            - cell "🕒 09:00" [ref=f1e2114]
+            - cell "390 น." [ref=f1e2115]
+            - cell "8" [ref=f1e2116]
+            - cell "7" [ref=f1e2117]
+            - cell "87.5%" [ref=f1e2118]
+            - cell "3" [ref=f1e2119]
+            - cell "2" [ref=f1e2120]
+            - cell "33.3%" [ref=f1e2121]
+            - cell [ref=f1e2122]:
+              - checkbox "นวดด้วยตนเองครบ 3 บริเวณ (6 นาที)" [checked] [ref=f1e2123] [cursor=pointer]
+            - cell [ref=f1e2124]:
+              - generic [ref=f1e2125]:
+                - checkbox "ติ๊กครบ/ไม่ครบ ทั้ง 6 ท่า" [checked] [ref=f1e2126] [cursor=pointer]
+                - button "6/6 ท่า" [ref=f1e2127] [cursor=pointer]
+            - cell "ครบ ✓" [ref=f1e2128]
+            - cell "-" [ref=f1e2129]
+            - cell [ref=f1e2130]:
+              - button "✏️ แก้" [ref=f1e2131] [cursor=pointer]:
+                - generic [ref=f1e2132]: ✏️
+                - text: แก้
+          - row [ref=f1e2133]:
+            - cell "D28" [ref=f1e2134]
+            - cell "2026-10-12" [ref=f1e2136]
+            - cell "🕒 09:00" [ref=f1e2137]
+            - cell "405 น." [ref=f1e2138]
+            - cell "9" [ref=f1e2139]
+            - cell "8" [ref=f1e2140]
+            - cell "88.9%" [ref=f1e2141]
+            - cell "4" [ref=f1e2142]
+            - cell "3" [ref=f1e2143]
+            - cell "25%" [ref=f1e2144]
+            - cell [ref=f1e2145]:
+              - checkbox "นวดด้วยตนเองครบ 3 บริเวณ (6 นาที)" [checked] [ref=f1e2146] [cursor=pointer]
+            - cell [ref=f1e2147]:
+              - generic [ref=f1e2148]:
+                - checkbox "ติ๊กครบ/ไม่ครบ ทั้ง 6 ท่า" [checked] [ref=f1e2149] [cursor=pointer]
+                - button "6/6 ท่า" [ref=f1e2150] [cursor=pointer]
+            - cell "ครบ ✓" [ref=f1e2151]
+            - cell "-" [ref=f1e2152]
+            - cell [ref=f1e2153]:
+              - button "✏️ แก้" [ref=f1e2154] [cursor=pointer]:
+                - generic [ref=f1e2155]: ✏️
+                - text: แก้
+          - row [ref=f1e2156]:
+            - cell "D29" [ref=f1e2157]
+            - cell "2026-10-13" [ref=f1e2159]
+            - cell "🕒 09:00" [ref=f1e2160]
+            - cell "420 น." [ref=f1e2161]
+            - cell "9" [ref=f1e2162]
+            - cell "8" [ref=f1e2163]
+            - cell "88.9%" [ref=f1e2164]
+            - cell "4" [ref=f1e2165]
+            - cell "3" [ref=f1e2166]
+            - cell "25%" [ref=f1e2167]
+            - cell [ref=f1e2168]:
+              - checkbox "นวดด้วยตนเองครบ 3 บริเวณ (6 นาที)" [checked] [ref=f1e2169] [cursor=pointer]
+            - cell [ref=f1e2170]:
+              - generic [ref=f1e2171]:
+                - checkbox "ติ๊กครบ/ไม่ครบ ทั้ง 6 ท่า" [checked] [ref=f1e2172] [cursor=pointer]
+                - button "6/6 ท่า" [ref=f1e2173] [cursor=pointer]
+            - cell "ครบ ✓" [ref=f1e2174]
+            - cell "-" [ref=f1e2175]
+            - cell [ref=f1e2176]:
+              - button "✏️ แก้" [ref=f1e2177] [cursor=pointer]:
+                - generic [ref=f1e2178]: ✏️
+                - text: แก้
+          - row [ref=f1e2179]:
+            - cell "D30 วัดมุม" [ref=f1e2180]:
+              - generic [ref=f1e2181]: D30
+              - generic [ref=f1e2182]: วัดมุม
+            - cell "2026-10-14" [ref=f1e2183]
+            - cell "🕒 09:00" [ref=f1e2184]
+            - cell "360 น." [ref=f1e2185]
+            - cell "8" [ref=f1e2186]
+            - cell "7" [ref=f1e2187]
+            - cell "87.5%" [ref=f1e2188]
+            - cell "4" [ref=f1e2189]
+            - cell "3" [ref=f1e2190]
+            - cell "25%" [ref=f1e2191]
+            - cell [ref=f1e2192]:
+              - checkbox "นวดด้วยตนเองครบ 3 บริเวณ (6 นาที)" [checked] [ref=f1e2193] [cursor=pointer]
+            - cell [ref=f1e2194]:
+              - generic [ref=f1e2195]:
+                - checkbox "ติ๊กครบ/ไม่ครบ ทั้ง 6 ท่า" [checked] [ref=f1e2196] [cursor=pointer]
+                - button "6/6 ท่า" [ref=f1e2197] [cursor=pointer]
+            - cell "ครบ ✓" [ref=f1e2198]
+            - cell [ref=f1e2199]:
+              - button "📷 ดูรูป D30" [ref=f1e2200] [cursor=pointer]:
+                - generic [ref=f1e2201]: 📷
+                - text: ดูรูป D30
+            - cell [ref=f1e2202]:
+              - button "✏️ แก้" [ref=f1e2203] [cursor=pointer]:
+                - generic [ref=f1e2204]: ✏️
+                - text: แก้
+  - contentinfo [ref=f1e260]:
+    - generic [ref=f1e261]:
+      - generic [ref=f1e262]: โครงการวิจัยการยศาสตร์และปรับเปลี่ยนพฤติกรรมสุขภาพส่วนบุคคล 30 วัน (Health30D Research Portal)
+      - generic [ref=f1e263]: Section 2 · รหัส 6806021612037 · นายปภาวิน ธิติชุณหกุล · คณะวิศวกรรมศาสตร์

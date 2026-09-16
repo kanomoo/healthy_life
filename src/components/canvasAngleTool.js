@@ -428,6 +428,27 @@ export class PostureAngleTool {
     return this.canvas.toDataURL('image/png');
   }
 
+  // Export compressed image suitable for lightweight localStorage persistence (max 800px)
+  exportCompressedImage(maxWidth = 800, quality = 0.85) {
+    if (!this.imageLoaded) return null;
+    try {
+      let w = this.canvas.width;
+      let h = this.canvas.height;
+      if (w > maxWidth) {
+        h = Math.round(h * (maxWidth / w));
+        w = maxWidth;
+      }
+      const off = document.createElement('canvas');
+      off.width = w;
+      off.height = h;
+      const ctx = off.getContext('2d');
+      ctx.drawImage(this.canvas, 0, 0, w, h);
+      return off.toDataURL('image/jpeg', quality);
+    } catch (e) {
+      return this.canvas.toDataURL('image/png');
+    }
+  }
+
   setPreset(type) {
     if (type === 'baseline') {
       // PDF Baseline values: Elbow 138°, Hip 125°, Knee 65°, Eye passed

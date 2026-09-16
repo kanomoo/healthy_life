@@ -1,0 +1,80 @@
+- generic [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e3]:
+      - generic [ref=e4]:
+        - generic [ref=e5]: 30D
+        - generic [ref=e6]:
+          - generic [ref=e7]:
+            - generic [ref=e8]: Health30D Studio
+            - generic [ref=e9]: Phase 1 & 2
+            - generic [ref=e10]: Sec 2 · 6806021612037
+          - paragraph [ref=e11]: การปรับโต๊ะทำงานร่วมกับการดูแลตนเอง ลด Office Syndrome (คอ บ่า ไหล่)
+      - generic [ref=e12]:
+        - generic [ref=e13]:
+          - generic [ref=e15]: "เวลาจริงไทย:"
+          - generic [ref=e16]: 22:29:06
+        - button "✨ โหลดข้อมูลตัวอย่าง Proposal (10/10)" [ref=e17]:
+          - generic [ref=e18]: ✨
+          - text: โหลดข้อมูลตัวอย่าง Proposal (10/10)
+        - button "📊 ส่งออก Excel (.xlsx 3 ชีต)" [ref=e19]:
+          - generic [ref=e20]: 📊
+          - text: ส่งออก Excel (.xlsx 3 ชีต)
+        - button "ล้างข้อมูล" [ref=e21]
+    - generic [ref=e22]:
+      - button "📊 สรุปผล & 5 ตัวชี้วัด" [ref=e23] [cursor=pointer]:
+        - generic [ref=e24]: 📊
+        - text: สรุปผล & 5 ตัวชี้วัด
+      - button "📐 วิเคราะห์องศาท่านั่ง (ImageMeter)" [ref=e25] [cursor=pointer]:
+        - generic [ref=e26]: 📐
+        - text: วิเคราะห์องศาท่านั่ง (ImageMeter)
+      - button "⏱️ นาฬิกา & ผู้ช่วยพัก 45 นาที" [ref=e27] [cursor=pointer]:
+        - generic [ref=e28]: ⏱️
+        - text: นาฬิกา & ผู้ช่วยพัก 45 นาที
+      - button "📅 สมุดบันทึกรายวัน (D1 - D30)" [ref=e29] [cursor=pointer]:
+        - generic [ref=e30]: 📅
+        - text: สมุดบันทึกรายวัน (D1 - D30)
+      - button "📖 ท่าบริหาร & กฎความปลอดภัย" [ref=e31] [cursor=pointer]:
+        - generic [ref=e32]: 📖
+        - text: ท่าบริหาร & กฎความปลอดภัย
+  - main [ref=e33]:
+    - generic [ref=e1217]:
+      - generic [ref=e1218]:
+        - generic [ref=e1219]:
+          - generic [ref=e1220]:
+            - generic [ref=e1221]: Daily Logbook
+            - generic [ref=e1222]: ฐานข้อมูลการวิจัย 30 วัน
+          - heading "📅 ตารางบันทึกรายวัน (Daily Logbook D1 - D30)" [level=2] [ref=e1223]:
+            - generic [ref=e1224]: 📅
+            - text: ตารางบันทึกรายวัน (Daily Logbook D1 - D30)
+          - paragraph [ref=e1225]: บันทึกเวลาใช้จอ, จำนวนครั้งที่พัก, อาการปวด NRS ก่อน/หลังนวด, และการทำโปรแกรม (เชื่อมโยง Excel ชีต 1)
+        - generic [ref=e1226]:
+          - button "ทั้งหมด 30 วัน" [ref=e1227] [cursor=pointer]
+          - button "D1-D7" [ref=e1228] [cursor=pointer]
+          - button "D8-D14" [ref=e1229] [cursor=pointer]
+          - button "D15-D21" [ref=e1230] [cursor=pointer]
+          - button "D22-D30" [ref=e1231] [cursor=pointer]
+          - button "⭐ วันสำคัญ" [ref=e1232] [cursor=pointer]
+          - button "⚠️ ยังขาดภาพ" [active] [ref=e1233] [cursor=pointer]
+      - table [ref=e1235]:
+        - rowgroup [ref=e1236]:
+          - row [ref=e1237]:
+            - columnheader "วัน" [ref=e1238]
+            - columnheader "วันที่" [ref=e1239]
+            - columnheader "เริ่มใช้จอ" [ref=e1240]
+            - columnheader "นาทีใช้จอ" [ref=e1241]
+            - columnheader "ควรพัก" [ref=e1242]
+            - columnheader "พักจริง" [ref=e1243]
+            - columnheader "% พัก" [ref=e1244]
+            - columnheader "ปวดก่อน" [ref=e1245]
+            - columnheader "ปวดหลัง" [ref=e1246]
+            - columnheader "% ลดทันที" [ref=e1247]
+            - columnheader "นวด 3 จุด" [ref=e1248]
+            - columnheader "บริหาร (6 ท่า)" [ref=e1249]
+            - columnheader "สถานะ (3/3)" [ref=e1250]
+            - columnheader "ภาพหลักฐาน (D1-D30)" [ref=e1251]
+            - columnheader "แก้ไข" [ref=e1252]
+        - rowgroup
+  - contentinfo [ref=e260]:
+    - generic [ref=e261]:
+      - generic [ref=e262]: โครงการวิจัยการยศาสตร์และปรับเปลี่ยนพฤติกรรมสุขภาพส่วนบุคคล 30 วัน (Health30D Research Portal)
+      - generic [ref=e263]: Section 2 · รหัส 6806021612037 · นายปภาวิน ธิติชุณหกุล · คณะวิศวกรรมศาสตร์

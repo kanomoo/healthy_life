@@ -625,14 +625,39 @@
 
               <!-- Save to Milestone Day -->
               <div class="pt-3 border-t border-[#242938] space-y-2">
-                <label class="text-xs text-slate-400 block font-medium">บันทึกค่าองศานี้ลงในวันสำคัญ:</label>
+                <label class="text-xs text-slate-400 block font-medium">เลือกวันบันทึกมุมและภาพถ่าย (วัน D1 - D30):</label>
                 <div class="flex items-center gap-2">
                   <select id="selectMilestoneDay" class="bg-[#12151f] border border-[#242938] rounded-xl px-2.5 py-2 text-xs text-white flex-1 focus:ring-2 focus:ring-cyan-500 font-mono">
-                    <option value="1">D1 (Baseline)</option>
-                    <option value="7">D7 (สัปดาห์ที่ 1)</option>
-                    <option value="14">D14 (สัปดาห์ที่ 2)</option>
-                    <option value="21">D21 (สัปดาห์ที่ 3)</option>
-                    <option value="30" selected>D30 (สิ้นสุดโครงการ)</option>
+                    <option value="1">⭐ D1 (Baseline - วันแรก)</option>
+                    <option value="2">D2</option>
+                    <option value="3">D3</option>
+                    <option value="4">D4</option>
+                    <option value="5">D5</option>
+                    <option value="6">D6</option>
+                    <option value="7">⭐ D7 (สัปดาห์ 1)</option>
+                    <option value="8">D8</option>
+                    <option value="9">D9</option>
+                    <option value="10">D10</option>
+                    <option value="11">D11</option>
+                    <option value="12">D12</option>
+                    <option value="13">D13</option>
+                    <option value="14">⭐ D14 (สัปดาห์ 2)</option>
+                    <option value="15">D15</option>
+                    <option value="16">D16</option>
+                    <option value="17">D17</option>
+                    <option value="18">D18</option>
+                    <option value="19">D19</option>
+                    <option value="20">D20</option>
+                    <option value="21">⭐ D21 (สัปดาห์ 3)</option>
+                    <option value="22">D22</option>
+                    <option value="23">D23</option>
+                    <option value="24">D24</option>
+                    <option value="25">D25</option>
+                    <option value="26">D26</option>
+                    <option value="27">D27</option>
+                    <option value="28">D28</option>
+                    <option value="29">D29</option>
+                    <option value="30" selected>⭐ D30 (สิ้นสุดโครงการ)</option>
                   </select>
                   <button id="btnSaveAngleToDay" class="px-3.5 py-2 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white font-semibold text-xs shadow-md shadow-cyan-600/25 transition">
                     บันทึก
@@ -660,6 +685,45 @@
 
           </div>
 
+        </div>
+
+        <!-- Daily Posture Photo Evidence Gallery (All 30 Days D1 - D30) -->
+        <div class="mt-8 pt-6 border-t border-[#242938]">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
+            <div>
+              <div class="flex items-center gap-2">
+                <span class="text-xs font-semibold px-2 py-0.5 rounded-full bg-cyan-950 text-cyan-300 border border-cyan-800 font-mono">Evidence Vault (30 Days)</span>
+                <span class="text-xs text-slate-400">มีภาพถ่ายแล้ว: <strong id="galleryStatsCount" class="text-emerald-400 font-mono">-- / 30 วัน</strong></span>
+              </div>
+              <h3 class="text-lg font-heading font-bold text-white mt-1 flex items-center gap-2">
+                <span>🖼️</span> คลังภาพถ่ายหลักฐานท่านั่งทำงานประจำวัน (Daily Posture Evidence Gallery D1 - D30)
+              </h3>
+              <p class="text-xs text-slate-400">
+                รวมภาพถ่ายพร้อมเส้นองศาทั้ง 30 วัน สามารถกดดูภาพขยาย ดาวน์โหลดภาพไปแทรกใน Excel หรือโหลดเข้า Canvas เพื่อวัดมุมซ้ำ
+              </p>
+            </div>
+            <div class="flex items-center gap-2">
+              <button id="btnDownloadAllMilestones" class="text-xs px-3.5 py-2 rounded-xl bg-amber-600 hover:bg-amber-500 text-white font-semibold transition flex items-center gap-1.5 shadow-md shadow-amber-600/25 cursor-pointer">
+                <span>📦</span> ดาวน์โหลดภาพหลักฐานทั้งหมด (PNG)
+              </button>
+            </div>
+          </div>
+
+          <!-- Gallery Filters -->
+          <div class="flex flex-wrap items-center gap-1.5 mb-4 text-xs">
+            <button data-gallery-filter="all" class="gallery-filter-btn active px-3 py-1.5 rounded-xl bg-cyan-950 text-cyan-300 border border-cyan-800 font-semibold cursor-pointer">ทั้งหมด 30 วัน</button>
+            <button data-gallery-filter="w1" class="gallery-filter-btn px-3 py-1.5 rounded-xl bg-[#161923] text-slate-300 hover:text-white border border-[#242938] transition cursor-pointer">สัปดาห์ 1 (D1-D7)</button>
+            <button data-gallery-filter="w2" class="gallery-filter-btn px-3 py-1.5 rounded-xl bg-[#161923] text-slate-300 hover:text-white border border-[#242938] transition cursor-pointer">สัปดาห์ 2 (D8-D14)</button>
+            <button data-gallery-filter="w3" class="gallery-filter-btn px-3 py-1.5 rounded-xl bg-[#161923] text-slate-300 hover:text-white border border-[#242938] transition cursor-pointer">สัปดาห์ 3 (D15-D21)</button>
+            <button data-gallery-filter="w4" class="gallery-filter-btn px-3 py-1.5 rounded-xl bg-[#161923] text-slate-300 hover:text-white border border-[#242938] transition cursor-pointer">สัปดาห์ 4 (D22-D30)</button>
+            <button data-gallery-filter="milestones" class="gallery-filter-btn px-3 py-1.5 rounded-xl bg-amber-950/70 text-amber-300 border border-amber-800/80 font-semibold cursor-pointer">⭐ วันสำคัญ (5 วัน)</button>
+            <button data-gallery-filter="missing" class="gallery-filter-btn px-3 py-1.5 rounded-xl bg-rose-950/70 text-rose-300 border border-rose-800/80 font-semibold cursor-pointer">⚠️ ยังขาดภาพ</button>
+          </div>
+
+          <!-- 30 Days Cards Grid -->
+          <div id="milestoneGalleryCards" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+            <!-- Dynamically populated by renderMilestoneGallery() in main.js -->
+          </div>
         </div>
 
       </div>
@@ -1082,7 +1146,8 @@
             <button data-log-filter="w2" class="log-filter-btn px-3 py-1.5 rounded-xl bg-[#161923] text-slate-300 hover:text-white border border-[#242938] transition cursor-pointer">D8-D14</button>
             <button data-log-filter="w3" class="log-filter-btn px-3 py-1.5 rounded-xl bg-[#161923] text-slate-300 hover:text-white border border-[#242938] transition cursor-pointer">D15-D21</button>
             <button data-log-filter="w4" class="log-filter-btn px-3 py-1.5 rounded-xl bg-[#161923] text-slate-300 hover:text-white border border-[#242938] transition cursor-pointer">D22-D30</button>
-            <button data-log-filter="milestones" class="log-filter-btn px-3 py-1.5 rounded-xl bg-amber-950/70 text-amber-300 border border-amber-800/80 font-semibold cursor-pointer">⭐ เฉพาะวัดมุม</button>
+            <button data-log-filter="milestones" class="log-filter-btn px-3 py-1.5 rounded-xl bg-amber-950/70 text-amber-300 border border-amber-800/80 font-semibold cursor-pointer">⭐ วันสำคัญ</button>
+            <button data-log-filter="missingPhoto" class="log-filter-btn px-3 py-1.5 rounded-xl bg-rose-950/70 text-rose-300 border border-rose-800/80 font-semibold cursor-pointer">⚠️ ยังขาดภาพ</button>
           </div>
         </div>
 
@@ -1103,7 +1168,8 @@
                 <th class="py-3 px-2.5 text-cyan-300 font-mono">% ลดทันที</th>
                 <th class="py-3 px-2 text-center">นวด 3 จุด</th>
                 <th class="py-3 px-2.5 text-center">บริหาร (6 ท่า)</th>
-                <th class="py-3 px-2 text-center">สถานะ</th>
+                <th class="py-3 px-2 text-center" title="ต้องครบ 3 อย่าง: นวด 6 นาที + บริหาร 6 ท่า + ภาพถ่ายท่านั่ง">สถานะ (3/3)</th>
+                <th class="py-3 px-2.5 text-center font-mono text-cyan-300">ภาพหลักฐาน (D1-D30)</th>
                 <th class="py-3 px-2.5 text-center">แก้ไข</th>
               </tr>
             </thead>
@@ -1384,6 +1450,36 @@
           </div>
         </div>
 
+        <!-- Daily Posture Photo Section (Applies to all 30 days) -->
+        <div id="modalMilestonePhotoSection" class="bg-[#0c0e14] p-3 rounded-xl border border-cyan-800/60 space-y-2.5">
+          <div class="flex items-center justify-between">
+            <span class="text-cyan-300 font-bold text-xs flex items-center gap-1.5 font-heading">
+              <span>📷</span> ภาพถ่ายหลักฐานท่านั่งประจำวัน (ต้องมีทุกวัน D1 - D30)
+            </span>
+            <span id="modalMilestoneScoreBadge" class="text-[10px] px-1.5 py-0.5 rounded font-mono bg-cyan-950 text-cyan-300 border border-cyan-800">เกณฑ์ 90-90-90</span>
+          </div>
+
+          <div id="modalNoPhotoNotice" class="hidden p-2 rounded-lg bg-rose-950/40 border border-rose-800/60 text-rose-300 text-[11px] flex items-center gap-2">
+            <span>⚠️</span> <span>ยังไม่มีภาพถ่ายท่านั่งประจำวันนี้ (เกณฑ์วิจัยกำหนดให้บันทึกภาพทุกวัน)</span>
+          </div>
+
+          <div class="flex items-center gap-3">
+            <img id="modalMilestoneImgPreview" src="/sample_baseline.png" alt="Posture Evidence" class="w-24 h-20 object-cover rounded-lg border border-slate-700 cursor-pointer hover:opacity-90 transition shadow" />
+            <div class="text-[11px] text-slate-300 space-y-1.5 flex-1">
+              <div id="modalMilestoneAnglesText" class="font-mono text-[10px] text-cyan-300">ศอก: - | สะโพก: - | เข่า: -</div>
+              <div class="flex flex-wrap items-center gap-2 pt-0.5">
+                <label class="cursor-pointer text-[10px] px-2.5 py-1 rounded-lg bg-cyan-600 hover:bg-cyan-500 text-white font-medium inline-flex items-center gap-1 shadow transition">
+                  <span>📷</span> อัปโหลดรูปภาพวันนี้
+                  <input type="file" id="modalPhotoUploadInput" accept="image/*" class="hidden" />
+                </label>
+                <button type="button" id="btnModalJumpToAngle" class="text-[10px] text-cyan-400 hover:text-cyan-300 underline font-medium cursor-pointer">
+                  📐 ไปที่เครื่องมือวัดมุม ➔
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <!-- Notes -->
         <div>
           <label class="text-slate-300 font-medium block mb-1">หมายเหตุ / อาการผิดปกติ</label>
@@ -1399,6 +1495,60 @@
         <button id="btnSaveModal" class="px-5 py-2 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white font-semibold text-xs shadow transition cursor-pointer active:scale-95">
           บันทึกการแก้ไข
         </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Photo Preview Modal Dialog -->
+  <div id="modalPhotoPreview" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
+    <div class="glass-panel max-w-3xl w-full p-6 shadow-2xl space-y-4 max-h-[92vh] overflow-y-auto border-[#2e3448]">
+      <div class="flex items-center justify-between pb-3 border-b border-[#242938]">
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="text-xs font-semibold px-2 py-0.5 rounded-full bg-cyan-950 text-cyan-300 border border-cyan-800 font-mono" id="previewModalDayBadge">D1 (Baseline)</span>
+            <span class="text-xs text-slate-400 font-mono" id="previewModalDate">2026-09-14</span>
+          </div>
+          <h3 class="text-lg font-heading font-bold text-white mt-1" id="previewModalTitle">ภาพถ่ายประเมินมุมการยศาสตร์ 90-90-90</h3>
+        </div>
+        <button id="btnClosePhotoModal" class="text-slate-400 hover:text-white text-xl font-bold px-2 py-1 cursor-pointer">✕</button>
+      </div>
+
+      <!-- Image display container -->
+      <div class="bg-[#0a0c12] rounded-2xl border border-[#242938] overflow-hidden flex items-center justify-center min-h-[300px] max-h-[60vh]">
+        <img id="previewModalImg" src="" alt="Posture Full View" class="max-w-full max-h-[58vh] object-contain rounded-xl select-none" />
+      </div>
+
+      <!-- Angles & Assessment summary -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
+        <div class="bg-[#0c0e14] p-2.5 rounded-xl border border-[#242938] text-center">
+          <span class="text-slate-400 block text-[10px]">มุมข้อศอก (90-100°)</span>
+          <span id="previewElbowVal" class="font-mono font-bold text-sm text-cyan-300">-</span>
+        </div>
+        <div class="bg-[#0c0e14] p-2.5 rounded-xl border border-[#242938] text-center">
+          <span class="text-slate-400 block text-[10px]">มุมสะโพก (90-100°)</span>
+          <span id="previewHipVal" class="font-mono font-bold text-sm text-amber-300">-</span>
+        </div>
+        <div class="bg-[#0c0e14] p-2.5 rounded-xl border border-[#242938] text-center">
+          <span class="text-slate-400 block text-[10px]">มุมเข่า (85-100°)</span>
+          <span id="previewKneeVal" class="font-mono font-bold text-sm text-emerald-300">-</span>
+        </div>
+        <div class="bg-[#0c0e14] p-2.5 rounded-xl border border-[#242938] text-center">
+          <span class="text-slate-400 block text-[10px]">ผลประเมินรวม</span>
+          <span id="previewScoreVal" class="font-mono font-bold text-sm text-purple-300">-</span>
+        </div>
+      </div>
+
+      <!-- Action buttons -->
+      <div class="flex flex-wrap items-center justify-between gap-3 pt-3 border-t border-[#242938]">
+        <span class="text-[11px] text-slate-400">💡 นำไฟล์รูปภาพนี้ไปแทรกใน Excel ชีต "ภาพและมุม" (เมนู Insert > Pictures)</span>
+        <div class="flex items-center gap-2">
+          <button id="btnDownloadPreviewImg" class="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs transition shadow flex items-center gap-1.5 cursor-pointer">
+            <span>💾</span> ดาวน์โหลดภาพนี้ (PNG)
+          </button>
+          <button id="btnLoadPreviewIntoCanvas" class="px-4 py-2 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white font-semibold text-xs transition shadow flex items-center gap-1.5 cursor-pointer">
+            <span>✏️</span> โหลดเข้า Canvas เพื่อวัดใหม่
+          </button>
+        </div>
       </div>
     </div>
   </div>

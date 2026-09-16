@@ -28,6 +28,7 @@ export function exportToExcel(projectData) {
       'นวดครบ 6 นาที',
       'บริหารครบ 6 ท่า',
       'ทำครบโปรแกรม',
+      'ภาพหลักฐาน',
       'หมายเหตุ'
     ]
   ];
@@ -47,6 +48,7 @@ export function exportToExcel(projectData) {
       e.massageCompleted ? 'ผ่าน' : 'ไม่ผ่าน',
       e.exercisesCompleted ? 'ผ่าน' : 'ไม่ผ่าน',
       e.programCompleted ? 'ผ่าน' : 'ไม่ผ่าน',
+      (e.annotatedPhoto || e.photoUrl ? `✓ มีรูปถ่าย (D${e.day})` : '⚠️ ยังไม่มีรูป'),
       e.notes || ''
     ]);
   });
@@ -54,15 +56,17 @@ export function exportToExcel(projectData) {
   const ws1 = XLSX.utils.aoa_to_sheet(sheet1Data);
   XLSX.utils.book_append_sheet(wb, ws1, 'บันทึกรายวัน');
 
-  // --- Sheet 2: ภาพและมุม ---
-  const milestones = entries.filter(e => e.isMilestone);
+  // --- Sheet 2: ภาพและมุม (บันทึกภาพถ่ายและมุมครบทุกวัน D1 - D30) ---
   const sheet2Data = [
-    ['ตารางบันทึกการวัดมุมท่านั่งทำงานด้านข้าง (Ergonomics 90-90-90)'],
-    ['เครื่องมือวัด: ImageMeter / Web Canvas Angle Tool'],
+    ['ตารางบันทึกภาพถ่ายและการวัดมุมท่านั่งทำงานด้านข้างรายวัน (Ergonomics 90-90-90)'],
+    ['เครื่องมือวัด: Web Canvas Angle Tool (จำลอง ImageMeter) | บันทึกหลักฐานภาพถ่ายและมุมครบทุกวัน (D1 - D30)'],
+    ['คำแนะนำการแนบรูปภาพ: ผู้ใช้สามารถนำไฟล์รูปภาพ PNG ที่ดาวน์โหลดจากระบบ (ปุ่ม "ดาวน์โหลดภาพหลักฐานทั้งหมด") มาเลือกแทรกในชีตนี้ (เลือก Insert > Pictures) ในแถวของแต่ละวัน D1 ถึง D30'],
     [],
     [
       'วันประเมิน',
       'วันที่',
+      'สถานะรูปภาพหลักฐาน',
+      'ชื่อไฟล์รูปภาพอ้างอิง',
       'มุมข้อศอก (°)',
       'เกณฑ์ศอก (90-100°)',
       'มุมสะโพก (°)',
@@ -72,14 +76,19 @@ export function exportToExcel(projectData) {
       'ระดับสายตากึ่งกลางจอ',
       'ข้อที่ผ่าน (เต็ม 4)',
       '% ท่าทางถูกต้อง',
-      'สถานะการประเมิน'
+      'สถานะการประเมิน',
+      'คำแนะนำการแนบรูปภาพใน Excel'
     ]
   ];
 
-  milestones.forEach(m => {
+  entries.forEach(m => {
+    const hasImg = !!(m.annotatedPhoto || m.photoUrl);
+    const fileName = m.photoFileName || `Ergonomics_D${m.day}_${info.studentId}.png`;
     sheet2Data.push([
       `D${m.day}`,
       m.date,
+      hasImg ? '✓ บันทึกภาพในระบบแล้ว (มีไฟล์พร้อมแทรก)' : 'ยังไม่ได้บันทึกภาพ',
+      fileName,
       m.elbowAngle !== null ? m.elbowAngle : '-',
       m.elbowPass === null ? '-' : (m.elbowPass ? 'ผ่าน' : 'ไม่ผ่าน'),
       m.hipAngle !== null ? m.hipAngle : '-',
@@ -89,7 +98,8 @@ export function exportToExcel(projectData) {
       m.eyeLevelPass === null ? '-' : (m.eyeLevelPass ? 'ผ่าน' : 'ไม่ผ่าน'),
       m.postureScore !== null ? `${m.postureScore} / 4` : '-',
       m.posturePercentage !== null ? `${m.posturePercentage}%` : '-',
-      (m.posturePercentage >= 75) ? 'ผ่านเกณฑ์เป้าหมาย' : 'ต่ำกว่าเป้าหมาย'
+      (m.posturePercentage >= 75) ? 'ผ่านเกณฑ์เป้าหมาย' : 'ต่ำกว่าเป้าหมาย',
+      hasImg ? `แทรกไฟล์ ${fileName} ในเซลล์นี้ (Insert > Pictures)` : 'อัปโหลดรูปใน Web App แล้วดาวน์โหลดมาแทรก'
     ]);
   });
 

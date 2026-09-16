@@ -1,0 +1,996 @@
+- generic [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e3]:
+      - generic [ref=e4]:
+        - generic [ref=e5]: 30D
+        - generic [ref=e6]:
+          - generic [ref=e7]:
+            - generic [ref=e8]: Health30D Studio
+            - generic [ref=e9]: Phase 1 & 2
+            - generic [ref=e10]: Sec 2 · 6806021612037
+          - paragraph [ref=e11]: การปรับโต๊ะทำงานร่วมกับการดูแลตนเอง ลด Office Syndrome (คอ บ่า ไหล่)
+      - generic [ref=e12]:
+        - generic [ref=e13]:
+          - generic [ref=e15]: "เวลาจริงไทย:"
+          - generic [ref=e16]: 22:14:36
+        - button "✨ โหลดข้อมูลตัวอย่าง Proposal (10/10)" [ref=e17]:
+          - generic [ref=e18]: ✨
+          - text: โหลดข้อมูลตัวอย่าง Proposal (10/10)
+        - button "📊 ส่งออก Excel (.xlsx 3 ชีต)" [ref=e19]:
+          - generic [ref=e20]: 📊
+          - text: ส่งออก Excel (.xlsx 3 ชีต)
+        - button "ล้างข้อมูล" [ref=e21]
+    - generic [ref=e22]:
+      - button "📊 สรุปผล & 5 ตัวชี้วัด" [ref=e23] [cursor=pointer]:
+        - generic [ref=e24]: 📊
+        - text: สรุปผล & 5 ตัวชี้วัด
+      - button "📐 วิเคราะห์องศาท่านั่ง (ImageMeter)" [active] [ref=e25] [cursor=pointer]:
+        - generic [ref=e26]: 📐
+        - text: วิเคราะห์องศาท่านั่ง (ImageMeter)
+      - button "⏱️ นาฬิกา & ผู้ช่วยพัก 45 นาที" [ref=e27] [cursor=pointer]:
+        - generic [ref=e28]: ⏱️
+        - text: นาฬิกา & ผู้ช่วยพัก 45 นาที
+      - button "📅 สมุดบันทึกรายวัน (D1 - D30)" [ref=e29] [cursor=pointer]:
+        - generic [ref=e30]: 📅
+        - text: สมุดบันทึกรายวัน (D1 - D30)
+      - button "📖 ท่าบริหาร & กฎความปลอดภัย" [ref=e31] [cursor=pointer]:
+        - generic [ref=e32]: 📖
+        - text: ท่าบริหาร & กฎความปลอดภัย
+  - main [ref=e33]:
+    - generic [ref=e268]:
+      - generic [ref=e269]:
+        - generic [ref=e270]:
+          - generic [ref=e271]:
+            - generic [ref=e272]: ImageMeter Biometrics
+            - generic [ref=e273]: วิเคราะห์มุมข้อต่อ 90-90-90
+          - heading "📐 เครื่องมือใส่ภาพและวัดองศาท่านั่ง (Image Posture Angle Tool)" [level=2] [ref=e274]:
+            - generic [ref=e275]: 📐
+            - text: เครื่องมือใส่ภาพและวัดองศาท่านั่ง (Image Posture Angle Tool)
+          - paragraph [ref=e276]: แทนการใช้แอป ImageMeter ในมือถือ สามารถใส่รูปท่านั่งจากด้านข้าง ลากจุดข้อต่อ 3 จุด แล้วระบบจะคำนวณองศาและประเมินเกณฑ์ 90-90-90 ทันที
+        - generic [ref=e277]:
+          - generic [ref=e278] [cursor=pointer]:
+            - generic [ref=e279]: 📷
+            - text: อัปโหลดรูปภาพ
+          - button "โหลดภาพ Baseline (Proposal)" [ref=e280]
+          - button "ปรับเป็นท่า 90-90-90" [ref=e281]
+          - button "💾 บันทึกรูปพร้อมองศา" [ref=e282]
+      - generic [ref=e283]:
+        - generic [ref=e284]:
+          - generic [ref=e285]: "กรองการแสดงผล:"
+          - generic [ref=e286]:
+            - button "ทุกมุม" [ref=e287]
+            - button "ข้อศอก" [ref=e288]
+            - button "สะโพก" [ref=e289]
+            - button "เข่า" [ref=e290]
+            - button "สายตา" [ref=e291]
+        - generic [ref=e292]: "💡 วิธีใช้: คลิก/แตะค้างที่จุดกลมเพื่อลากตำแหน่งข้อต่อ หรือคลิกที่พื้นว่างเพื่อเลื่อนภาพ (Pan)"
+      - generic [ref=e293]:
+        - generic [ref=e296]:
+          - generic [ref=e297]: สีเขียว = ผ่านเกณฑ์
+          - generic [ref=e299]: สีแดง/ส้ม = ปรับปรุง
+        - generic [ref=e301]:
+          - generic [ref=e302]:
+            - generic [ref=e303]:
+              - heading "ผลประเมินท่านั่ง (4 ข้อ)" [level=3] [ref=e304]
+              - generic [ref=e305]: ผ่าน 1 / 4 (25%)
+            - generic [ref=e306]:
+              - generic [ref=e307]:
+                - generic [ref=e308]: "1. มุมข้อศอก:"
+                - generic [ref=e309]: 142°
+              - generic [ref=e310]:
+                - generic [ref=e311]: เป้าหมาย 90°-100°
+                - generic [ref=e312]: ไม่ผ่าน
+              - generic [ref=e313]: ศอกเหยียดเกินไป ควรดึงเมาส์และคีย์บอร์ดเข้าหาตัว
+            - generic [ref=e314]:
+              - generic [ref=e315]:
+                - generic [ref=e316]: "2. มุมสะโพก/หลัง:"
+                - generic [ref=e317]: 39°
+              - generic [ref=e318]:
+                - generic [ref=e319]: เป้าหมาย 90°-100°
+                - generic [ref=e320]: ไม่ผ่าน
+              - generic [ref=e321]: หลังค่อมงอเกินไป
+            - generic [ref=e322]:
+              - generic [ref=e323]:
+                - generic [ref=e324]: "3. มุมเข่า/เท้า:"
+                - generic [ref=e325]: 24°
+              - generic [ref=e326]:
+                - generic [ref=e327]: เป้าหมาย 85°-100° & เท้าราบ
+                - generic [ref=e328]: ไม่ผ่าน
+              - generic [ref=e329]: มุมเข่าผิดเกณฑ์ ชันขาบนเบาะ หรือเท้าไม่แตะพื้นราบ
+            - generic [ref=e330]:
+              - generic [ref=e331]:
+                - generic [ref=e332]: "4. ระดับสายตา:"
+                - generic [ref=e333]: ผ่าน
+              - generic [ref=e334] [cursor=pointer]:
+                - checkbox "กึ่งกลางจออยู่ในระดับสายตา (ดี)" [checked] [ref=e335]
+                - generic [ref=e336]: กึ่งกลางจออยู่ในระดับสายตา (ดี)
+            - generic [ref=e337]:
+              - generic [ref=e338]: "เลือกวันบันทึกมุมและภาพถ่าย (วัน D1 - D30):"
+              - generic [ref=e339]:
+                - combobox [ref=e340]:
+                  - option "⭐ D1 (Baseline - วันแรก)"
+                  - option "D2"
+                  - option "D3"
+                  - option "D4"
+                  - option "D5"
+                  - option "D6"
+                  - option "⭐ D7 (สัปดาห์ 1)"
+                  - option "D8"
+                  - option "D9"
+                  - option "D10"
+                  - option "D11"
+                  - option "D12"
+                  - option "D13"
+                  - option "⭐ D14 (สัปดาห์ 2)"
+                  - option "D15"
+                  - option "D16"
+                  - option "D17"
+                  - option "D18"
+                  - option "D19"
+                  - option "D20"
+                  - option "⭐ D21 (สัปดาห์ 3)"
+                  - option "D22"
+                  - option "D23"
+                  - option "D24"
+                  - option "D25"
+                  - option "D26"
+                  - option "D27"
+                  - option "D28"
+                  - option "D29"
+                  - option "⭐ D30 (สิ้นสุดโครงการ)" [selected]
+                - button "บันทึก" [ref=e341]
+          - generic [ref=e342]:
+            - generic [ref=e343]:
+              - generic [ref=e344]: 📋
+              - text: หลักการยศาสตร์ 90-90-90
+            - list [ref=e345]:
+              - listitem [ref=e346]:
+                - generic [ref=e347]: ▸
+                - text: ดึงเมาส์และคีย์บอร์ดเข้าหาตัวจนข้อศอกได้ 90°-100°
+              - listitem [ref=e348]:
+                - generic [ref=e349]: ▸
+                - text: เลื่อนสะโพกและหลังให้ชิดพนักพิง ไม่นั่งไถลตัว
+              - listitem [ref=e350]:
+                - generic [ref=e351]: ▸
+                - text: วางเท้าราบกับพื้น หากขาลอยให้ปรับระดับเก้าอี้
+              - listitem [ref=e352]:
+                - generic [ref=e353]: ▸
+                - text: กึ่งกลางหน้าจอต้องอยู่ในระดับสายตา ไม่ก้มคอ
+      - generic [ref=e354]:
+        - generic [ref=e355]:
+          - generic [ref=e356]:
+            - generic [ref=e357]:
+              - generic [ref=e358]: Evidence Vault (30 Days)
+              - generic [ref=e359]:
+                - text: "มีภาพถ่ายแล้ว:"
+                - strong [ref=e360]: 30 / 30 วัน (100%)
+            - heading "🖼️ คลังภาพถ่ายหลักฐานท่านั่งทำงานประจำวัน (Daily Posture Evidence Gallery D1 - D30)" [level=3] [ref=e361]:
+              - generic [ref=e362]: 🖼️
+              - text: คลังภาพถ่ายหลักฐานท่านั่งทำงานประจำวัน (Daily Posture Evidence Gallery D1 - D30)
+            - paragraph [ref=e363]: รวมภาพถ่ายพร้อมเส้นองศาทั้ง 30 วัน สามารถกดดูภาพขยาย ดาวน์โหลดภาพไปแทรกใน Excel หรือโหลดเข้า Canvas เพื่อวัดมุมซ้ำ
+          - button "📦 ดาวน์โหลดภาพหลักฐานทั้งหมด (PNG)" [ref=e365] [cursor=pointer]:
+            - generic [ref=e366]: 📦
+            - text: ดาวน์โหลดภาพหลักฐานทั้งหมด (PNG)
+        - generic [ref=e367]:
+          - button "ทั้งหมด 30 วัน" [ref=e368] [cursor=pointer]
+          - button "สัปดาห์ 1 (D1-D7)" [ref=e369] [cursor=pointer]
+          - button "สัปดาห์ 2 (D8-D14)" [ref=e370] [cursor=pointer]
+          - button "สัปดาห์ 3 (D15-D21)" [ref=e371] [cursor=pointer]
+          - button "สัปดาห์ 4 (D22-D30)" [ref=e372] [cursor=pointer]
+          - button "⭐ วันสำคัญ (5 วัน)" [ref=e373] [cursor=pointer]
+          - button "⚠️ ยังขาดภาพ" [ref=e374] [cursor=pointer]
+        - generic [ref=e375]:
+          - generic [ref=e376]:
+            - generic [ref=e377]:
+              - generic [ref=e378]:
+                - generic [ref=e379]: D1 (Baseline ⭐)
+                - generic [ref=e380]: 1/4 (25%)
+              - generic [ref=e381]: 2026-09-15
+              - generic [ref=e382] [cursor=pointer]:
+                - img "D1 Posture" [ref=e383]
+                - generic [ref=e384]: 🔍 ดูภาพขยาย
+              - generic [ref=e386]:
+                - generic [ref=e387]:
+                  - generic [ref=e388]: "ศอก:"
+                  - generic [ref=e389]: 138° ✗
+                - generic [ref=e390]:
+                  - generic [ref=e391]: "สะโพก:"
+                  - generic [ref=e392]: 125° ✗
+                - generic [ref=e393]:
+                  - generic [ref=e394]: "เข่า:"
+                  - generic [ref=e395]: 65° ✗
+                - generic [ref=e396]:
+                  - generic [ref=e397]: "สายตา:"
+                  - generic [ref=e398]: ผ่าน ✓
+            - generic [ref=e399]:
+              - generic [ref=e400]:
+                - button "🔍 ดูภาพ" [ref=e401] [cursor=pointer]
+                - button "💾 โหลดรูป" [ref=e402] [cursor=pointer]
+              - button "✏️ โหลดเข้า Canvas เพื่อวัดมุม" [ref=e403] [cursor=pointer]
+          - generic [ref=e404]:
+            - generic [ref=e405]:
+              - generic [ref=e406]:
+                - generic [ref=e407]: D2
+                - generic [ref=e408]: 1/4 (25%)
+              - generic [ref=e409]: 2026-09-16
+              - generic [ref=e410] [cursor=pointer]:
+                - img "D2 Posture" [ref=e411]
+                - generic [ref=e412]: 🔍 ดูภาพขยาย
+              - generic [ref=e414]:
+                - generic [ref=e415]:
+                  - generic [ref=e416]: "ศอก:"
+                  - generic [ref=e417]: 134° ✗
+                - generic [ref=e418]:
+                  - generic [ref=e419]: "สะโพก:"
+                  - generic [ref=e420]: 123° ✗
+                - generic [ref=e421]:
+                  - generic [ref=e422]: "เข่า:"
+                  - generic [ref=e423]: 69° ✗
+                - generic [ref=e424]:
+                  - generic [ref=e425]: "สายตา:"
+                  - generic [ref=e426]: ผ่าน ✓
+            - generic [ref=e427]:
+              - generic [ref=e428]:
+                - button "🔍 ดูภาพ" [ref=e429] [cursor=pointer]
+                - button "💾 โหลดรูป" [ref=e430] [cursor=pointer]
+              - button "✏️ โหลดเข้า Canvas เพื่อวัดมุม" [ref=e431] [cursor=pointer]
+          - generic [ref=e432]:
+            - generic [ref=e433]:
+              - generic [ref=e434]:
+                - generic [ref=e435]: D3
+                - generic [ref=e436]: 1/4 (25%)
+              - generic [ref=e437]: 2026-09-17
+              - generic [ref=e438] [cursor=pointer]:
+                - img "D3 Posture" [ref=e439]
+                - generic [ref=e440]: 🔍 ดูภาพขยาย
+              - generic [ref=e442]:
+                - generic [ref=e443]:
+                  - generic [ref=e444]: "ศอก:"
+                  - generic [ref=e445]: 130° ✗
+                - generic [ref=e446]:
+                  - generic [ref=e447]: "สะโพก:"
+                  - generic [ref=e448]: 120° ✗
+                - generic [ref=e449]:
+                  - generic [ref=e450]: "เข่า:"
+                  - generic [ref=e451]: 73° ✗
+                - generic [ref=e452]:
+                  - generic [ref=e453]: "สายตา:"
+                  - generic [ref=e454]: ผ่าน ✓
+            - generic [ref=e455]:
+              - generic [ref=e456]:
+                - button "🔍 ดูภาพ" [ref=e457] [cursor=pointer]
+                - button "💾 โหลดรูป" [ref=e458] [cursor=pointer]
+              - button "✏️ โหลดเข้า Canvas เพื่อวัดมุม" [ref=e459] [cursor=pointer]
+          - generic [ref=e460]:
+            - generic [ref=e461]:
+              - generic [ref=e462]:
+                - generic [ref=e463]: D4
+                - generic [ref=e464]: 1/4 (25%)
+              - generic [ref=e465]: 2026-09-18
+              - generic [ref=e466] [cursor=pointer]:
+                - img "D4 Posture" [ref=e467]
+                - generic [ref=e468]: 🔍 ดูภาพขยาย
+              - generic [ref=e470]:
+                - generic [ref=e471]:
+                  - generic [ref=e472]: "ศอก:"
+                  - generic [ref=e473]: 127° ✗
+                - generic [ref=e474]:
+                  - generic [ref=e475]: "สะโพก:"
+                  - generic [ref=e476]: 118° ✗
+                - generic [ref=e477]:
+                  - generic [ref=e478]: "เข่า:"
+                  - generic [ref=e479]: 78° ✗
+                - generic [ref=e480]:
+                  - generic [ref=e481]: "สายตา:"
+                  - generic [ref=e482]: ผ่าน ✓
+            - generic [ref=e483]:
+              - generic [ref=e484]:
+                - button "🔍 ดูภาพ" [ref=e485] [cursor=pointer]
+                - button "💾 โหลดรูป" [ref=e486] [cursor=pointer]
+              - button "✏️ โหลดเข้า Canvas เพื่อวัดมุม" [ref=e487] [cursor=pointer]
+          - generic [ref=e488]:
+            - generic [ref=e489]:
+              - generic [ref=e490]:
+                - generic [ref=e491]: D5
+                - generic [ref=e492]: 1/4 (25%)
+              - generic [ref=e493]: 2026-09-19
+              - generic [ref=e494] [cursor=pointer]:
+                - img "D5 Posture" [ref=e495]
+                - generic [ref=e496]: 🔍 ดูภาพขยาย
+              - generic [ref=e498]:
+                - generic [ref=e499]:
+                  - generic [ref=e500]: "ศอก:"
+                  - generic [ref=e501]: 123° ✗
+                - generic [ref=e502]:
+                  - generic [ref=e503]: "สะโพก:"
+                  - generic [ref=e504]: 115° ✗
+                - generic [ref=e505]:
+                  - generic [ref=e506]: "เข่า:"
+                  - generic [ref=e507]: 82° ✗
+                - generic [ref=e508]:
+                  - generic [ref=e509]: "สายตา:"
+                  - generic [ref=e510]: ผ่าน ✓
+            - generic [ref=e511]:
+              - generic [ref=e512]:
+                - button "🔍 ดูภาพ" [ref=e513] [cursor=pointer]
+                - button "💾 โหลดรูป" [ref=e514] [cursor=pointer]
+              - button "✏️ โหลดเข้า Canvas เพื่อวัดมุม" [ref=e515] [cursor=pointer]
+          - generic [ref=e516]:
+            - generic [ref=e517]:
+              - generic [ref=e518]:
+                - generic [ref=e519]: D6
+                - generic [ref=e520]: 2/4 (50%)
+              - generic [ref=e521]: 2026-09-20
+              - generic [ref=e522] [cursor=pointer]:
+                - img "D6 Posture" [ref=e523]
+                - generic [ref=e524]: 🔍 ดูภาพขยาย
+              - generic [ref=e526]:
+                - generic [ref=e527]:
+                  - generic [ref=e528]: "ศอก:"
+                  - generic [ref=e529]: 119° ✗
+                - generic [ref=e530]:
+                  - generic [ref=e531]: "สะโพก:"
+                  - generic [ref=e532]: 113° ✗
+                - generic [ref=e533]:
+                  - generic [ref=e534]: "เข่า:"
+                  - generic [ref=e535]: 86° ✓
+                - generic [ref=e536]:
+                  - generic [ref=e537]: "สายตา:"
+                  - generic [ref=e538]: ผ่าน ✓
+            - generic [ref=e539]:
+              - generic [ref=e540]:
+                - button "🔍 ดูภาพ" [ref=e541] [cursor=pointer]
+                - button "💾 โหลดรูป" [ref=e542] [cursor=pointer]
+              - button "✏️ โหลดเข้า Canvas เพื่อวัดมุม" [ref=e543] [cursor=pointer]
+          - generic [ref=e544]:
+            - generic [ref=e545]:
+              - generic [ref=e546]:
+                - generic [ref=e547]: D7 (สัปดาห์ 1 ⭐)
+                - generic [ref=e548]: 2/4 (50%)
+              - generic [ref=e549]: 2026-09-21
+              - generic [ref=e550] [cursor=pointer]:
+                - img "D7 Posture" [ref=e551]
+                - generic [ref=e552]: 🔍 ดูภาพขยาย
+              - generic [ref=e554]:
+                - generic [ref=e555]:
+                  - generic [ref=e556]: "ศอก:"
+                  - generic [ref=e557]: 115° ✗
+                - generic [ref=e558]:
+                  - generic [ref=e559]: "สะโพก:"
+                  - generic [ref=e560]: 110° ✗
+                - generic [ref=e561]:
+                  - generic [ref=e562]: "เข่า:"
+                  - generic [ref=e563]: 90° ✓
+                - generic [ref=e564]:
+                  - generic [ref=e565]: "สายตา:"
+                  - generic [ref=e566]: ผ่าน ✓
+            - generic [ref=e567]:
+              - generic [ref=e568]:
+                - button "🔍 ดูภาพ" [ref=e569] [cursor=pointer]
+                - button "💾 โหลดรูป" [ref=e570] [cursor=pointer]
+              - button "✏️ โหลดเข้า Canvas เพื่อวัดมุม" [ref=e571] [cursor=pointer]
+          - generic [ref=e572]:
+            - generic [ref=e573]:
+              - generic [ref=e574]:
+                - generic [ref=e575]: D8
+                - generic [ref=e576]: 2/4 (50%)
+              - generic [ref=e577]: 2026-09-22
+              - generic [ref=e578] [cursor=pointer]:
+                - img "D8 Posture" [ref=e579]
+                - generic [ref=e580]: 🔍 ดูภาพขยาย
+              - generic [ref=e582]:
+                - generic [ref=e583]:
+                  - generic [ref=e584]: "ศอก:"
+                  - generic [ref=e585]: 113° ✗
+                - generic [ref=e586]:
+                  - generic [ref=e587]: "สะโพก:"
+                  - generic [ref=e588]: 110° ✗
+                - generic [ref=e589]:
+                  - generic [ref=e590]: "เข่า:"
+                  - generic [ref=e591]: 90° ✓
+                - generic [ref=e592]:
+                  - generic [ref=e593]: "สายตา:"
+                  - generic [ref=e594]: ผ่าน ✓
+            - generic [ref=e595]:
+              - generic [ref=e596]:
+                - button "🔍 ดูภาพ" [ref=e597] [cursor=pointer]
+                - button "💾 โหลดรูป" [ref=e598] [cursor=pointer]
+              - button "✏️ โหลดเข้า Canvas เพื่อวัดมุม" [ref=e599] [cursor=pointer]
+          - generic [ref=e600]:
+            - generic [ref=e601]:
+              - generic [ref=e602]:
+                - generic [ref=e603]: D9
+                - generic [ref=e604]: 2/4 (50%)
+              - generic [ref=e605]: 2026-09-23
+              - generic [ref=e606] [cursor=pointer]:
+                - img "D9 Posture" [ref=e607]
+                - generic [ref=e608]: 🔍 ดูภาพขยาย
+              - generic [ref=e610]:
+                - generic [ref=e611]:
+                  - generic [ref=e612]: "ศอก:"
+                  - generic [ref=e613]: 110° ✗
+                - generic [ref=e614]:
+                  - generic [ref=e615]: "สะโพก:"
+                  - generic [ref=e616]: 109° ✗
+                - generic [ref=e617]:
+                  - generic [ref=e618]: "เข่า:"
+                  - generic [ref=e619]: 91° ✓
+                - generic [ref=e620]:
+                  - generic [ref=e621]: "สายตา:"
+                  - generic [ref=e622]: ผ่าน ✓
+            - generic [ref=e623]:
+              - generic [ref=e624]:
+                - button "🔍 ดูภาพ" [ref=e625] [cursor=pointer]
+                - button "💾 โหลดรูป" [ref=e626] [cursor=pointer]
+              - button "✏️ โหลดเข้า Canvas เพื่อวัดมุม" [ref=e627] [cursor=pointer]
+          - generic [ref=e628]:
+            - generic [ref=e629]:
+              - generic [ref=e630]:
+                - generic [ref=e631]: D10
+                - generic [ref=e632]: 2/4 (50%)
+              - generic [ref=e633]: 2026-09-24
+              - generic [ref=e634] [cursor=pointer]:
+                - img "D10 Posture" [ref=e635]
+                - generic [ref=e636]: 🔍 ดูภาพขยาย
+              - generic [ref=e638]:
+                - generic [ref=e639]:
+                  - generic [ref=e640]: "ศอก:"
+                  - generic [ref=e641]: 108° ✗
+                - generic [ref=e642]:
+                  - generic [ref=e643]: "สะโพก:"
+                  - generic [ref=e644]: 109° ✗
+                - generic [ref=e645]:
+                  - generic [ref=e646]: "เข่า:"
+                  - generic [ref=e647]: 91° ✓
+                - generic [ref=e648]:
+                  - generic [ref=e649]: "สายตา:"
+                  - generic [ref=e650]: ผ่าน ✓
+            - generic [ref=e651]:
+              - generic [ref=e652]:
+                - button "🔍 ดูภาพ" [ref=e653] [cursor=pointer]
+                - button "💾 โหลดรูป" [ref=e654] [cursor=pointer]
+              - button "✏️ โหลดเข้า Canvas เพื่อวัดมุม" [ref=e655] [cursor=pointer]
+          - generic [ref=e656]:
+            - generic [ref=e657]:
+              - generic [ref=e658]:
+                - generic [ref=e659]: D11
+                - generic [ref=e660]: 2/4 (50%)
+              - generic [ref=e661]: 2026-09-25
+              - generic [ref=e662] [cursor=pointer]:
+                - img "D11 Posture" [ref=e663]
+                - generic [ref=e664]: 🔍 ดูภาพขยาย
+              - generic [ref=e666]:
+                - generic [ref=e667]:
+                  - generic [ref=e668]: "ศอก:"
+                  - generic [ref=e669]: 105° ✗
+                - generic [ref=e670]:
+                  - generic [ref=e671]: "สะโพก:"
+                  - generic [ref=e672]: 109° ✗
+                - generic [ref=e673]:
+                  - generic [ref=e674]: "เข่า:"
+                  - generic [ref=e675]: 91° ✓
+                - generic [ref=e676]:
+                  - generic [ref=e677]: "สายตา:"
+                  - generic [ref=e678]: ผ่าน ✓
+            - generic [ref=e679]:
+              - generic [ref=e680]:
+                - button "🔍 ดูภาพ" [ref=e681] [cursor=pointer]
+                - button "💾 โหลดรูป" [ref=e682] [cursor=pointer]
+              - button "✏️ โหลดเข้า Canvas เพื่อวัดมุม" [ref=e683] [cursor=pointer]
+          - generic [ref=e684]:
+            - generic [ref=e685]:
+              - generic [ref=e686]:
+                - generic [ref=e687]: D12
+                - generic [ref=e688]: 2/4 (50%)
+              - generic [ref=e689]: 2026-09-26
+              - generic [ref=e690] [cursor=pointer]:
+                - img "D12 Posture" [ref=e691]
+                - generic [ref=e692]: 🔍 ดูภาพขยาย
+              - generic [ref=e694]:
+                - generic [ref=e695]:
+                  - generic [ref=e696]: "ศอก:"
+                  - generic [ref=e697]: 103° ✗
+                - generic [ref=e698]:
+                  - generic [ref=e699]: "สะโพก:"
+                  - generic [ref=e700]: 109° ✗
+                - generic [ref=e701]:
+                  - generic [ref=e702]: "เข่า:"
+                  - generic [ref=e703]: 91° ✓
+                - generic [ref=e704]:
+                  - generic [ref=e705]: "สายตา:"
+                  - generic [ref=e706]: ผ่าน ✓
+            - generic [ref=e707]:
+              - generic [ref=e708]:
+                - button "🔍 ดูภาพ" [ref=e709] [cursor=pointer]
+                - button "💾 โหลดรูป" [ref=e710] [cursor=pointer]
+              - button "✏️ โหลดเข้า Canvas เพื่อวัดมุม" [ref=e711] [cursor=pointer]
+          - generic [ref=e712]:
+            - generic [ref=e713]:
+              - generic [ref=e714]:
+                - generic [ref=e715]: D13
+                - generic [ref=e716]: 3/4 (75%)
+              - generic [ref=e717]: 2026-09-27
+              - generic [ref=e718] [cursor=pointer]:
+                - img "D13 Posture" [ref=e719]
+                - generic [ref=e720]: 🔍 ดูภาพขยาย
+              - generic [ref=e722]:
+                - generic [ref=e723]:
+                  - generic [ref=e724]: "ศอก:"
+                  - generic [ref=e725]: 100° ✓
+                - generic [ref=e726]:
+                  - generic [ref=e727]: "สะโพก:"
+                  - generic [ref=e728]: 108° ✗
+                - generic [ref=e729]:
+                  - generic [ref=e730]: "เข่า:"
+                  - generic [ref=e731]: 92° ✓
+                - generic [ref=e732]:
+                  - generic [ref=e733]: "สายตา:"
+                  - generic [ref=e734]: ผ่าน ✓
+            - generic [ref=e735]:
+              - generic [ref=e736]:
+                - button "🔍 ดูภาพ" [ref=e737] [cursor=pointer]
+                - button "💾 โหลดรูป" [ref=e738] [cursor=pointer]
+              - button "✏️ โหลดเข้า Canvas เพื่อวัดมุม" [ref=e739] [cursor=pointer]
+          - generic [ref=e740]:
+            - generic [ref=e741]:
+              - generic [ref=e742]:
+                - generic [ref=e743]: D14 (สัปดาห์ 2 ⭐)
+                - generic [ref=e744]: 3/4 (75%)
+              - generic [ref=e745]: 2026-09-28
+              - generic [ref=e746] [cursor=pointer]:
+                - img "D14 Posture" [ref=e747]
+                - generic [ref=e748]: 🔍 ดูภาพขยาย
+              - generic [ref=e750]:
+                - generic [ref=e751]:
+                  - generic [ref=e752]: "ศอก:"
+                  - generic [ref=e753]: 98° ✓
+                - generic [ref=e754]:
+                  - generic [ref=e755]: "สะโพก:"
+                  - generic [ref=e756]: 108° ✗
+                - generic [ref=e757]:
+                  - generic [ref=e758]: "เข่า:"
+                  - generic [ref=e759]: 92° ✓
+                - generic [ref=e760]:
+                  - generic [ref=e761]: "สายตา:"
+                  - generic [ref=e762]: ผ่าน ✓
+            - generic [ref=e763]:
+              - generic [ref=e764]:
+                - button "🔍 ดูภาพ" [ref=e765] [cursor=pointer]
+                - button "💾 โหลดรูป" [ref=e766] [cursor=pointer]
+              - button "✏️ โหลดเข้า Canvas เพื่อวัดมุม" [ref=e767] [cursor=pointer]
+          - generic [ref=e768]:
+            - generic [ref=e769]:
+              - generic [ref=e770]:
+                - generic [ref=e771]: D15
+                - generic [ref=e772]: 3/4 (75%)
+              - generic [ref=e773]: 2026-09-29
+              - generic [ref=e774] [cursor=pointer]:
+                - img "D15 Posture" [ref=e775]
+                - generic [ref=e776]: 🔍 ดูภาพขยาย
+              - generic [ref=e778]:
+                - generic [ref=e779]:
+                  - generic [ref=e780]: "ศอก:"
+                  - generic [ref=e781]: 98° ✓
+                - generic [ref=e782]:
+                  - generic [ref=e783]: "สะโพก:"
+                  - generic [ref=e784]: 107° ✗
+                - generic [ref=e785]:
+                  - generic [ref=e786]: "เข่า:"
+                  - generic [ref=e787]: 92° ✓
+                - generic [ref=e788]:
+                  - generic [ref=e789]: "สายตา:"
+                  - generic [ref=e790]: ผ่าน ✓
+            - generic [ref=e791]:
+              - generic [ref=e792]:
+                - button "🔍 ดูภาพ" [ref=e793] [cursor=pointer]
+                - button "💾 โหลดรูป" [ref=e794] [cursor=pointer]
+              - button "✏️ โหลดเข้า Canvas เพื่อวัดมุม" [ref=e795] [cursor=pointer]
+          - generic [ref=e796]:
+            - generic [ref=e797]:
+              - generic [ref=e798]:
+                - generic [ref=e799]: D16
+                - generic [ref=e800]: 3/4 (75%)
+              - generic [ref=e801]: 2026-09-30
+              - generic [ref=e802] [cursor=pointer]:
+                - img "D16 Posture" [ref=e803]
+                - generic [ref=e804]: 🔍 ดูภาพขยาย
+              - generic [ref=e806]:
+                - generic [ref=e807]:
+                  - generic [ref=e808]: "ศอก:"
+                  - generic [ref=e809]: 97° ✓
+                - generic [ref=e810]:
+                  - generic [ref=e811]: "สะโพก:"
+                  - generic [ref=e812]: 106° ✗
+                - generic [ref=e813]:
+                  - generic [ref=e814]: "เข่า:"
+                  - generic [ref=e815]: 91° ✓
+                - generic [ref=e816]:
+                  - generic [ref=e817]: "สายตา:"
+                  - generic [ref=e818]: ผ่าน ✓
+            - generic [ref=e819]:
+              - generic [ref=e820]:
+                - button "🔍 ดูภาพ" [ref=e821] [cursor=pointer]
+                - button "💾 โหลดรูป" [ref=e822] [cursor=pointer]
+              - button "✏️ โหลดเข้า Canvas เพื่อวัดมุม" [ref=e823] [cursor=pointer]
+          - generic [ref=e824]:
+            - generic [ref=e825]:
+              - generic [ref=e826]:
+                - generic [ref=e827]: D17
+                - generic [ref=e828]: 3/4 (75%)
+              - generic [ref=e829]: 2026-10-01
+              - generic [ref=e830] [cursor=pointer]:
+                - img "D17 Posture" [ref=e831]
+                - generic [ref=e832]: 🔍 ดูภาพขยาย
+              - generic [ref=e834]:
+                - generic [ref=e835]:
+                  - generic [ref=e836]: "ศอก:"
+                  - generic [ref=e837]: 97° ✓
+                - generic [ref=e838]:
+                  - generic [ref=e839]: "สะโพก:"
+                  - generic [ref=e840]: 105° ✗
+                - generic [ref=e841]:
+                  - generic [ref=e842]: "เข่า:"
+                  - generic [ref=e843]: 91° ✓
+                - generic [ref=e844]:
+                  - generic [ref=e845]: "สายตา:"
+                  - generic [ref=e846]: ผ่าน ✓
+            - generic [ref=e847]:
+              - generic [ref=e848]:
+                - button "🔍 ดูภาพ" [ref=e849] [cursor=pointer]
+                - button "💾 โหลดรูป" [ref=e850] [cursor=pointer]
+              - button "✏️ โหลดเข้า Canvas เพื่อวัดมุม" [ref=e851] [cursor=pointer]
+          - generic [ref=e852]:
+            - generic [ref=e853]:
+              - generic [ref=e854]:
+                - generic [ref=e855]: D18
+                - generic [ref=e856]: 3/4 (75%)
+              - generic [ref=e857]: 2026-10-02
+              - generic [ref=e858] [cursor=pointer]:
+                - img "D18 Posture" [ref=e859]
+                - generic [ref=e860]: 🔍 ดูภาพขยาย
+              - generic [ref=e862]:
+                - generic [ref=e863]:
+                  - generic [ref=e864]: "ศอก:"
+                  - generic [ref=e865]: 96° ✓
+                - generic [ref=e866]:
+                  - generic [ref=e867]: "สะโพก:"
+                  - generic [ref=e868]: 105° ✗
+                - generic [ref=e869]:
+                  - generic [ref=e870]: "เข่า:"
+                  - generic [ref=e871]: 91° ✓
+                - generic [ref=e872]:
+                  - generic [ref=e873]: "สายตา:"
+                  - generic [ref=e874]: ผ่าน ✓
+            - generic [ref=e875]:
+              - generic [ref=e876]:
+                - button "🔍 ดูภาพ" [ref=e877] [cursor=pointer]
+                - button "💾 โหลดรูป" [ref=e878] [cursor=pointer]
+              - button "✏️ โหลดเข้า Canvas เพื่อวัดมุม" [ref=e879] [cursor=pointer]
+          - generic [ref=e880]:
+            - generic [ref=e881]:
+              - generic [ref=e882]:
+                - generic [ref=e883]: D19
+                - generic [ref=e884]: 3/4 (75%)
+              - generic [ref=e885]: 2026-10-03
+              - generic [ref=e886] [cursor=pointer]:
+                - img "D19 Posture" [ref=e887]
+                - generic [ref=e888]: 🔍 ดูภาพขยาย
+              - generic [ref=e890]:
+                - generic [ref=e891]:
+                  - generic [ref=e892]: "ศอก:"
+                  - generic [ref=e893]: 96° ✓
+                - generic [ref=e894]:
+                  - generic [ref=e895]: "สะโพก:"
+                  - generic [ref=e896]: 104° ✗
+                - generic [ref=e897]:
+                  - generic [ref=e898]: "เข่า:"
+                  - generic [ref=e899]: 91° ✓
+                - generic [ref=e900]:
+                  - generic [ref=e901]: "สายตา:"
+                  - generic [ref=e902]: ผ่าน ✓
+            - generic [ref=e903]:
+              - generic [ref=e904]:
+                - button "🔍 ดูภาพ" [ref=e905] [cursor=pointer]
+                - button "💾 โหลดรูป" [ref=e906] [cursor=pointer]
+              - button "✏️ โหลดเข้า Canvas เพื่อวัดมุม" [ref=e907] [cursor=pointer]
+          - generic [ref=e908]:
+            - generic [ref=e909]:
+              - generic [ref=e910]:
+                - generic [ref=e911]: D20
+                - generic [ref=e912]: 3/4 (75%)
+              - generic [ref=e913]: 2026-10-04
+              - generic [ref=e914] [cursor=pointer]:
+                - img "D20 Posture" [ref=e915]
+                - generic [ref=e916]: 🔍 ดูภาพขยาย
+              - generic [ref=e918]:
+                - generic [ref=e919]:
+                  - generic [ref=e920]: "ศอก:"
+                  - generic [ref=e921]: 95° ✓
+                - generic [ref=e922]:
+                  - generic [ref=e923]: "สะโพก:"
+                  - generic [ref=e924]: 103° ✗
+                - generic [ref=e925]:
+                  - generic [ref=e926]: "เข่า:"
+                  - generic [ref=e927]: 90° ✓
+                - generic [ref=e928]:
+                  - generic [ref=e929]: "สายตา:"
+                  - generic [ref=e930]: ผ่าน ✓
+            - generic [ref=e931]:
+              - generic [ref=e932]:
+                - button "🔍 ดูภาพ" [ref=e933] [cursor=pointer]
+                - button "💾 โหลดรูป" [ref=e934] [cursor=pointer]
+              - button "✏️ โหลดเข้า Canvas เพื่อวัดมุม" [ref=e935] [cursor=pointer]
+          - generic [ref=e936]:
+            - generic [ref=e937]:
+              - generic [ref=e938]:
+                - generic [ref=e939]: D21 (สัปดาห์ 3 ⭐)
+                - generic [ref=e940]: 3/4 (75%)
+              - generic [ref=e941]: 2026-10-05
+              - generic [ref=e942] [cursor=pointer]:
+                - img "D21 Posture" [ref=e943]
+                - generic [ref=e944]: 🔍 ดูภาพขยาย
+              - generic [ref=e946]:
+                - generic [ref=e947]:
+                  - generic [ref=e948]: "ศอก:"
+                  - generic [ref=e949]: 95° ✓
+                - generic [ref=e950]:
+                  - generic [ref=e951]: "สะโพก:"
+                  - generic [ref=e952]: 102° ✗
+                - generic [ref=e953]:
+                  - generic [ref=e954]: "เข่า:"
+                  - generic [ref=e955]: 90° ✓
+                - generic [ref=e956]:
+                  - generic [ref=e957]: "สายตา:"
+                  - generic [ref=e958]: ผ่าน ✓
+            - generic [ref=e959]:
+              - generic [ref=e960]:
+                - button "🔍 ดูภาพ" [ref=e961] [cursor=pointer]
+                - button "💾 โหลดรูป" [ref=e962] [cursor=pointer]
+              - button "✏️ โหลดเข้า Canvas เพื่อวัดมุม" [ref=e963] [cursor=pointer]
+          - generic [ref=e964]:
+            - generic [ref=e965]:
+              - generic [ref=e966]:
+                - generic [ref=e967]: D22
+                - generic [ref=e968]: 3/4 (75%)
+              - generic [ref=e969]: 2026-10-06
+              - generic [ref=e970] [cursor=pointer]:
+                - img "D22 Posture" [ref=e971]
+                - generic [ref=e972]: 🔍 ดูภาพขยาย
+              - generic [ref=e974]:
+                - generic [ref=e975]:
+                  - generic [ref=e976]: "ศอก:"
+                  - generic [ref=e977]: 95° ✓
+                - generic [ref=e978]:
+                  - generic [ref=e979]: "สะโพก:"
+                  - generic [ref=e980]: 101° ✗
+                - generic [ref=e981]:
+                  - generic [ref=e982]: "เข่า:"
+                  - generic [ref=e983]: 90° ✓
+                - generic [ref=e984]:
+                  - generic [ref=e985]: "สายตา:"
+                  - generic [ref=e986]: ผ่าน ✓
+            - generic [ref=e987]:
+              - generic [ref=e988]:
+                - button "🔍 ดูภาพ" [ref=e989] [cursor=pointer]
+                - button "💾 โหลดรูป" [ref=e990] [cursor=pointer]
+              - button "✏️ โหลดเข้า Canvas เพื่อวัดมุม" [ref=e991] [cursor=pointer]
+          - generic [ref=e992]:
+            - generic [ref=e993]:
+              - generic [ref=e994]:
+                - generic [ref=e995]: D23
+                - generic [ref=e996]: 4/4 (100%)
+              - generic [ref=e997]: 2026-10-07
+              - generic [ref=e998] [cursor=pointer]:
+                - img "D23 Posture" [ref=e999]
+                - generic [ref=e1000]: 🔍 ดูภาพขยาย
+              - generic [ref=e1002]:
+                - generic [ref=e1003]:
+                  - generic [ref=e1004]: "ศอก:"
+                  - generic [ref=e1005]: 95° ✓
+                - generic [ref=e1006]:
+                  - generic [ref=e1007]: "สะโพก:"
+                  - generic [ref=e1008]: 100° ✓
+                - generic [ref=e1009]:
+                  - generic [ref=e1010]: "เข่า:"
+                  - generic [ref=e1011]: 90° ✓
+                - generic [ref=e1012]:
+                  - generic [ref=e1013]: "สายตา:"
+                  - generic [ref=e1014]: ผ่าน ✓
+            - generic [ref=e1015]:
+              - generic [ref=e1016]:
+                - button "🔍 ดูภาพ" [ref=e1017] [cursor=pointer]
+                - button "💾 โหลดรูป" [ref=e1018] [cursor=pointer]
+              - button "✏️ โหลดเข้า Canvas เพื่อวัดมุม" [ref=e1019] [cursor=pointer]
+          - generic [ref=e1020]:
+            - generic [ref=e1021]:
+              - generic [ref=e1022]:
+                - generic [ref=e1023]: D24
+                - generic [ref=e1024]: 4/4 (100%)
+              - generic [ref=e1025]: 2026-10-08
+              - generic [ref=e1026] [cursor=pointer]:
+                - img "D24 Posture" [ref=e1027]
+                - generic [ref=e1028]: 🔍 ดูภาพขยาย
+              - generic [ref=e1030]:
+                - generic [ref=e1031]:
+                  - generic [ref=e1032]: "ศอก:"
+                  - generic [ref=e1033]: 95° ✓
+                - generic [ref=e1034]:
+                  - generic [ref=e1035]: "สะโพก:"
+                  - generic [ref=e1036]: 100° ✓
+                - generic [ref=e1037]:
+                  - generic [ref=e1038]: "เข่า:"
+                  - generic [ref=e1039]: 90° ✓
+                - generic [ref=e1040]:
+                  - generic [ref=e1041]: "สายตา:"
+                  - generic [ref=e1042]: ผ่าน ✓
+            - generic [ref=e1043]:
+              - generic [ref=e1044]:
+                - button "🔍 ดูภาพ" [ref=e1045] [cursor=pointer]
+                - button "💾 โหลดรูป" [ref=e1046] [cursor=pointer]
+              - button "✏️ โหลดเข้า Canvas เพื่อวัดมุม" [ref=e1047] [cursor=pointer]
+          - generic [ref=e1048]:
+            - generic [ref=e1049]:
+              - generic [ref=e1050]:
+                - generic [ref=e1051]: D25
+                - generic [ref=e1052]: 4/4 (100%)
+              - generic [ref=e1053]: 2026-10-09
+              - generic [ref=e1054] [cursor=pointer]:
+                - img "D25 Posture" [ref=e1055]
+                - generic [ref=e1056]: 🔍 ดูภาพขยาย
+              - generic [ref=e1058]:
+                - generic [ref=e1059]:
+                  - generic [ref=e1060]: "ศอก:"
+                  - generic [ref=e1061]: 95° ✓
+                - generic [ref=e1062]:
+                  - generic [ref=e1063]: "สะโพก:"
+                  - generic [ref=e1064]: 99° ✓
+                - generic [ref=e1065]:
+                  - generic [ref=e1066]: "เข่า:"
+                  - generic [ref=e1067]: 90° ✓
+                - generic [ref=e1068]:
+                  - generic [ref=e1069]: "สายตา:"
+                  - generic [ref=e1070]: ผ่าน ✓
+            - generic [ref=e1071]:
+              - generic [ref=e1072]:
+                - button "🔍 ดูภาพ" [ref=e1073] [cursor=pointer]
+                - button "💾 โหลดรูป" [ref=e1074] [cursor=pointer]
+              - button "✏️ โหลดเข้า Canvas เพื่อวัดมุม" [ref=e1075] [cursor=pointer]
+          - generic [ref=e1076]:
+            - generic [ref=e1077]:
+              - generic [ref=e1078]:
+                - generic [ref=e1079]: D26
+                - generic [ref=e1080]: 4/4 (100%)
+              - generic [ref=e1081]: 2026-10-10
+              - generic [ref=e1082] [cursor=pointer]:
+                - img "D26 Posture" [ref=e1083]
+                - generic [ref=e1084]: 🔍 ดูภาพขยาย
+              - generic [ref=e1086]:
+                - generic [ref=e1087]:
+                  - generic [ref=e1088]: "ศอก:"
+                  - generic [ref=e1089]: 94° ✓
+                - generic [ref=e1090]:
+                  - generic [ref=e1091]: "สะโพก:"
+                  - generic [ref=e1092]: 98° ✓
+                - generic [ref=e1093]:
+                  - generic [ref=e1094]: "เข่า:"
+                  - generic [ref=e1095]: 90° ✓
+                - generic [ref=e1096]:
+                  - generic [ref=e1097]: "สายตา:"
+                  - generic [ref=e1098]: ผ่าน ✓
+            - generic [ref=e1099]:
+              - generic [ref=e1100]:
+                - button "🔍 ดูภาพ" [ref=e1101] [cursor=pointer]
+                - button "💾 โหลดรูป" [ref=e1102] [cursor=pointer]
+              - button "✏️ โหลดเข้า Canvas เพื่อวัดมุม" [ref=e1103] [cursor=pointer]
+          - generic [ref=e1104]:
+            - generic [ref=e1105]:
+              - generic [ref=e1106]:
+                - generic [ref=e1107]: D27
+                - generic [ref=e1108]: 4/4 (100%)
+              - generic [ref=e1109]: 2026-10-11
+              - generic [ref=e1110] [cursor=pointer]:
+                - img "D27 Posture" [ref=e1111]
+                - generic [ref=e1112]: 🔍 ดูภาพขยาย
+              - generic [ref=e1114]:
+                - generic [ref=e1115]:
+                  - generic [ref=e1116]: "ศอก:"
+                  - generic [ref=e1117]: 94° ✓
+                - generic [ref=e1118]:
+                  - generic [ref=e1119]: "สะโพก:"
+                  - generic [ref=e1120]: 97° ✓
+                - generic [ref=e1121]:
+                  - generic [ref=e1122]: "เข่า:"
+                  - generic [ref=e1123]: 90° ✓
+                - generic [ref=e1124]:
+                  - generic [ref=e1125]: "สายตา:"
+                  - generic [ref=e1126]: ผ่าน ✓
+            - generic [ref=e1127]:
+              - generic [ref=e1128]:
+                - button "🔍 ดูภาพ" [ref=e1129] [cursor=pointer]
+                - button "💾 โหลดรูป" [ref=e1130] [cursor=pointer]
+              - button "✏️ โหลดเข้า Canvas เพื่อวัดมุม" [ref=e1131] [cursor=pointer]
+          - generic [ref=e1132]:
+            - generic [ref=e1133]:
+              - generic [ref=e1134]:
+                - generic [ref=e1135]: D28
+                - generic [ref=e1136]: 4/4 (100%)
+              - generic [ref=e1137]: 2026-10-12
+              - generic [ref=e1138] [cursor=pointer]:
+                - img "D28 Posture" [ref=e1139]
+                - generic [ref=e1140]: 🔍 ดูภาพขยาย
+              - generic [ref=e1142]:
+                - generic [ref=e1143]:
+                  - generic [ref=e1144]: "ศอก:"
+                  - generic [ref=e1145]: 94° ✓
+                - generic [ref=e1146]:
+                  - generic [ref=e1147]: "สะโพก:"
+                  - generic [ref=e1148]: 97° ✓
+                - generic [ref=e1149]:
+                  - generic [ref=e1150]: "เข่า:"
+                  - generic [ref=e1151]: 90° ✓
+                - generic [ref=e1152]:
+                  - generic [ref=e1153]: "สายตา:"
+                  - generic [ref=e1154]: ผ่าน ✓
+            - generic [ref=e1155]:
+              - generic [ref=e1156]:
+                - button "🔍 ดูภาพ" [ref=e1157] [cursor=pointer]
+                - button "💾 โหลดรูป" [ref=e1158] [cursor=pointer]
+              - button "✏️ โหลดเข้า Canvas เพื่อวัดมุม" [ref=e1159] [cursor=pointer]
+          - generic [ref=e1160]:
+            - generic [ref=e1161]:
+              - generic [ref=e1162]:
+                - generic [ref=e1163]: D29
+                - generic [ref=e1164]: 4/4 (100%)
+              - generic [ref=e1165]: 2026-10-13
+              - generic [ref=e1166] [cursor=pointer]:
+                - img "D29 Posture" [ref=e1167]
+                - generic [ref=e1168]: 🔍 ดูภาพขยาย
+              - generic [ref=e1170]:
+                - generic [ref=e1171]:
+                  - generic [ref=e1172]: "ศอก:"
+                  - generic [ref=e1173]: 94° ✓
+                - generic [ref=e1174]:
+                  - generic [ref=e1175]: "สะโพก:"
+                  - generic [ref=e1176]: 96° ✓
+                - generic [ref=e1177]:
+                  - generic [ref=e1178]: "เข่า:"
+                  - generic [ref=e1179]: 90° ✓
+                - generic [ref=e1180]:
+                  - generic [ref=e1181]: "สายตา:"
+                  - generic [ref=e1182]: ผ่าน ✓
+            - generic [ref=e1183]:
+              - generic [ref=e1184]:
+                - button "🔍 ดูภาพ" [ref=e1185] [cursor=pointer]
+                - button "💾 โหลดรูป" [ref=e1186] [cursor=pointer]
+              - button "✏️ โหลดเข้า Canvas เพื่อวัดมุม" [ref=e1187] [cursor=pointer]
+          - generic [ref=e1188]:
+            - generic [ref=e1189]:
+              - generic [ref=e1190]:
+                - generic [ref=e1191]: D30 (สิ้นสุดโครงการ ⭐)
+                - generic [ref=e1192]: 4/4 (100%)
+              - generic [ref=e1193]: 2026-10-14
+              - generic [ref=e1194] [cursor=pointer]:
+                - img "D30 Posture" [ref=e1195]
+                - generic [ref=e1196]: 🔍 ดูภาพขยาย
+              - generic [ref=e1198]:
+                - generic [ref=e1199]:
+                  - generic [ref=e1200]: "ศอก:"
+                  - generic [ref=e1201]: 94° ✓
+                - generic [ref=e1202]:
+                  - generic [ref=e1203]: "สะโพก:"
+                  - generic [ref=e1204]: 95° ✓
+                - generic [ref=e1205]:
+                  - generic [ref=e1206]: "เข่า:"
+                  - generic [ref=e1207]: 90° ✓
+                - generic [ref=e1208]:
+                  - generic [ref=e1209]: "สายตา:"
+                  - generic [ref=e1210]: ผ่าน ✓
+            - generic [ref=e1211]:
+              - generic [ref=e1212]:
+                - button "🔍 ดูภาพ" [ref=e1213] [cursor=pointer]
+                - button "💾 โหลดรูป" [ref=e1214] [cursor=pointer]
+              - button "✏️ โหลดเข้า Canvas เพื่อวัดมุม" [ref=e1215] [cursor=pointer]
+  - contentinfo [ref=e260]:
+    - generic [ref=e261]:
+      - generic [ref=e262]: โครงการวิจัยการยศาสตร์และปรับเปลี่ยนพฤติกรรมสุขภาพส่วนบุคคล 30 วัน (Health30D Research Portal)
+      - generic [ref=e263]: Section 2 · รหัส 6806021612037 · นายปภาวิน ธิติชุณหกุล · คณะวิศวกรรมศาสตร์

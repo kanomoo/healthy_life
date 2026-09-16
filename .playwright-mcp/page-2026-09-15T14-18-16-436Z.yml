@@ -1,0 +1,155 @@
+- generic [ref=f1e1]:
+  - banner [ref=f1e2]:
+    - generic [ref=f1e3]:
+      - generic [ref=f1e4]:
+        - generic [ref=f1e5]: 30D
+        - generic [ref=f1e6]:
+          - generic [ref=f1e7]:
+            - generic [ref=f1e8]: Health30D Studio
+            - generic [ref=f1e9]: Phase 1 & 2
+            - generic [ref=f1e10]: Sec 2 · 6806021612037
+          - paragraph [ref=f1e11]: การปรับโต๊ะทำงานร่วมกับการดูแลตนเอง ลด Office Syndrome (คอ บ่า ไหล่)
+      - generic [ref=f1e12]:
+        - generic [ref=f1e13]:
+          - generic [ref=f1e15]: "เวลาจริงไทย:"
+          - generic [ref=f1e16]: 21:18:15
+        - button "✨ โหลดข้อมูลตัวอย่าง Proposal (10/10)" [ref=f1e17]:
+          - generic [ref=f1e18]: ✨
+          - text: โหลดข้อมูลตัวอย่าง Proposal (10/10)
+        - button "📊 ส่งออก Excel (.xlsx 3 ชีต)" [ref=f1e19]:
+          - generic [ref=f1e20]: 📊
+          - text: ส่งออก Excel (.xlsx 3 ชีต)
+        - button "ล้างข้อมูล" [ref=f1e21]
+    - generic [ref=f1e22]:
+      - button "📊 สรุปผล & 5 ตัวชี้วัด" [ref=f1e23] [cursor=pointer]:
+        - generic [ref=f1e24]: 📊
+        - text: สรุปผล & 5 ตัวชี้วัด
+      - button "📐 วิเคราะห์องศาท่านั่ง (ImageMeter)" [ref=f1e25] [cursor=pointer]:
+        - generic [ref=f1e26]: 📐
+        - text: วิเคราะห์องศาท่านั่ง (ImageMeter)
+      - button "⏱️ นาฬิกา & ผู้ช่วยพัก 45 นาที" [active] [ref=f1e27] [cursor=pointer]:
+        - generic [ref=f1e28]: ⏱️
+        - text: นาฬิกา & ผู้ช่วยพัก 45 นาที
+      - button "📅 สมุดบันทึกรายวัน (D1 - D30)" [ref=f1e29] [cursor=pointer]:
+        - generic [ref=f1e30]: 📅
+        - text: สมุดบันทึกรายวัน (D1 - D30)
+      - button "📖 ท่าบริหาร & กฎความปลอดภัย" [ref=f1e31] [cursor=pointer]:
+        - generic [ref=f1e32]: 📖
+        - text: ท่าบริหาร & กฎความปลอดภัย
+  - main [ref=f1e33]:
+    - generic [ref=f1e1417]:
+      - generic [ref=f1e1418]:
+        - button "⏱️ จับเวลาจอ & เตือนพัก 45 นาที" [ref=f1e1419] [cursor=pointer]
+        - button "💆 ผู้ช่วยนวด 3 จุด 6 นาที" [ref=f1e1420] [cursor=pointer]
+        - button "🏃 ผู้ช่วยบริหาร 6 ท่า" [ref=f1e1421] [cursor=pointer]
+      - generic [ref=f1e1423]:
+        - generic [ref=f1e1424]:
+          - generic [ref=f1e1425]:
+            - generic [ref=f1e1426]:
+              - generic [ref=f1e1427]: ระบบจับเวลาใช้หน้าจอ (Screen Time Tracker)
+              - generic [ref=f1e1429]: พร้อมใช้งาน
+            - generic [ref=f1e1430]:
+              - generic [ref=f1e1431]:
+                - generic [ref=f1e1432]: "เวลาจริงประเทศไทย:"
+                - generic [ref=f1e1434]: 21:18:15 น.
+              - generic [ref=f1e1435]:
+                - generic [ref=f1e1436]:
+                  - generic [ref=f1e1437]: 🕒
+                  - text: "เริ่มใช้จอ (เวลาจริงไทย):"
+                - generic [ref=f1e1438]:
+                  - generic [ref=f1e1439]: "--:--"
+                  - button "ดึงเวลาปัจจุบัน" [ref=f1e1440] [cursor=pointer]
+            - generic [ref=f1e1441]:
+              - generic [ref=f1e1442]: 00:00:00
+              - generic [ref=f1e1443]: "เวลารวม: 0 นาที (เกณฑ์วิจัยบันทึกเป็นนาที)"
+            - generic [ref=f1e1444]:
+              - generic [ref=f1e1445]:
+                - generic [ref=f1e1446]: "เตือนพักรอบถัดไป (รอบละ 45 นาที):"
+                - generic [ref=f1e1447]: 45:00
+              - generic [ref=f1e1449]:
+                - generic [ref=f1e1450]: ลุกยืนและเดินเบาๆ 2 นาที
+                - generic [ref=f1e1451]: หมุนไหล่ไปด้านหลัง 10 ครั้ง
+          - generic [ref=f1e1452]:
+            - button "▶ เริ่มจับเวลา" [ref=f1e1453]:
+              - generic [ref=f1e1454]: ▶
+              - text: เริ่มจับเวลา
+            - button "รีเซ็ต" [ref=f1e1455]
+            - button "+15 นาที" [ref=f1e1457]
+            - button "+45 นาที" [ref=f1e1458]
+        - generic [ref=f1e1459]:
+          - generic [ref=f1e1460]:
+            - generic [ref=f1e1461]:
+              - heading "การคำนวณการพักวันนี้" [level=3] [ref=f1e1462]
+              - generic [ref=f1e1463]: 0%
+            - generic [ref=f1e1464]:
+              - generic [ref=f1e1465]:
+                - generic [ref=f1e1466]: จำนวนที่ควรพัก
+                - generic [ref=f1e1467]: "0"
+                - generic [ref=f1e1468]: (นาทีใช้จอ ÷ 45)
+              - generic [ref=f1e1469]:
+                - generic [ref=f1e1470]: จำนวนที่พักจริง
+                - generic [ref=f1e1471]: "0"
+                - generic [ref=f1e1472]: ครั้งที่ลุกขยับตัว
+            - button "✅ ยืนยันว่าพักจริงแล้ว (+1 ครั้ง)" [ref=f1e1473]:
+              - generic [ref=f1e1474]: ✅
+              - text: ยืนยันว่าพักจริงแล้ว (+1 ครั้ง)
+            - generic [ref=f1e1475]:
+              - generic [ref=f1e1476]:
+                - combobox [ref=f1e1477]:
+                  - option "D1 (2026-09-15)" [selected]
+                  - option "D2 (2026-09-16)"
+                  - option "D3 (2026-09-17)"
+                  - option "D4 (2026-09-18)"
+                  - option "D5 (2026-09-19)"
+                  - option "D6 (2026-09-20)"
+                  - option "D7 (2026-09-21)"
+                  - option "D8 (2026-09-22)"
+                  - option "D9 (2026-09-23)"
+                  - option "D10 (2026-09-24)"
+                  - option "D11 (2026-09-25)"
+                  - option "D12 (2026-09-26)"
+                  - option "D13 (2026-09-27)"
+                  - option "D14 (2026-09-28)"
+                  - option "D15 (2026-09-29)"
+                  - option "D16 (2026-09-30)"
+                  - option "D17 (2026-10-01)"
+                  - option "D18 (2026-10-02)"
+                  - option "D19 (2026-10-03)"
+                  - option "D20 (2026-10-04)"
+                  - option "D21 (2026-10-05)"
+                  - option "D22 (2026-10-06)"
+                  - option "D23 (2026-10-07)"
+                  - option "D24 (2026-10-08)"
+                  - option "D25 (2026-10-09)"
+                  - option "D26 (2026-10-10)"
+                  - option "D27 (2026-10-11)"
+                  - option "D28 (2026-10-12)"
+                  - option "D29 (2026-10-13)"
+                  - option "D30 (2026-10-14)"
+                - button "บันทึกลงวัน" [ref=f1e1478] [cursor=pointer]
+                - button "🔄 นับต่อ" [ref=f1e1479] [cursor=pointer]:
+                  - generic [ref=f1e1480]: 🔄
+                  - text: นับต่อ
+              - generic [ref=f1e1481]:
+                - generic [ref=f1e1482]: บันทึกอัตโนมัติ (Auto-Saved)
+                - generic [ref=f1e1484]: ปิดคอมแล้วกลับมานับต่อได้
+          - generic [ref=f1e1485]:
+            - generic [ref=f1e1486]:
+              - heading "🔔 ผู้ช่วยพัก 2 นาที (ทุก 45 นาที)" [level=4] [ref=f1e1487]:
+                - generic [ref=f1e1488]: 🔔
+                - text: ผู้ช่วยพัก 2 นาที (ทุก 45 นาที)
+              - generic [ref=f1e1489]: 02:00
+            - generic [ref=f1e1490]:
+              - generic [ref=f1e1491]:
+                - generic [ref=f1e1492]: ✓
+                - text: 1. ลุกยืนขึ้นและเดินเบาๆ รอบโต๊ะ 2 นาที
+              - generic [ref=f1e1493]:
+                - generic [ref=f1e1494]: ✓
+                - text: 2. หมุนไหล่ไปด้านหลังช้าๆ 10 ครั้ง
+            - generic [ref=f1e1495]:
+              - button "เริ่มจับเวลาพัก 2 นาที" [ref=f1e1496]
+              - button "หยุด" [ref=f1e1497]
+  - contentinfo [ref=f1e260]:
+    - generic [ref=f1e261]:
+      - generic [ref=f1e262]: โครงการวิจัยการยศาสตร์และปรับเปลี่ยนพฤติกรรมสุขภาพส่วนบุคคล 30 วัน (Health30D Research Portal)
+      - generic [ref=f1e263]: Section 2 · รหัส 6806021612037 · นายปภาวิน ธิติชุณหกุล · คณะวิศวกรรมศาสตร์

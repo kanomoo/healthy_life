@@ -1,0 +1,262 @@
+- generic [active] [ref=f5e1]:
+  - banner [ref=f5e2]:
+    - generic [ref=f5e3]:
+      - generic [ref=f5e4]:
+        - generic [ref=f5e5]: 30D
+        - generic [ref=f5e6]:
+          - generic [ref=f5e7]:
+            - generic [ref=f5e8]: Health30D Studio
+            - generic [ref=f5e9]: Phase 1 & 2
+            - generic [ref=f5e10]: Sec 2 · 6806021612037
+          - paragraph [ref=f5e11]: การปรับโต๊ะทำงานร่วมกับการดูแลตนเอง ลด Office Syndrome (คอ บ่า ไหล่)
+      - generic [ref=f5e12]:
+        - generic [ref=f5e13]:
+          - generic [ref=f5e15]: "เวลาจริงไทย:"
+          - generic [ref=f5e16]: 22:48:03
+        - button "✨ โหลดข้อมูลตัวอย่าง Proposal (10/10)" [ref=f5e17]:
+          - generic [ref=f5e18]: ✨
+          - text: โหลดข้อมูลตัวอย่าง Proposal (10/10)
+        - button "📊 ส่งออก Excel (.xlsx 3 ชีต)" [ref=f5e19]:
+          - generic [ref=f5e20]: 📊
+          - text: ส่งออก Excel (.xlsx 3 ชีต)
+        - button "ล้างข้อมูล" [ref=f5e21]
+    - generic [ref=f5e22]:
+      - button "📊 สรุปผล & 5 ตัวชี้วัด" [ref=f5e23] [cursor=pointer]:
+        - generic [ref=f5e24]: 📊
+        - text: สรุปผล & 5 ตัวชี้วัด
+      - button "📐 วิเคราะห์องศาท่านั่ง (ImageMeter)" [ref=f5e25] [cursor=pointer]:
+        - generic [ref=f5e26]: 📐
+        - text: วิเคราะห์องศาท่านั่ง (ImageMeter)
+      - button "⏱️ นาฬิกา & ผู้ช่วยพัก 45 นาที" [ref=f5e27] [cursor=pointer]:
+        - generic [ref=f5e28]: ⏱️
+        - text: นาฬิกา & ผู้ช่วยพัก 45 นาที
+      - button "📅 สมุดบันทึกรายวัน (D1 - D30)" [ref=f5e29] [cursor=pointer]:
+        - generic [ref=f5e30]: 📅
+        - text: สมุดบันทึกรายวัน (D1 - D30)
+      - button "📖 ท่าบริหาร & กฎความปลอดภัย" [ref=f5e31] [cursor=pointer]:
+        - generic [ref=f5e32]: 📖
+        - text: ท่าบริหาร & กฎความปลอดภัย
+  - main [ref=f5e33]:
+    - generic [ref=f5e34]:
+      - generic [ref=f5e35]:
+        - generic [ref=f5e36]:
+          - generic [ref=f5e37]: ⚡
+          - generic [ref=f5e38]: โครงการวิจัยการยศาสตร์และปรับเปลี่ยนพฤติกรรมสุขภาพส่วนบุคคล 30 วัน
+        - heading "การปรับโต๊ะทำงานร่วมกับพฤติกรรมการดูแลตนเอง เพื่อลด Office Syndrome" [level=1] [ref=f5e39]
+        - paragraph [ref=f5e40]: ระบบสารานุกรมและการวิจัยรายบุคคลแบบวัดผลก่อนและหลัง (Single-Subject Pre-Post Design) ประเมินผลผ่าน 5 ตัวชี้วัดมาตรฐานสากล พร้อมเครื่องมือคำนวณองศาการยศาสตร์ 90-90-90
+      - generic [ref=f5e41]:
+        - generic [ref=f5e42]:
+          - generic [ref=f5e43]: ข้อมูลผู้วิจัยและโครงร่างการศึกษา
+          - heading "นายปภาวิน ธิติชุณหกุล (รหัส 6806021612037) Section 2" [level=2] [ref=f5e45]
+          - paragraph [ref=f5e46]: "หัวข้อ: การปรับโต๊ะทำงานร่วมกับพฤติกรรมการดูแลตนเอง เพื่อลดอาการ Office Syndrome (คอ บ่า ไหล่)"
+        - generic [ref=f5e47]:
+          - generic [ref=f5e48]:
+            - generic [ref=f5e49]: เกณฑ์คะแนนโครงร่าง
+            - generic [ref=f5e50]: 10 / 10 เต็ม
+          - generic [ref=f5e51]:
+            - generic [ref=f5e52]: สถานะสมมติฐาน
+            - generic [ref=f5e53]: 🌟 บรรลุสมมติฐานครบทุกข้อ
+      - generic [ref=f5e54]:
+        - generic [ref=f5e55] [cursor=pointer]:
+          - generic [ref=f5e56]: 📐
+          - heading "สตูดิโอวิเคราะห์องศาท่านั่ง (Image Posture Studio)" [level=3] [ref=f5e57]
+          - paragraph [ref=f5e58]: ระบบวิเคราะห์ภาพถ่ายท่านั่งจากด้านข้าง เทียบเคียงมาตรฐาน ImageMeter ลากจุดข้อต่อ 3 จุดเพื่อคำนวณองศาและประเมินเกณฑ์ 90-90-90 อัตโนมัติแบบเรียลไทม์
+          - list [ref=f5e59]:
+            - listitem [ref=f5e60]:
+              - generic [ref=f5e61]: ✓
+              - generic [ref=f5e62]: ตรวจสอบเกณฑ์การยศาสตร์ 90-90-90 (ข้อศอก 90-100°, สะโพก 90-100°, เข่า ~90°, สายตา)
+            - listitem [ref=f5e63]:
+              - generic [ref=f5e64]: ✓
+              - generic [ref=f5e65]: ซิงค์และบันทึกผลลงวันสำคัญ D1, D7, D14, D21, D30 เพื่อพล็อตเส้นพัฒนาการในกราฟ
+            - listitem [ref=f5e66]:
+              - generic [ref=f5e67]: ✓
+              - generic [ref=f5e68]: รองรับการอัปโหลดภาพจริง หรือกดโหลดภาพตัวอย่าง Baseline ตาม Proposal
+            - listitem [ref=f5e69]:
+              - generic [ref=f5e70]: ✓
+              - generic [ref=f5e71]: ดาวน์โหลดภาพถ่ายพร้อมเส้นกำกับองศาและกริดการยศาสตร์ (Annotated PNG)
+          - generic [ref=f5e72]:
+            - generic [ref=f5e73]: 🚀 เปิดห้องปฏิบัติการวิเคราะห์ท่านั่ง
+            - generic [ref=f5e74]: →
+        - generic [ref=f5e75] [cursor=pointer]:
+          - generic [ref=f5e76]: ⏱️
+          - heading "ศูนย์ควบคุมเวลา & ผู้ช่วยกายบริหาร (Timers & Guided Hub)" [level=3] [ref=f5e77]
+          - paragraph [ref=f5e78]: ระบบจับเวลาการใช้หน้าจอพร้อมแจ้งเตือนพักทุก 45 นาที, ผู้ช่วยนวดคลึงด้วยตนเอง 3 บริเวณ 6 นาที, และโปรแกรมนับรอบบริหาร 6 ท่าโดยไม่ใช้อุปกรณ์
+          - list [ref=f5e79]:
+            - listitem [ref=f5e80]:
+              - generic [ref=f5e81]: ✓
+              - generic [ref=f5e82]: ระบบจับเวลาหน้าจอเรียลไทม์ พร้อมตัวนับถอยหลังพัก 45 นาที และผู้ช่วยลุกเดิน 2 นาที
+            - listitem [ref=f5e83]:
+              - generic [ref=f5e84]: ✓
+              - generic [ref=f5e85]: ผู้ช่วยนวดคลึงผ่อนคลาย 3 บริเวณ 6 นาที (Upper Trap, Infraspinatus, Pectoralis) พร้อมเสียงสัญญาณ
+            - listitem [ref=f5e86]:
+              - generic [ref=f5e87]: ✓
+              - generic [ref=f5e88]: สไลเดอร์วัดคะแนนปวด NRS ก่อน-หลังนวด พร้อมคำนวณ % ผลลดปวดทันที (Immediate Relief)
+            - listitem [ref=f5e89]:
+              - generic [ref=f5e90]: ✓
+              - generic [ref=f5e91]: ระบบนำทำ 6 ท่าบริหาร นับจำนวนครั้ง (Reps) และนับการเกร็งค้าง (Hold 5s/20s) อัตโนมัติ
+          - generic [ref=f5e92]:
+            - generic [ref=f5e93]: ⚡ เปิดศูนย์ควบคุมเวลาและผู้ช่วยกายบริหาร
+            - generic [ref=f5e94]: →
+      - generic [ref=f5e95]:
+        - generic [ref=f5e96]:
+          - generic [ref=f5e97]: 🎯
+          - generic [ref=f5e98]: 5 ตัวชี้วัดความสำเร็จของโครงการ (5 Key Results KPIs)
+        - generic [ref=f5e99]:
+          - generic [ref=f5e100]:
+            - generic [ref=f5e101]:
+              - generic [ref=f5e102]: ตัวชี้วัดที่ 1 (NRS)
+              - generic [ref=f5e103]: ผ่านเกณฑ์ (≥30%)
+            - heading "อาการปวดคอบ่า" [level=4] [ref=f5e104]
+            - generic [ref=f5e105]:
+              - generic [ref=f5e106]: 33.3%
+              - generic [ref=f5e107]: ลดลง
+            - generic [ref=f5e108]:
+              - generic [ref=f5e109]:
+                - generic [ref=f5e110]: "D1 ➔ D28-30:"
+                - generic [ref=f5e111]: "D1: 6 ➔ ปลาย: 4"
+              - generic [ref=f5e112]:
+                - generic [ref=f5e113]: "เป้าหมาย:"
+                - generic [ref=f5e114]: ลดลง ≥ 30%
+          - generic [ref=f5e115]:
+            - generic [ref=f5e116]:
+              - generic [ref=f5e117]: ตัวชี้วัดที่ 2 (Ergonomics)
+              - generic [ref=f5e118]: ผ่านเกณฑ์ (≥75%)
+            - heading "ท่านั่งถูกต้อง" [level=4] [ref=f5e119]
+            - generic [ref=f5e120]:
+              - generic [ref=f5e121]: 100%
+              - generic [ref=f5e122]: ณ วัน D30
+            - generic [ref=f5e123]:
+              - generic [ref=f5e124]:
+                - generic [ref=f5e125]: "ฐาน D1 ➔ D30:"
+                - generic [ref=f5e126]: ฐาน 25% ➔ สิ้นสุด 100%
+              - generic [ref=f5e127]:
+                - generic [ref=f5e128]: "เป้าหมาย:"
+                - generic [ref=f5e129]: ผ่านเกณฑ์ ≥ 75%
+          - generic [ref=f5e130]:
+            - generic [ref=f5e131]:
+              - generic [ref=f5e132]: ตัวชี้วัดที่ 3 (45-Min Break)
+              - generic [ref=f5e133]: ผ่านเกณฑ์ (≥80%)
+            - heading "การพักขยับตัว" [level=4] [ref=f5e134]
+            - generic [ref=f5e135]:
+              - generic [ref=f5e136]: 86.8%
+              - generic [ref=f5e137]: เฉลี่ย D2-D30
+            - generic [ref=f5e138]:
+              - generic [ref=f5e139]:
+                - generic [ref=f5e140]: "สูตรคำนวณ:"
+                - generic [ref=f5e141]: พักจริง ÷ ควรพัก
+              - generic [ref=f5e142]:
+                - generic [ref=f5e143]: "เป้าหมาย:"
+                - generic [ref=f5e144]: เฉลี่ย ≥ 80%
+          - generic [ref=f5e145]:
+            - generic [ref=f5e146]:
+              - generic [ref=f5e147]: ตัวชี้วัดที่ 4 (Adherence)
+              - generic [ref=f5e148]: ผ่านเกณฑ์ (≥85%)
+            - heading "ทำโปรแกรมครบ" [level=4] [ref=f5e149]
+            - generic [ref=f5e150]:
+              - generic [ref=f5e151]: 86.7%
+              - generic [ref=f5e152]: 26/30 วัน
+            - generic [ref=f5e153]:
+              - generic [ref=f5e154]:
+                - generic [ref=f5e155]: "นวด + 6 ท่า:"
+                - generic [ref=f5e156]: ครบ 26 / 30 วัน
+              - generic [ref=f5e157]:
+                - generic [ref=f5e158]: "เป้าหมาย:"
+                - generic [ref=f5e159]: ครบ ≥ 85% (≥26วัน)
+          - generic [ref=f5e160]:
+            - generic [ref=f5e161]:
+              - generic [ref=f5e162]: ตัวชี้วัดที่ 5 (สำรวจ)
+              - generic [ref=f5e163]: ผ่านเกณฑ์ (≥20%)
+            - heading "ผลทันทีจากการนวด" [level=4] [ref=f5e164]
+            - generic [ref=f5e165]:
+              - generic [ref=f5e166]: 24.7%
+              - generic [ref=f5e167]: ลดทันที
+            - generic [ref=f5e168]:
+              - generic [ref=f5e169]:
+                - generic [ref=f5e170]: "ก่อน ➔ หลัง:"
+                - generic [ref=f5e171]: (ก่อน-หลัง)÷ก่อน
+              - generic [ref=f5e172]:
+                - generic [ref=f5e173]: "เป้าหมาย:"
+                - generic [ref=f5e174]: เฉลี่ย ≥ 20%
+      - generic [ref=f5e175]:
+        - generic [ref=f5e176]:
+          - generic [ref=f5e177]: 📈
+          - generic [ref=f5e178]: การวิเคราะห์ข้อมูลและแนวโน้มทางสถิติ (Statistical Analytics & Trends)
+        - generic [ref=f5e179]:
+          - generic [ref=f5e181]:
+            - generic [ref=f5e182]:
+              - heading "📉 ระดับความปวดตลอด 30 วัน (NRS Pain Score)" [level=3] [ref=f5e183]:
+                - generic [ref=f5e184]: 📉
+                - text: ระดับความปวดตลอด 30 วัน (NRS Pain Score)
+              - paragraph [ref=f5e185]: เปรียบเทียบคะแนนก่อนนวดและหลังนวด (เป้าหมาย D28-D30 ลดลง ≥ 30%)
+            - generic [ref=f5e186]: 0 = ไม่ปวด, 10 = มากสุด
+          - generic [ref=f5e190]:
+            - generic [ref=f5e191]:
+              - heading "⏱️ การพักขยับตัวทุก 45 นาที (Break Compliance)" [level=3] [ref=f5e192]:
+                - generic [ref=f5e193]: ⏱️
+                - text: การพักขยับตัวทุก 45 นาที (Break Compliance)
+              - paragraph [ref=f5e194]: จำนวนครั้งที่พักจริง เทียบกับเกณฑ์ที่ควรพัก (นาทีใช้จอ ÷ 45)
+            - generic [ref=f5e195]: เป้าหมาย ≥ 80%
+        - generic [ref=f5e199]:
+          - generic [ref=f5e200]:
+            - heading "📐 พัฒนาการมุมข้อต่อในวันสำคัญ (D1, D7, D14, D21, D30)" [level=3] [ref=f5e201]:
+              - generic [ref=f5e202]: 📐
+              - text: พัฒนาการมุมข้อต่อในวันสำคัญ (D1, D7, D14, D21, D30)
+            - paragraph [ref=f5e203]: เกณฑ์การยศาสตร์ 90-90-90 (ศอก 90-100°, สะโพก 90-100°, เข่า ~90°)
+          - button "เปิดเครื่องมือวัดมุม ➔" [ref=f5e204]
+      - generic [ref=f5e207]:
+        - generic [ref=f5e208]:
+          - generic [ref=f5e209]: ⚡
+          - generic [ref=f5e210]: ทางลัดเข้าสู่ห้องปฏิบัติการและโมดูลการทำงาน (Module Quick Launchers)
+        - generic [ref=f5e211]:
+          - generic [ref=f5e213] [cursor=pointer]:
+            - generic [ref=f5e214]:
+              - generic [ref=f5e215]: Ergonomics · 90-90-90
+              - generic [ref=f5e216]: →
+            - generic [ref=f5e217]:
+              - generic [ref=f5e218]: 📐
+              - text: เครื่องมือวิเคราะห์องศาท่านั่ง (ImageMeter)
+            - paragraph [ref=f5e219]: ลากจุด 3 ข้อต่อ วิเคราะห์มุมศอก สะโพก เข่า และระดับสายตา พร้อมดาวน์โหลดภาพ annotated
+          - generic [ref=f5e221] [cursor=pointer]:
+            - generic [ref=f5e222]:
+              - generic [ref=f5e223]: Screen Timer · 45 Min
+              - generic [ref=f5e224]: →
+            - generic [ref=f5e225]:
+              - generic [ref=f5e226]: ⏱️
+              - text: ระบบจับเวลาหน้าจอ & เตือนพัก 45 นาที
+            - paragraph [ref=f5e227]: จับเวลานาทีใช้จอจริง พร้อมตัวนับถอยหลังเตือนพัก และผู้ช่วยลุกเดิน 2 นาที
+          - generic [ref=f5e229] [cursor=pointer]:
+            - generic [ref=f5e230]:
+              - generic [ref=f5e231]: Therapy · 6 Minutes
+              - generic [ref=f5e232]: →
+            - generic [ref=f5e233]:
+              - generic [ref=f5e234]: 💆
+              - text: ผู้ช่วยนวดคลึงด้วยตนเอง 3 บริเวณ
+            - paragraph [ref=f5e235]: นวดคลึงบ่า หลังไหล่ อกบน 6 นาที พร้อมวัดคะแนนปวด NRS ก่อน-หลัง และคำนวณ Immediate Relief
+          - generic [ref=f5e237] [cursor=pointer]:
+            - generic [ref=f5e238]:
+              - generic [ref=f5e239]: Exercise · 6 Routines
+              - generic [ref=f5e240]: →
+            - generic [ref=f5e241]:
+              - generic [ref=f5e242]: 🏃
+              - text: ผู้ช่วยบริหาร 6 ท่าไม่ใช้อุปกรณ์
+            - paragraph [ref=f5e243]: นับจำนวนครั้ง (Reps) และนับการเกร็งค้าง (Hold 5s/20s) มีเสียงสัญญาณและบันทึกลงสมุดรายวัน
+          - generic [ref=f5e245] [cursor=pointer]:
+            - generic [ref=f5e246]:
+              - generic [ref=f5e247]: Logbook · D1 - D30
+              - generic [ref=f5e248]: →
+            - generic [ref=f5e249]:
+              - generic [ref=f5e250]: 📅
+              - text: สมุดบันทึกรายวัน & Excel Export
+            - paragraph [ref=f5e251]: ตารางบันทึก 30 วัน ปรับแก้ออนไลน์ได้ทันที และส่งออกไฟล์ .xlsx 3 ชีตมาตรฐานงานวิจัย
+          - generic [ref=f5e253] [cursor=pointer]:
+            - generic [ref=f5e254]:
+              - generic [ref=f5e255]: Safety · Clinical Protocol
+              - generic [ref=f5e256]: →
+            - generic [ref=f5e257]:
+              - generic [ref=f5e258]: ⚠️
+              - text: กฎความปลอดภัย & ข้อควรระวัง
+            - paragraph [ref=f5e259]: ข้อควรระวังทางการแพทย์ จุดที่ห้ามนวด สัญญาณเตือนที่ต้องพบแพทย์ และคำอธิบายกล้ามเนื้อ
+  - contentinfo [ref=f5e260]:
+    - generic [ref=f5e261]:
+      - generic [ref=f5e262]: โครงการวิจัยการยศาสตร์และปรับเปลี่ยนพฤติกรรมสุขภาพส่วนบุคคล 30 วัน (Health30D Research Portal)
+      - generic [ref=f5e263]: Section 2 · รหัส 6806021612037 · นายปภาวิน ธิติชุณหกุล · คณะวิศวกรรมศาสตร์

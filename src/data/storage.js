@@ -122,6 +122,9 @@ export function createBlankEntries(startDateStr = DEFAULT_INFO.startDate) {
       postureScore: null,
       posturePercentage: null,
       photoUrl: null,
+      annotatedPhoto: null,
+      photoFileName: null,
+      photoDate: null,
       notes: ''
     });
   }
@@ -167,51 +170,43 @@ export function generateSampleData(startDateStr = DEFAULT_INFO.startDate) {
     const exList = exComp
       ? [true, true, true, true, true, true]
       : (i === 6 ? [true, true, false, false, false, false] : (i === 13 ? [true, true, true, false, false, false] : [true, false, false, false, false, false]));
-    const progComp = massageComp && exComp;
-
-    // Milestone posture evaluations
-    let elbow = null, hip = null, knee = null, eye = null, pScore = null, pPct = null;
-    if (i === 1) {
-      // Baseline: only eye passes (1/4 = 25%)
-      elbow = 138;
-      hip = 125;
-      knee = 65;
-      eye = true;
-      pScore = 1;
-      pPct = 25;
-    } else if (i === 7) {
-      // D7: Started adjusting desk (2/4 = 50%)
-      elbow = 115;
-      hip = 110;
+    // Daily posture evaluations (Every day D1 to D30 has photo evidence and posture evaluation)
+    let elbow, hip, knee;
+    if (i <= 7) {
+      const t = (i - 1) / 6;
+      elbow = Math.round(138 + t * (115 - 138));
+      hip = Math.round(125 + t * (110 - 125));
+      knee = Math.round(65 + t * (90 - 65));
+    } else if (i <= 14) {
+      const t = (i - 7) / 7;
+      elbow = Math.round(115 + t * (98 - 115));
+      hip = Math.round(110 + t * (108 - 110));
+      knee = Math.round(90 + t * (92 - 90));
+    } else if (i <= 21) {
+      const t = (i - 14) / 7;
+      elbow = Math.round(98 + t * (95 - 98));
+      hip = Math.round(108 + t * (102 - 108));
+      knee = Math.round(92 + t * (90 - 92));
+    } else {
+      const t = (i - 21) / 9;
+      elbow = Math.round(95 + t * (94 - 95));
+      hip = Math.round(102 + t * (95 - 102));
       knee = 90;
-      eye = true;
-      pScore = 2;
-      pPct = 50;
-    } else if (i === 14) {
-      // D14: Getting closer (3/4 = 75%)
-      elbow = 98;
-      hip = 108;
-      knee = 92;
-      eye = true;
-      pScore = 3;
-      pPct = 75;
-    } else if (i === 21) {
-      // D21: Good posture (3/4 = 75%)
-      elbow = 95;
-      hip = 102;
-      knee = 90;
-      eye = true;
-      pScore = 3;
-      pPct = 75;
-    } else if (i === 30) {
-      // D30: Final success (4/4 = 100%)
-      elbow = 94;
-      hip = 95;
-      knee = 90;
-      eye = true;
-      pScore = 4;
-      pPct = 100;
     }
+
+    const eye = true;
+    const elbowPass = (elbow >= 90 && elbow <= 100);
+    const hipPass = (hip >= 90 && hip <= 100);
+    const kneePass = (knee >= 85 && knee <= 100);
+    let pScore = 0;
+    if (elbowPass) pScore++;
+    if (hipPass) pScore++;
+    if (kneePass) pScore++;
+    if (eye) pScore++;
+    const pPct = Math.round((pScore / 4) * 100);
+
+    const hasPhoto = true;
+    const progComp = massageComp && exComp && hasPhoto;
 
     entries.push({
       day: i,
@@ -227,18 +222,22 @@ export function generateSampleData(startDateStr = DEFAULT_INFO.startDate) {
       massageCompleted: massageComp,
       exercisesCompleted: exComp,
       exercisesList: exList,
+      hasPhoto: true,
       programCompleted: progComp,
       isMilestone,
       elbowAngle: elbow,
-      elbowPass: elbow ? (elbow >= 90 && elbow <= 100) : null,
+      elbowPass,
       hipAngle: hip,
-      hipPass: hip ? (hip >= 90 && hip <= 100) : null,
+      hipPass,
       kneeAngle: knee,
-      kneePass: knee ? (knee >= 85 && knee <= 100) : null,
+      kneePass,
       eyeLevelPass: eye,
       postureScore: pScore,
       posturePercentage: pPct,
-      photoUrl: isMilestone ? '/sample_baseline.png' : null,
+      photoUrl: '/sample_baseline.png',
+      annotatedPhoto: '/sample_baseline.png',
+      photoFileName: `Ergonomics_D${i}_${DEFAULT_INFO.studentId}.png`,
+      photoDate: dateObj.toISOString().split('T')[0],
       notes: i === 1 ? 'วันแรก: ท่าเดิมก่อนเริ่มปรับโต๊ะ ปวดตึงบ่าชัดเจน' : (i === 30 ? 'วันสิ้นสุดโครงการ: ปวดลดลงอย่างชัดเจน ท่าทาง 90-90-90 ถูกต้อง' : '')
     });
   }
@@ -259,6 +258,10 @@ export function loadProjectData() {
               ? [true, true, true, true, true, true]
               : [false, false, false, false, false, false];
           }
+          if (!e.photoFileName) e.photoFileName = `Ergonomics_D${e.day}_${parsed.info?.studentId || DEFAULT_INFO.studentId}.png`;
+          if (e.photoUrl === undefined) e.photoUrl = null;
+          if (e.annotatedPhoto === undefined) e.annotatedPhoto = null;
+          e.hasPhoto = !!(e.annotatedPhoto || e.photoUrl);
         });
         return parsed;
       }

@@ -15,7 +15,9 @@ import {
   MassageRoutineRunner, 
   MASSAGE_STEPS, 
   WorkoutPlayer, 
-  EXERCISE_LIST 
+  EXERCISE_LIST,
+  requestNotificationPermission,
+  showDesktopNotification
 } from './components/timerManager.js';
 import { LogbookManager } from './components/logbookManager.js';
 import { DashboardCharts } from './components/dashboardCharts.js';
@@ -367,16 +369,27 @@ function initAngleTool() {
       entry.postureScore = res.score;
       entry.posturePercentage = res.percentage;
 
+      // Export and save compressed annotated image from canvas
+      const annotatedImg = angleTool.exportCompressedImage(900, 0.85);
+      if (annotatedImg) {
+        entry.annotatedPhoto = annotatedImg;
+        entry.photoUrl = annotatedImg;
+        entry.photoFileName = `Ergonomics_D${dayNum}_${projectData.info.studentId}.png`;
+        entry.photoDate = new Date().toISOString();
+      }
+
       saveProjectData(projectData);
       if (logbookMgr) logbookMgr.setEntries(projectData.entries);
       refreshKPIs();
+      renderMilestoneGallery();
 
       const notice = document.getElementById('saveAngleNotice');
       if (notice) {
+        notice.textContent = `✓ บันทึกภาพถ่ายและค่าองศาลงในวัน D${dayNum} เรียบร้อยแล้ว (สามารถดูภาพได้ในคลังภาพด้านล่าง)`;
         notice.classList.remove('hidden');
-        setTimeout(() => notice.classList.add('hidden'), 3000);
+        setTimeout(() => notice.classList.add('hidden'), 4000);
       }
-      showToast(`บันทึกค่าองศาลงในวัน D${dayNum} เรียบร้อยแล้ว`, 'success');
+      showToast(`บันทึกภาพถ่ายและค่าองศาลงในวัน D${dayNum} เรียบร้อยแล้ว (ดูภาพได้ที่คลังภาพ)`, 'success');
     });
   }
 }
@@ -861,24 +874,336 @@ function initWorkoutPlayer() {
 }
 
 // -------------------------------------------------------------
+// Milestone Posture Evidence Gallery & Photo Preview
+// -------------------------------------------------------------
+let activePreviewDay = 1;
+
+function downloadSinglePhoto(dayNum) {
+  const entry = projectData.entries.find(e => e.day === dayNum);
+  if (!entry) return;
+  const src = entry.annotatedPhoto || entry.photoUrl || '/sample_baseline.png';
+  const a = document.createElement('a');
+  a.href = src;
+  a.download = entry.photoFileName || `Ergonomics_D${dayNum}_${projectData.info.studentId}.png`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  showToast(`ดาวน์โหลดรูปภาพวัน D${dayNum} (${a.download}) เรียบร้อย นำไปแทรกใน Excel ชีตภาพและมุมได้ทันที`, 'success');
+}
+
+function loadMilestoneIntoCanvas(dayNum) {
+  const entry = projectData.entries.find(e => e.day === dayNum);
+  if (!entry || !angleTool) return;
+  const src = entry.annotatedPhoto || entry.photoUrl || '/sample_baseline.png';
+  angleTool.loadImage(src);
+  if (dayNum === 1) {
+    angleTool.setPreset('baseline');
+  } else if (dayNum === 30) {
+    angleTool.setPreset('corrected_90');
+  }
+  const selectDay = document.getElementById('selectMilestoneDay');
+  if (selectDay) selectDay.value = dayNum;
+  window.scrollTo({ top: 400, behavior: 'smooth' });
+  showToast(`โหลดภาพและตั้งค่าสำหรับวัน D${dayNum} เข้าสู่ Canvas เรียบร้อย`, 'info');
+}
+
+function openPhotoPreview(dayNum) {
+  const entry = projectData.entries.find(e => e.day === dayNum);
+  if (!entry) return;
+  activePreviewDay = dayNum;
+
+  const modal = document.getElementById('modalPhotoPreview');
+  const badgeEl = document.getElementById('previewModalDayBadge');
+  const dateEl = document.getElementById('previewModalDate');
+  const titleEl = document.getElementById('previewModalTitle');
+  const imgEl = document.getElementById('previewModalImg');
+
+  const elEl = document.getElementById('previewElbowVal');
+  const hipEl = document.getElementById('previewHipVal');
+  const kneeEl = document.getElementById('previewKneeVal');
+  const scoreEl = document.getElementById('previewScoreVal');
+
+  if (badgeEl) badgeEl.textContent = `วัน D${entry.day} (Milestone Day)`;
+  if (dateEl) dateEl.textContent = `วันที่ประเมิน: ${entry.date}`;
+  if (titleEl) titleEl.textContent = `ภาพถ่ายประเมินมุมการยศาสตร์ 90-90-90 (วัน D${entry.day})`;
+
+  const photoSrc = entry.annotatedPhoto || entry.photoUrl || '/sample_baseline.png';
+  if (imgEl) imgEl.src = photoSrc;
+
+  if (elEl) elEl.textContent = `${entry.elbowAngle !== null ? entry.elbowAngle + '°' : '-'} (${entry.elbowPass ? 'ผ่าน ✓' : 'ไม่ผ่าน ✗'})`;
+  if (hipEl) hipEl.textContent = `${entry.hipAngle !== null ? entry.hipAngle + '°' : '-'} (${entry.hipPass ? 'ผ่าน ✓' : 'ไม่ผ่าน ✗'})`;
+  if (kneeEl) kneeEl.textContent = `${entry.kneeAngle !== null ? entry.kneeAngle + '°' : '-'} (${entry.kneePass ? 'ผ่าน ✓' : 'ไม่ผ่าน ✗'})`;
+  if (scoreEl) scoreEl.textContent = `ผ่าน ${entry.postureScore !== null ? entry.postureScore : 0}/4 ข้อ (${entry.posturePercentage !== null ? entry.posturePercentage : 0}%)`;
+
+  if (modal) modal.classList.remove('hidden');
+}
+
+let currentGalleryFilter = 'all';
+
+function renderMilestoneGallery(filter = currentGalleryFilter) {
+  currentGalleryFilter = filter;
+  const container = document.getElementById('milestoneGalleryCards');
+  if (!container) return;
+  container.innerHTML = '';
+
+  // Stats badge
+  const withPhotoCount = projectData.entries.filter(e => !!(e.annotatedPhoto || e.photoUrl)).length;
+  const statsCountEl = document.getElementById('galleryStatsCount');
+  if (statsCountEl) {
+    statsCountEl.textContent = `${withPhotoCount} / 30 วัน (${Math.round((withPhotoCount / 30) * 100)}%)`;
+  }
+
+  const dayLabels = {
+    1: 'D1 (Baseline ⭐)',
+    7: 'D7 (สัปดาห์ 1 ⭐)',
+    14: 'D14 (สัปดาห์ 2 ⭐)',
+    21: 'D21 (สัปดาห์ 3 ⭐)',
+    30: 'D30 (สิ้นสุดโครงการ ⭐)'
+  };
+
+  const targetEntries = projectData.entries.filter(e => {
+    if (filter === 'w1') return e.day >= 1 && e.day <= 7;
+    if (filter === 'w2') return e.day >= 8 && e.day <= 14;
+    if (filter === 'w3') return e.day >= 15 && e.day <= 21;
+    if (filter === 'w4') return e.day >= 22 && e.day <= 30;
+    if (filter === 'milestones') return MILESTONE_DAYS.includes(e.day);
+    if (filter === 'missing') return !(e.annotatedPhoto || e.photoUrl);
+    return true;
+  });
+
+  if (targetEntries.length === 0) {
+    container.innerHTML = `
+      <div class="col-span-full py-12 text-center space-y-2 bg-[#0c0e14] rounded-2xl border border-[#242938]">
+        <span class="text-3xl block">🎉</span>
+        <p class="text-sm font-medium text-emerald-400">
+          ${filter === 'missing' ? 'ยอดเยี่ยม! มีภาพถ่ายหลักฐานครบถ้วนทั้ง 30 วันแล้ว (100%)' : 'ไม่พบข้อมูลในหมวดที่เลือก'}
+        </p>
+      </div>
+    `;
+    return;
+  }
+
+  targetEntries.forEach(entry => {
+    const dayNum = entry.day;
+    const card = document.createElement('div');
+    const isM = MILESTONE_DAYS.includes(dayNum);
+    const hasPhoto = !!(entry.annotatedPhoto || entry.photoUrl);
+    const photoSrc = entry.annotatedPhoto || entry.photoUrl || '/sample_baseline.png';
+    const isPassing = (entry.posturePercentage || 0) >= 75;
+
+    card.className = `bg-[#0f121d] rounded-2xl border ${isM ? 'border-amber-800/60' : 'border-[#242938]'} hover:border-cyan-500/50 p-3.5 flex flex-col justify-between space-y-3 transition shadow-lg group`;
+
+    const labelText = dayLabels[dayNum] || `D${dayNum}`;
+    const badgeHtml = hasPhoto
+      ? `<span class="text-[10px] px-1.5 py-0.5 rounded font-mono font-semibold border ${isPassing ? 'bg-emerald-950 text-emerald-300 border-emerald-800' : 'bg-amber-950 text-amber-300 border-amber-800'}">
+          ${entry.postureScore !== null ? `${entry.postureScore}/4 (${entry.posturePercentage}%)` : 'มีภาพ'}
+         </span>`
+      : `<span class="text-[10px] px-1.5 py-0.5 rounded font-mono font-semibold border bg-rose-950/80 text-rose-300 border-rose-800 animate-pulse">
+          ⚠️ ขาดภาพ
+         </span>`;
+
+    card.innerHTML = `
+      <div>
+        <div class="flex items-center justify-between mb-1.5">
+          <span class="text-xs font-bold text-white font-mono flex items-center gap-1">
+            ${labelText}
+          </span>
+          ${badgeHtml}
+        </div>
+        <div class="text-[10px] text-slate-400 font-mono mb-2">${entry.date}</div>
+
+        <!-- Thumbnail Image -->
+        <div class="relative rounded-xl overflow-hidden bg-[#07080d] border border-[#1e2330] aspect-[4/3] flex items-center justify-center cursor-pointer group-hover:border-cyan-500/40 transition">
+          ${hasPhoto 
+            ? `<img src="${photoSrc}" alt="D${dayNum} Posture" class="w-full h-full object-cover group-hover:scale-105 transition duration-300" />
+               <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center text-white text-xs font-semibold gap-1">
+                 <span>🔍 ดูภาพขยาย</span>
+               </div>`
+            : `<div class="text-center p-3 text-slate-500 space-y-1">
+                 <span class="text-2xl block">📷</span>
+                 <span class="text-[10px] block text-rose-300">ยังไม่มีภาพ D${dayNum}</span>
+                 <span class="text-[9px] block text-slate-500">คลิกเพื่อใส่ภาพ</span>
+               </div>`
+          }
+        </div>
+
+        <!-- Angles Quick Summary -->
+        <div class="mt-2.5 space-y-1 text-[10px] text-slate-300 bg-[#07080d] p-2 rounded-lg border border-[#181c28] font-mono">
+          <div class="flex justify-between">
+            <span class="text-slate-400">ศอก:</span>
+            <span class="${entry.elbowPass ? 'text-emerald-400 font-bold' : (entry.elbowAngle ? 'text-rose-400' : 'text-slate-500')}">${entry.elbowAngle !== null ? `${entry.elbowAngle}° ${entry.elbowPass ? '✓' : '✗'}` : '-'}</span>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-slate-400">สะโพก:</span>
+            <span class="${entry.hipPass ? 'text-emerald-400 font-bold' : (entry.hipAngle ? 'text-rose-400' : 'text-slate-500')}">${entry.hipAngle !== null ? `${entry.hipAngle}° ${entry.hipPass ? '✓' : '✗'}` : '-'}</span>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-slate-400">เข่า:</span>
+            <span class="${entry.kneePass ? 'text-emerald-400 font-bold' : (entry.kneeAngle ? 'text-rose-400' : 'text-slate-500')}">${entry.kneeAngle !== null ? `${entry.kneeAngle}° ${entry.kneePass ? '✓' : '✗'}` : '-'}</span>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-slate-400">สายตา:</span>
+            <span class="${entry.eyeLevelPass ? 'text-emerald-400' : 'text-slate-500'}">${entry.eyeLevelPass !== null ? (entry.eyeLevelPass ? 'ผ่าน ✓' : 'ปรับปรุง') : '-'}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card Action Buttons -->
+      <div class="pt-2 border-t border-[#1e2330] space-y-1.5 text-[11px]">
+        ${hasPhoto ? `
+          <div class="grid grid-cols-2 gap-1.5">
+            <button type="button" class="btn-preview-card py-1.5 px-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-cyan-300 border border-slate-700 font-medium transition text-center cursor-pointer" data-day="${dayNum}">
+              🔍 ดูภาพ
+            </button>
+            <button type="button" class="btn-download-card py-1.5 px-2 rounded-lg bg-emerald-950/80 hover:bg-emerald-900 text-emerald-300 border border-emerald-800 font-medium transition text-center cursor-pointer" data-day="${dayNum}">
+              💾 โหลดรูป
+            </button>
+          </div>
+          <button type="button" class="btn-load-canvas-card w-full py-1.5 px-2 rounded-lg bg-[#141723] hover:bg-cyan-950/60 text-slate-300 hover:text-cyan-300 border border-[#242938] hover:border-cyan-800 font-medium transition text-center cursor-pointer" data-day="${dayNum}">
+            ✏️ โหลดเข้า Canvas เพื่อวัดมุม
+          </button>
+        ` : `
+          <button type="button" class="btn-load-canvas-card w-full py-2 px-2 rounded-lg bg-cyan-600 hover:bg-cyan-500 text-white font-medium transition text-center cursor-pointer shadow flex items-center justify-center gap-1" data-day="${dayNum}">
+            <span>📷</span> + ใส่ภาพท่านั่ง D${dayNum}
+          </button>
+        `}
+      </div>
+    `;
+
+    // Click on thumbnail
+    const thumbBox = card.querySelector('.relative');
+    if (thumbBox) {
+      thumbBox.addEventListener('click', () => {
+        if (hasPhoto) {
+          openPhotoPreview(dayNum);
+        } else {
+          loadMilestoneIntoCanvas(dayNum);
+        }
+      });
+    }
+
+    const btnPrev = card.querySelector('.btn-preview-card');
+    if (btnPrev) {
+      btnPrev.addEventListener('click', () => openPhotoPreview(dayNum));
+    }
+
+    const btnDown = card.querySelector('.btn-download-card');
+    if (btnDown) {
+      btnDown.addEventListener('click', () => {
+        downloadSinglePhoto(dayNum);
+      });
+    }
+
+    const btnLoad = card.querySelector('.btn-load-canvas-card');
+    if (btnLoad) {
+      btnLoad.addEventListener('click', () => {
+        loadMilestoneIntoCanvas(dayNum);
+      });
+    }
+
+    container.appendChild(card);
+  });
+}
+
+function initMilestoneGalleryEvents() {
+  // Gallery filter buttons
+  const galleryFilters = document.querySelectorAll('.gallery-filter-btn');
+  galleryFilters.forEach(btn => {
+    btn.addEventListener('click', () => {
+      galleryFilters.forEach(b => {
+        b.classList.remove('active', 'bg-cyan-950', 'text-cyan-300', 'border-cyan-800');
+        b.classList.add('bg-[#161923]', 'text-slate-300', 'border-[#242938]');
+      });
+      btn.classList.add('active', 'bg-cyan-950', 'text-cyan-300', 'border-cyan-800');
+      btn.classList.remove('bg-[#161923]', 'text-slate-300', 'border-[#242938]');
+      const f = btn.getAttribute('data-gallery-filter');
+      renderMilestoneGallery(f);
+    });
+  });
+
+  const btnDownloadAll = document.getElementById('btnDownloadAllMilestones');
+  if (btnDownloadAll) {
+    btnDownloadAll.addEventListener('click', () => {
+      let count = 0;
+      projectData.entries.forEach((entry) => {
+        if (entry && (entry.annotatedPhoto || entry.photoUrl)) {
+          setTimeout(() => {
+            downloadSinglePhoto(entry.day);
+          }, count * 300);
+          count++;
+        }
+      });
+      if (count > 0) {
+        showToast(`กำลังดาวน์โหลดรูปภาพหลักฐาน ${count} ภาพสำหรับแทรกใน Excel...`, 'info');
+      } else {
+        showToast('ยังไม่มีภาพถ่ายหลักฐานที่บันทึกไว้ในระบบ', 'warn');
+      }
+    });
+  }
+
+  const btnClosePreview = document.getElementById('btnClosePhotoModal');
+  const photoModal = document.getElementById('modalPhotoPreview');
+  if (btnClosePreview && photoModal) {
+    btnClosePreview.addEventListener('click', () => photoModal.classList.add('hidden'));
+    photoModal.addEventListener('click', (e) => {
+      if (e.target === photoModal) photoModal.classList.add('hidden');
+    });
+  }
+
+  const btnDownloadPreview = document.getElementById('btnDownloadPreviewImg');
+  if (btnDownloadPreview) {
+    btnDownloadPreview.addEventListener('click', () => {
+      downloadSinglePhoto(activePreviewDay);
+    });
+  }
+
+  const btnLoadPreviewCanvas = document.getElementById('btnLoadPreviewIntoCanvas');
+  if (btnLoadPreviewCanvas) {
+    btnLoadPreviewCanvas.addEventListener('click', () => {
+      if (photoModal) photoModal.classList.add('hidden');
+      const tabBtn = document.querySelector('[data-tab="tab-angle"]');
+      if (tabBtn) tabBtn.click();
+      loadMilestoneIntoCanvas(activePreviewDay);
+    });
+  }
+}
+
+// -------------------------------------------------------------
 // Initialize App
 // -------------------------------------------------------------
 window.addEventListener('DOMContentLoaded', () => {
-  // Sound unlock on first interaction
-  document.addEventListener('click', () => sound.init(), { once: true });
+  // Sound unlock on first interaction & notification permission
+  document.addEventListener('click', () => {
+    sound.init();
+    requestNotificationPermission();
+  }, { once: true });
 
   // Charts
   charts = new DashboardCharts();
 
-  // Logbook
+  // Logbook with photo viewer and angle navigation callbacks
   logbookMgr = new LogbookManager({
     onDataChange: (newEntries) => {
       projectData.entries = newEntries;
       saveProjectData(projectData);
       refreshKPIs();
+      renderMilestoneGallery();
+    },
+    onViewPhoto: (dayNum) => {
+      openPhotoPreview(dayNum);
+    },
+    onGotoAngle: (dayNum) => {
+      const tabBtn = document.querySelector('[data-tab="tab-angle"]');
+      if (tabBtn) tabBtn.click();
+      const selectDay = document.getElementById('selectMilestoneDay');
+      if (selectDay) selectDay.value = dayNum;
+      loadMilestoneIntoCanvas(dayNum);
+      window.scrollTo({ top: 400, behavior: 'smooth' });
     }
   });
   logbookMgr.setEntries(projectData.entries);
+  window.projectData = projectData;
+  window.logbookMgr = logbookMgr;
 
   // Initialize Angle Tool
   initAngleTool();
@@ -890,6 +1215,10 @@ window.addEventListener('DOMContentLoaded', () => {
 
   // Navigation
   initNavigation();
+
+  // Initialize Milestone Gallery and Modal Events
+  renderMilestoneGallery();
+  initMilestoneGalleryEvents();
 
   // Thailand Live Clock (Real-time UTC+7 Asia/Bangkok)
   function initThailandClocks() {
@@ -920,6 +1249,7 @@ window.addEventListener('DOMContentLoaded', () => {
         saveProjectData(projectData);
         logbookMgr.setEntries(projectData.entries);
         refreshKPIs();
+        renderMilestoneGallery();
         showToast('โหลดข้อมูลตัวอย่าง 30 วันตาม Proposal เรียบร้อยแล้ว', 'success');
       }
     });
@@ -933,6 +1263,7 @@ window.addEventListener('DOMContentLoaded', () => {
         saveProjectData(projectData);
         logbookMgr.setEntries(projectData.entries);
         refreshKPIs();
+        renderMilestoneGallery();
         showToast('ล้างข้อมูลเรียบร้อย พร้อมเริ่มบันทึกข้อมูลจริง', 'info');
       }
     });

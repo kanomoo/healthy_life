@@ -1,0 +1,286 @@
+- generic [ref=f1e1]:
+  - banner [ref=f1e2]:
+    - generic [ref=f1e3]:
+      - generic [ref=f1e4]:
+        - generic [ref=f1e5]: 30D
+        - generic [ref=f1e6]:
+          - generic [ref=f1e7]:
+            - generic [ref=f1e8]: Health30D Studio
+            - generic [ref=f1e9]: Phase 1 & 2
+            - generic [ref=f1e10]: Sec 2 · 6806021612037
+          - paragraph [ref=f1e11]: การปรับโต๊ะทำงานร่วมกับการดูแลตนเอง ลด Office Syndrome (คอ บ่า ไหล่)
+      - generic [ref=f1e12]:
+        - generic [ref=f1e13]:
+          - generic [ref=f1e15]: "เวลาจริงไทย:"
+          - generic [ref=f1e16]: 21:20:08
+        - button "✨ โหลดข้อมูลตัวอย่าง Proposal (10/10)" [ref=f1e17]:
+          - generic [ref=f1e18]: ✨
+          - text: โหลดข้อมูลตัวอย่าง Proposal (10/10)
+        - button "📊 ส่งออก Excel (.xlsx 3 ชีต)" [ref=f1e19]:
+          - generic [ref=f1e20]: 📊
+          - text: ส่งออก Excel (.xlsx 3 ชีต)
+        - button "ล้างข้อมูล" [ref=f1e21]
+    - generic [ref=f1e22]:
+      - button "📊 สรุปผล & 5 ตัวชี้วัด" [ref=f1e23] [cursor=pointer]:
+        - generic [ref=f1e24]: 📊
+        - text: สรุปผล & 5 ตัวชี้วัด
+      - button "📐 วิเคราะห์องศาท่านั่ง (ImageMeter)" [active] [ref=f1e25] [cursor=pointer]:
+        - generic [ref=f1e26]: 📐
+        - text: วิเคราะห์องศาท่านั่ง (ImageMeter)
+      - button "⏱️ นาฬิกา & ผู้ช่วยพัก 45 นาที" [ref=f1e27] [cursor=pointer]:
+        - generic [ref=f1e28]: ⏱️
+        - text: นาฬิกา & ผู้ช่วยพัก 45 นาที
+      - button "📅 สมุดบันทึกรายวัน (D1 - D30)" [ref=f1e29] [cursor=pointer]:
+        - generic [ref=f1e30]: 📅
+        - text: สมุดบันทึกรายวัน (D1 - D30)
+      - button "📖 ท่าบริหาร & กฎความปลอดภัย" [ref=f1e31] [cursor=pointer]:
+        - generic [ref=f1e32]: 📖
+        - text: ท่าบริหาร & กฎความปลอดภัย
+  - main [ref=f1e33]:
+    - generic [ref=f1e265]:
+      - generic [ref=f1e266]:
+        - generic [ref=f1e267]:
+          - generic [ref=f1e268]:
+            - generic [ref=f1e269]: ImageMeter Biometrics
+            - generic [ref=f1e270]: วิเคราะห์มุมข้อต่อ 90-90-90
+          - heading "📐 เครื่องมือใส่ภาพและวัดองศาท่านั่ง (Image Posture Angle Tool)" [level=2] [ref=f1e271]:
+            - generic [ref=f1e272]: 📐
+            - text: เครื่องมือใส่ภาพและวัดองศาท่านั่ง (Image Posture Angle Tool)
+          - paragraph [ref=f1e273]: แทนการใช้แอป ImageMeter ในมือถือ สามารถใส่รูปท่านั่งจากด้านข้าง ลากจุดข้อต่อ 3 จุด แล้วระบบจะคำนวณองศาและประเมินเกณฑ์ 90-90-90 ทันที
+        - generic [ref=f1e274]:
+          - generic [ref=f1e275] [cursor=pointer]:
+            - generic [ref=f1e276]: 📷
+            - text: อัปโหลดรูปภาพ
+          - button "โหลดภาพ Baseline (Proposal)" [ref=f1e277]
+          - button "ปรับเป็นท่า 90-90-90" [ref=f1e278]
+          - button "💾 บันทึกรูปพร้อมองศา" [ref=f1e279]
+      - generic [ref=f1e280]:
+        - generic [ref=f1e281]:
+          - generic [ref=f1e282]: "กรองการแสดงผล:"
+          - generic [ref=f1e283]:
+            - button "ทุกมุม" [ref=f1e284]
+            - button "ข้อศอก" [ref=f1e285]
+            - button "สะโพก" [ref=f1e286]
+            - button "เข่า" [ref=f1e287]
+            - button "สายตา" [ref=f1e288]
+        - generic [ref=f1e289]: "💡 วิธีใช้: คลิก/แตะค้างที่จุดกลมเพื่อลากตำแหน่งข้อต่อ หรือคลิกที่พื้นว่างเพื่อเลื่อนภาพ (Pan)"
+      - generic [ref=f1e290]:
+        - generic [ref=f1e293]:
+          - generic [ref=f1e294]: สีเขียว = ผ่านเกณฑ์
+          - generic [ref=f1e296]: สีแดง/ส้ม = ปรับปรุง
+        - generic [ref=f1e298]:
+          - generic [ref=f1e299]:
+            - generic [ref=f1e300]:
+              - heading "ผลประเมินท่านั่ง (4 ข้อ)" [level=3] [ref=f1e301]
+              - generic [ref=f1e302]: ผ่าน 1 / 4 (25%)
+            - generic [ref=f1e303]:
+              - generic [ref=f1e304]:
+                - generic [ref=f1e305]: "1. มุมข้อศอก:"
+                - generic [ref=f1e306]: 142°
+              - generic [ref=f1e307]:
+                - generic [ref=f1e308]: เป้าหมาย 90°-100°
+                - generic [ref=f1e309]: ไม่ผ่าน
+              - generic [ref=f1e310]: ศอกเหยียดเกินไป ควรดึงเมาส์และคีย์บอร์ดเข้าหาตัว
+            - generic [ref=f1e311]:
+              - generic [ref=f1e312]:
+                - generic [ref=f1e313]: "2. มุมสะโพก/หลัง:"
+                - generic [ref=f1e314]: 39°
+              - generic [ref=f1e315]:
+                - generic [ref=f1e316]: เป้าหมาย 90°-100°
+                - generic [ref=f1e317]: ไม่ผ่าน
+              - generic [ref=f1e318]: หลังค่อมงอเกินไป
+            - generic [ref=f1e319]:
+              - generic [ref=f1e320]:
+                - generic [ref=f1e321]: "3. มุมเข่า/เท้า:"
+                - generic [ref=f1e322]: 24°
+              - generic [ref=f1e323]:
+                - generic [ref=f1e324]: เป้าหมาย 85°-100° & เท้าราบ
+                - generic [ref=f1e325]: ไม่ผ่าน
+              - generic [ref=f1e326]: มุมเข่าผิดเกณฑ์ ชันขาบนเบาะ หรือเท้าไม่แตะพื้นราบ
+            - generic [ref=f1e327]:
+              - generic [ref=f1e328]:
+                - generic [ref=f1e329]: "4. ระดับสายตา:"
+                - generic [ref=f1e330]: ผ่าน
+              - generic [ref=f1e331] [cursor=pointer]:
+                - checkbox "กึ่งกลางจออยู่ในระดับสายตา (ดี)" [checked] [ref=f1e332]
+                - generic [ref=f1e333]: กึ่งกลางจออยู่ในระดับสายตา (ดี)
+            - generic [ref=f1e334]:
+              - generic [ref=f1e335]: "บันทึกค่าองศานี้ลงในวันสำคัญ:"
+              - generic [ref=f1e336]:
+                - combobox [ref=f1e337]:
+                  - option "D1 (Baseline)"
+                  - option "D7 (สัปดาห์ที่ 1)"
+                  - option "D14 (สัปดาห์ที่ 2)"
+                  - option "D21 (สัปดาห์ที่ 3)"
+                  - option "D30 (สิ้นสุดโครงการ)" [selected]
+                - button "บันทึก" [ref=f1e338]
+          - generic [ref=f1e339]:
+            - generic [ref=f1e340]:
+              - generic [ref=f1e341]: 📋
+              - text: หลักการยศาสตร์ 90-90-90
+            - list [ref=f1e342]:
+              - listitem [ref=f1e343]:
+                - generic [ref=f1e344]: ▸
+                - text: ดึงเมาส์และคีย์บอร์ดเข้าหาตัวจนข้อศอกได้ 90°-100°
+              - listitem [ref=f1e345]:
+                - generic [ref=f1e346]: ▸
+                - text: เลื่อนสะโพกและหลังให้ชิดพนักพิง ไม่นั่งไถลตัว
+              - listitem [ref=f1e347]:
+                - generic [ref=f1e348]: ▸
+                - text: วางเท้าราบกับพื้น หากขาลอยให้ปรับระดับเก้าอี้
+              - listitem [ref=f1e349]:
+                - generic [ref=f1e350]: ▸
+                - text: กึ่งกลางหน้าจอต้องอยู่ในระดับสายตา ไม่ก้มคอ
+      - generic [ref=f1e351]:
+        - generic [ref=f1e352]:
+          - generic [ref=f1e353]:
+            - generic [ref=f1e354]:
+              - generic [ref=f1e355]: Evidence Vault
+              - generic [ref=f1e356]: หลักฐานภาพถ่าย 5 วันสำคัญ (D1, D7, D14, D21, D30)
+            - heading "🖼️ คลังภาพถ่ายหลักฐานท่านั่งทำงาน (Milestone Posture Gallery)" [level=3] [ref=f1e357]:
+              - generic [ref=f1e358]: 🖼️
+              - text: คลังภาพถ่ายหลักฐานท่านั่งทำงาน (Milestone Posture Gallery)
+            - paragraph [ref=f1e359]: รวมภาพถ่ายพร้อมเส้นองศาที่บันทึกไว้ในระบบ สามารถกดดูภาพขยาย หรือดาวน์โหลดไฟล์ PNG ไปแทรกใน Microsoft Excel ชีต "ภาพและมุม"
+          - button "📦 ดาวน์โหลดภาพหลักฐานทั้งหมด (PNG)" [ref=f1e361] [cursor=pointer]:
+            - generic [ref=f1e362]: 📦
+            - text: ดาวน์โหลดภาพหลักฐานทั้งหมด (PNG)
+        - generic [ref=f1e363]:
+          - generic [ref=f1e505]:
+            - generic [ref=f1e506]:
+              - generic [ref=f1e507]:
+                - generic [ref=f1e508]: D1 (Baseline - วันแรก)
+                - generic [ref=f1e509]: 1/4 ข้อ (25%)
+              - generic [ref=f1e510]: 2026-09-15
+              - generic [ref=f1e511] [cursor=pointer]:
+                - img "D1 Posture" [ref=f1e512]
+                - generic [ref=f1e513]: 🔍 ดูภาพขยาย
+              - generic [ref=f1e515]:
+                - generic [ref=f1e516]:
+                  - generic [ref=f1e517]: "ศอก:"
+                  - generic [ref=f1e518]: 138° ✗
+                - generic [ref=f1e519]:
+                  - generic [ref=f1e520]: "สะโพก:"
+                  - generic [ref=f1e521]: 125° ✗
+                - generic [ref=f1e522]:
+                  - generic [ref=f1e523]: "เข่า:"
+                  - generic [ref=f1e524]: 65° ✗
+                - generic [ref=f1e525]:
+                  - generic [ref=f1e526]: "ระดับสายตา:"
+                  - generic [ref=f1e527]: ผ่าน ✓
+            - generic [ref=f1e528]:
+              - generic [ref=f1e529]:
+                - button "🔍 ดูภาพ" [ref=f1e530] [cursor=pointer]
+                - button "💾 โหลดรูป" [ref=f1e531] [cursor=pointer]
+              - button "✏️ โหลดเข้า Canvas เพื่อวัดมุม" [ref=f1e532] [cursor=pointer]
+          - generic [ref=f1e533]:
+            - generic [ref=f1e534]:
+              - generic [ref=f1e535]:
+                - generic [ref=f1e536]: D7 (สัปดาห์ที่ 1)
+                - generic [ref=f1e537]: 2/4 ข้อ (50%)
+              - generic [ref=f1e538]: 2026-09-21
+              - generic [ref=f1e539] [cursor=pointer]:
+                - img "D7 Posture" [ref=f1e540]
+                - generic [ref=f1e541]: 🔍 ดูภาพขยาย
+              - generic [ref=f1e543]:
+                - generic [ref=f1e544]:
+                  - generic [ref=f1e545]: "ศอก:"
+                  - generic [ref=f1e546]: 115° ✗
+                - generic [ref=f1e547]:
+                  - generic [ref=f1e548]: "สะโพก:"
+                  - generic [ref=f1e549]: 110° ✗
+                - generic [ref=f1e550]:
+                  - generic [ref=f1e551]: "เข่า:"
+                  - generic [ref=f1e552]: 90° ✓
+                - generic [ref=f1e553]:
+                  - generic [ref=f1e554]: "ระดับสายตา:"
+                  - generic [ref=f1e555]: ผ่าน ✓
+            - generic [ref=f1e556]:
+              - generic [ref=f1e557]:
+                - button "🔍 ดูภาพ" [ref=f1e558] [cursor=pointer]
+                - button "💾 โหลดรูป" [ref=f1e559] [cursor=pointer]
+              - button "✏️ โหลดเข้า Canvas เพื่อวัดมุม" [ref=f1e560] [cursor=pointer]
+          - generic [ref=f1e561]:
+            - generic [ref=f1e562]:
+              - generic [ref=f1e563]:
+                - generic [ref=f1e564]: D14 (สัปดาห์ที่ 2)
+                - generic [ref=f1e565]: 3/4 ข้อ (75%)
+              - generic [ref=f1e566]: 2026-09-28
+              - generic [ref=f1e567] [cursor=pointer]:
+                - img "D14 Posture" [ref=f1e568]
+                - generic [ref=f1e569]: 🔍 ดูภาพขยาย
+              - generic [ref=f1e571]:
+                - generic [ref=f1e572]:
+                  - generic [ref=f1e573]: "ศอก:"
+                  - generic [ref=f1e574]: 98° ✓
+                - generic [ref=f1e575]:
+                  - generic [ref=f1e576]: "สะโพก:"
+                  - generic [ref=f1e577]: 108° ✗
+                - generic [ref=f1e578]:
+                  - generic [ref=f1e579]: "เข่า:"
+                  - generic [ref=f1e580]: 92° ✓
+                - generic [ref=f1e581]:
+                  - generic [ref=f1e582]: "ระดับสายตา:"
+                  - generic [ref=f1e583]: ผ่าน ✓
+            - generic [ref=f1e584]:
+              - generic [ref=f1e585]:
+                - button "🔍 ดูภาพ" [ref=f1e586] [cursor=pointer]
+                - button "💾 โหลดรูป" [ref=f1e587] [cursor=pointer]
+              - button "✏️ โหลดเข้า Canvas เพื่อวัดมุม" [ref=f1e588] [cursor=pointer]
+          - generic [ref=f1e589]:
+            - generic [ref=f1e590]:
+              - generic [ref=f1e591]:
+                - generic [ref=f1e592]: D21 (สัปดาห์ที่ 3)
+                - generic [ref=f1e593]: 3/4 ข้อ (75%)
+              - generic [ref=f1e594]: 2026-10-05
+              - generic [ref=f1e595] [cursor=pointer]:
+                - img "D21 Posture" [ref=f1e596]
+                - generic [ref=f1e597]: 🔍 ดูภาพขยาย
+              - generic [ref=f1e599]:
+                - generic [ref=f1e600]:
+                  - generic [ref=f1e601]: "ศอก:"
+                  - generic [ref=f1e602]: 95° ✓
+                - generic [ref=f1e603]:
+                  - generic [ref=f1e604]: "สะโพก:"
+                  - generic [ref=f1e605]: 102° ✗
+                - generic [ref=f1e606]:
+                  - generic [ref=f1e607]: "เข่า:"
+                  - generic [ref=f1e608]: 90° ✓
+                - generic [ref=f1e609]:
+                  - generic [ref=f1e610]: "ระดับสายตา:"
+                  - generic [ref=f1e611]: ผ่าน ✓
+            - generic [ref=f1e612]:
+              - generic [ref=f1e613]:
+                - button "🔍 ดูภาพ" [ref=f1e614] [cursor=pointer]
+                - button "💾 โหลดรูป" [ref=f1e615] [cursor=pointer]
+              - button "✏️ โหลดเข้า Canvas เพื่อวัดมุม" [ref=f1e616] [cursor=pointer]
+          - generic [ref=f1e617]:
+            - generic [ref=f1e618]:
+              - generic [ref=f1e619]:
+                - generic [ref=f1e620]: D30 (วันสิ้นสุดโครงการ)
+                - generic [ref=f1e621]: 1/4 ข้อ (25%)
+              - generic [ref=f1e622]: 2026-10-14
+              - generic [ref=f1e623] [cursor=pointer]:
+                - img "D30 Posture" [ref=f1e624]
+                - generic [ref=f1e625]: 🔍 ดูภาพขยาย
+              - generic [ref=f1e627]:
+                - generic [ref=f1e628]:
+                  - generic [ref=f1e629]: "ศอก:"
+                  - generic [ref=f1e630]: 142° ✗
+                - generic [ref=f1e631]:
+                  - generic [ref=f1e632]: "สะโพก:"
+                  - generic [ref=f1e633]: 39° ✗
+                - generic [ref=f1e634]:
+                  - generic [ref=f1e635]: "เข่า:"
+                  - generic [ref=f1e636]: 24° ✗
+                - generic [ref=f1e637]:
+                  - generic [ref=f1e638]: "ระดับสายตา:"
+                  - generic [ref=f1e639]: ผ่าน ✓
+            - generic [ref=f1e640]:
+              - generic [ref=f1e641]:
+                - button "🔍 ดูภาพ" [ref=f1e642] [cursor=pointer]
+                - button "💾 โหลดรูป" [ref=f1e643] [cursor=pointer]
+              - button "✏️ โหลดเข้า Canvas เพื่อวัดมุม" [ref=f1e644] [cursor=pointer]
+  - contentinfo [ref=f1e260]:
+    - generic [ref=f1e261]:
+      - generic [ref=f1e262]: โครงการวิจัยการยศาสตร์และปรับเปลี่ยนพฤติกรรมสุขภาพส่วนบุคคล 30 วัน (Health30D Research Portal)
+      - generic [ref=f1e263]: Section 2 · รหัส 6806021612037 · นายปภาวิน ธิติชุณหกุล · คณะวิศวกรรมศาสตร์

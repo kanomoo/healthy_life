@@ -1,0 +1,82 @@
+- generic [ref=f5e1]:
+  - banner [ref=f5e2]:
+    - generic [ref=f5e3]:
+      - generic [ref=f5e4]:
+        - generic [ref=f5e5]: 30D
+        - generic [ref=f5e6]:
+          - generic [ref=f5e7]:
+            - generic [ref=f5e8]: Health30D Studio
+            - generic [ref=f5e9]: Phase 1 & 2
+            - generic [ref=f5e10]: Sec 2 · 6806021612037
+          - paragraph [ref=f5e11]: การปรับโต๊ะทำงานร่วมกับการดูแลตนเอง ลด Office Syndrome (คอ บ่า ไหล่)
+      - generic [ref=f5e12]:
+        - generic [ref=f5e13]:
+          - generic [ref=f5e15]: "เวลาจริงไทย:"
+          - generic [ref=f5e16]: 22:55:53
+        - button "✨ โหลดข้อมูลตัวอย่าง Proposal (10/10)" [ref=f5e17]:
+          - generic [ref=f5e18]: ✨
+          - text: โหลดข้อมูลตัวอย่าง Proposal (10/10)
+        - button "📊 ส่งออก Excel (.xlsx 3 ชีต)" [ref=f5e19]:
+          - generic [ref=f5e20]: 📊
+          - text: ส่งออก Excel (.xlsx 3 ชีต)
+        - button "ล้างข้อมูล" [ref=f5e21]
+    - generic [ref=f5e22]:
+      - button "📊 สรุปผล & 5 ตัวชี้วัด" [ref=f5e23] [cursor=pointer]:
+        - generic [ref=f5e24]: 📊
+        - text: สรุปผล & 5 ตัวชี้วัด
+      - button "📐 วิเคราะห์องศาท่านั่ง (ImageMeter)" [ref=f5e25] [cursor=pointer]:
+        - generic [ref=f5e26]: 📐
+        - text: วิเคราะห์องศาท่านั่ง (ImageMeter)
+      - button "⏱️ นาฬิกา & ผู้ช่วยพัก 45 นาที" [ref=f5e27] [cursor=pointer]:
+        - generic [ref=f5e28]: ⏱️
+        - text: นาฬิกา & ผู้ช่วยพัก 45 นาที
+      - button "📅 สมุดบันทึกรายวัน (D1 - D30)" [active] [ref=f5e29] [cursor=pointer]:
+        - generic [ref=f5e30]: 📅
+        - text: สมุดบันทึกรายวัน (D1 - D30)
+      - button "📖 ท่าบริหาร & กฎความปลอดภัย" [ref=f5e31] [cursor=pointer]:
+        - generic [ref=f5e32]: 📖
+        - text: ท่าบริหาร & กฎความปลอดภัย
+  - main [ref=f5e33]:
+    - generic [ref=f5e265]:
+      - generic [ref=f5e266]:
+        - generic [ref=f5e267]:
+          - generic [ref=f5e268]:
+            - generic [ref=f5e269]: Daily Logbook
+            - generic [ref=f5e270]: ฐานข้อมูลการวิจัย 30 วัน
+          - heading "📅 ตารางบันทึกรายวัน (Daily Logbook D1 - D30)" [level=2] [ref=f5e271]:
+            - generic [ref=f5e272]: 📅
+            - text: ตารางบันทึกรายวัน (Daily Logbook D1 - D30)
+          - paragraph [ref=f5e273]: บันทึกเวลาใช้จอ, จำนวนครั้งที่พัก, อาการปวด NRS ก่อน/หลังนวด, และการทำโปรแกรม (เชื่อมโยง Excel ชีต 1)
+        - generic [ref=f5e274]:
+          - button "ทั้งหมด 30 วัน" [ref=f5e275] [cursor=pointer]
+          - button "D1-D7" [ref=f5e276] [cursor=pointer]
+          - button "D8-D14" [ref=f5e277] [cursor=pointer]
+          - button "D15-D21" [ref=f5e278] [cursor=pointer]
+          - button "D22-D30" [ref=f5e279] [cursor=pointer]
+          - button "⭐ วันสำคัญ" [ref=f5e280] [cursor=pointer]
+          - button "⚠️ ยังขาดภาพ" [ref=f5e281] [cursor=pointer]
+      - table [ref=f5e283]:
+        - rowgroup [ref=f5e284]:
+          - row [ref=f5e285]:
+            - columnheader "วัน" [ref=f5e286]
+            - columnheader "วันที่" [ref=f5e287]
+            - columnheader "เริ่มใช้จอ" [ref=f5e288]
+            - columnheader "นาทีใช้จอ" [ref=f5e289]
+            - columnheader "ควรพัก" [ref=f5e290]
+            - columnheader "พักจริง" [ref=f5e291]
+            - columnheader "% พัก" [ref=f5e292]
+            - columnheader "ปวดก่อน" [ref=f5e293]
+            - columnheader "ปวดหลัง" [ref=f5e294]
+            - columnheader "% ลดทันที" [ref=f5e295]
+            - columnheader "นวด 3 จุด" [ref=f5e296]
+            - columnheader "บริหาร (6 ท่า)" [ref=f5e297]
+            - columnheader "สถานะ (3/3)" [ref=f5e298]
+            - columnheader "ภาพหลักฐาน (D1-D30)" [ref=f5e299]
+            - columnheader "แก้ไข" [ref=f5e300]
+        - rowgroup [ref=f5e301]:
+          - row [ref=f5e2878]:
+            - cell "✨ ยอดเยี่ยม! มีภาพถ่ายหลักฐานครบถ้วนทั้ง 30 วันแล้ว (ไม่มีวันที่ขาดภาพ)" [ref=f5e2879]
+  - contentinfo [ref=f5e260]:
+    - generic [ref=f5e261]:
+      - generic [ref=f5e262]: โครงการวิจัยการยศาสตร์และปรับเปลี่ยนพฤติกรรมสุขภาพส่วนบุคคล 30 วัน (Health30D Research Portal)
+      - generic [ref=f5e263]: Section 2 · รหัส 6806021612037 · นายปภาวิน ธิติชุณหกุล · คณะวิศวกรรมศาสตร์
