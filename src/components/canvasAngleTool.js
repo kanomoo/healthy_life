@@ -1,5 +1,6 @@
-// Interactive Canvas Posture & Joint Angle Measurement Tool
+// Interactive Canvas Posture & Joint Angle Measurement Tool with AI Pose Detection
 import { sound } from '../utils/audio.js';
+import { poseDetector } from '../utils/poseDetector.js';
 
 export class PostureAngleTool {
   constructor(canvasId, options = {}) {
@@ -14,23 +15,28 @@ export class PostureAngleTool {
     this.panX = 0;
     this.panY = 0;
 
+    this.isDetecting = false;
+    this.detectionStatus = '';
+    this.currentSide = 'auto';
+    this.canSwitchSide = false;
+    this.detectionMeta = null;
+
     // Draggable landmarks normalized to image coordinates (0 to 1)
-    // Initialized for typical side-view desk ergonomics
     this.points = {
       // Elbow angle: Shoulder -> Elbow (Vertex) -> Wrist
-      shoulder: { x: 0.31, y: 0.40, name: 'หัวไหล่ (Shoulder)', group: 'elbow' },
-      elbow: { x: 0.50, y: 0.50, name: 'ข้อศอก (Elbow)', group: 'elbow', isVertex: true },
-      wrist: { x: 0.86, y: 0.48, name: 'ข้อมือ (Wrist)', group: 'elbow' },
+      shoulder: { x: 0.35, y: 0.38, name: 'หัวไหล่ (Shoulder)', group: 'elbow' },
+      elbow: { x: 0.48, y: 0.52, name: 'ข้อศอก (Elbow)', group: 'elbow', isVertex: true },
+      wrist: { x: 0.72, y: 0.52, name: 'ข้อมือ (Wrist)', group: 'elbow' },
 
       // Hip angle: Shoulder -> Hip (Vertex) -> Knee
-      hip: { x: 0.46, y: 0.65, name: 'สะโพก (Hip)', group: 'hip', isVertex: true },
-      knee: { x: 0.54, y: 0.38, name: 'เข่า (Knee)', group: 'knee', isVertex: true },
+      hip: { x: 0.38, y: 0.68, name: 'สะโพก (Hip)', group: 'hip', isVertex: true },
+      knee: { x: 0.62, y: 0.68, name: 'เข่า (Knee)', group: 'knee', isVertex: true },
 
       // Knee angle: Hip -> Knee (Vertex) -> Ankle
-      ankle: { x: 0.60, y: 0.85, name: 'ข้อเท้า (Ankle)', group: 'knee' },
+      ankle: { x: 0.62, y: 0.90, name: 'ข้อเท้า (Ankle)', group: 'knee' },
 
       // Eye level: Eye -> Screen
-      eye: { x: 0.30, y: 0.23, name: 'ระดับสายตา (Eye)', group: 'eye' },
+      eye: { x: 0.34, y: 0.23, name: 'ระดับสายตา (Eye)', group: 'eye' },
       screen: { x: 0.77, y: 0.23, name: 'กึ่งกลางจอ (Screen)', group: 'eye' }
     };
 
@@ -50,29 +56,93 @@ export class PostureAngleTool {
       kneePass: false,
       eyeLevelPass: true,
       score: 0,
-      percentage: 0
+      percentage: 0,
+      isDetecting: false,
+      detectionStatus: '',
+      side: 'auto',
+      canSwitchSide: false
     };
 
     this.initEvents();
   }
 
-  loadImage(src) {
+  async loadImage(src, autoDetect = true) {
     this.imageLoaded = false;
     this.image.crossOrigin = 'anonymous';
-    this.image.onload = () => {
-      this.imageLoaded = true;
-      this.fitToCanvas();
+
+    return new Promise((resolve) => {
+      this.image.onload = async () => {
+        this.imageLoaded = true;
+        this.fitToCanvas();
+
+        if (autoDetect) {
+          await this.detectAndApplyPose();
+        } else {
+          this.calculateAngles();
+          this.render();
+          this.onUpdate(this.getResults());
+        }
+        resolve();
+      };
+      this.image.onerror = (err) => {
+        console.error('[PostureAngleTool] Image load error:', err);
+        this.detectionStatus = 'ไม่สามารถโหลดภาพได้ กรุณาตรวจสอบไฟล์รูปภาพ';
+        this.render();
+        resolve();
+      };
+      this.image.src = src;
+    });
+  }
+
+  async detectAndApplyPose(preferredSide = 'auto') {
+    if (!this.imageLoaded) return;
+    this.isDetecting = true;
+    this.detectionStatus = '🤖 AI กำลังสแกนหาข้อต่อสรีระ (MediaPipe Pose)...';
+    this.render();
+    this.onUpdate(this.getResults());
+
+    try {
+      const detection = await poseDetector.detectPose(this.image, { preferredSide });
+      if (detection && detection.points) {
+        this.points = { ...this.points, ...detection.points };
+        this.currentSide = detection.side;
+        this.canSwitchSide = true;
+        this.detectionMeta = detection;
+        this.detectionStatus = `✓ AI ตรวจพบข้อต่อ (${detection.sideLabel}) และคำนวณองศาอัตโนมัติแล้ว`;
+        sound.playSuccess?.();
+      } else {
+        this.detectionStatus = '⚠️ ไม่พบข้อต่อคนในภาพชัดเจน (ใช้จุดอ้างอิง สามารถลากปรับได้)';
+      }
+    } catch (err) {
+      console.warn('[PostureAngleTool] Pose detection failed:', err);
+      this.detectionStatus = '⚠️ การตรวจจับ AI ขัดข้อง (สามารถลากจุดวัดองศาได้ด้วยตนเอง)';
+    } finally {
+      this.isDetecting = false;
       this.calculateAngles();
       this.render();
       this.onUpdate(this.getResults());
-    };
-    this.image.src = src;
+    }
+  }
+
+  switchSide() {
+    const switched = poseDetector.switchSide();
+    if (switched && switched.points) {
+      this.points = { ...this.points, ...switched.points };
+      this.currentSide = switched.side;
+      this.detectionMeta = switched;
+      this.detectionStatus = `✓ สลับไปวิเคราะห์ (${switched.sideLabel}) เรียบร้อย`;
+      this.calculateAngles();
+      this.render();
+      this.onUpdate(this.getResults());
+      return true;
+    }
+    return false;
   }
 
   fitToCanvas() {
     if (!this.imageLoaded) return;
     const cw = this.canvas.parentElement.clientWidth || 800;
-    const ch = Math.min(650, window.innerHeight * 0.7);
+    const ch = Math.min(650, Math.max(480, window.innerHeight * 0.7));
     this.canvas.width = cw;
     this.canvas.height = ch;
 
@@ -154,6 +224,30 @@ export class PostureAngleTool {
     window.addEventListener('touchmove', handleMove, { passive: false });
     window.addEventListener('touchend', handleUp);
 
+    // Drag and Drop files directly onto canvas
+    this.canvas.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      this.canvas.style.outline = '2px dashed #06b6d4';
+    });
+    this.canvas.addEventListener('dragleave', (e) => {
+      e.preventDefault();
+      this.canvas.style.outline = 'none';
+    });
+    this.canvas.addEventListener('drop', (e) => {
+      e.preventDefault();
+      this.canvas.style.outline = 'none';
+      if (e.dataTransfer && e.dataTransfer.files.length > 0) {
+        const file = e.dataTransfer.files[0];
+        if (file.type.startsWith('image/')) {
+          const reader = new FileReader();
+          reader.onload = (evt) => {
+            this.loadImage(evt.target.result, true);
+          };
+          reader.readAsDataURL(file);
+        }
+      }
+    });
+
     window.addEventListener('resize', () => {
       if (this.imageLoaded) {
         this.fitToCanvas();
@@ -185,9 +279,16 @@ export class PostureAngleTool {
   }
 
   calculate3PointAngle(pA, pB, pC) {
-    // Angle at vertex B
-    const vBA = { x: pA.x - pB.x, y: (pA.y - pB.y) * (this.image.height / this.image.width) };
-    const vBC = { x: pC.x - pB.x, y: (pC.y - pB.y) * (this.image.height / this.image.width) };
+    if (!this.image.width || !this.image.height) return 90;
+    // Aspect ratio scaled vectors
+    const vBA = {
+      x: (pA.x - pB.x) * this.image.width,
+      y: (pA.y - pB.y) * this.image.height
+    };
+    const vBC = {
+      x: (pC.x - pB.x) * this.image.width,
+      y: (pC.y - pB.y) * this.image.height
+    };
 
     const dot = vBA.x * vBC.x + vBA.y * vBC.y;
     const magBA = Math.hypot(vBA.x, vBA.y);
@@ -201,17 +302,20 @@ export class PostureAngleTool {
   calculateAngles() {
     // 1. Elbow: Shoulder -> Elbow (Vertex) -> Wrist
     const elbowDeg = this.calculate3PointAngle(this.points.shoulder, this.points.elbow, this.points.wrist);
-    const elbowPass = elbowDeg >= 90 && elbowDeg <= 100;
+    // Standard ergonomics: 90° - 105°
+    const elbowPass = elbowDeg >= 90 && elbowDeg <= 105;
 
     // 2. Hip: Shoulder -> Hip (Vertex) -> Knee
     const hipDeg = this.calculate3PointAngle(this.points.shoulder, this.points.hip, this.points.knee);
-    const hipPass = hipDeg >= 90 && hipDeg <= 100;
+    // Standard ergonomics: 90° - 105°
+    const hipPass = hipDeg >= 90 && hipDeg <= 105;
 
     // 3. Knee: Hip -> Knee (Vertex) -> Ankle
     const kneeDeg = this.calculate3PointAngle(this.points.hip, this.points.knee, this.points.ankle);
-    const kneePass = kneeDeg >= 85 && kneeDeg <= 100;
+    // Standard ergonomics: 85° - 105°
+    const kneePass = kneeDeg >= 85 && kneeDeg <= 105;
 
-    // 4. Eye Level: Check if screen center is approximately horizontal to eye
+    // 4. Eye Level: Check if screen center is within ±8% vertical range of eye
     const eyeTilt = Math.abs(this.points.eye.y - this.points.screen.y) * 100;
     const eyePass = this.results.eyeLevelPass !== undefined ? this.results.eyeLevelPass : (eyeTilt <= 8);
 
@@ -230,7 +334,11 @@ export class PostureAngleTool {
       kneePass,
       eyeLevelPass: eyePass,
       score,
-      percentage: Math.round((score / 4) * 100)
+      percentage: Math.round((score / 4) * 100),
+      isDetecting: this.isDetecting,
+      detectionStatus: this.detectionStatus,
+      side: this.currentSide,
+      canSwitchSide: this.canSwitchSide
     };
   }
 
@@ -251,7 +359,7 @@ export class PostureAngleTool {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     // Draw background grid pattern
-    ctx.fillStyle = '#0f172a';
+    ctx.fillStyle = '#0a0c12';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
     // Draw image
@@ -263,6 +371,42 @@ export class PostureAngleTool {
 
     // Draw angles and landmarks
     this.drawAnglesAndLines();
+
+    // Draw AI Detection Scanning Overlay if currently detecting
+    if (this.isDetecting) {
+      this.drawScanningOverlay();
+    }
+  }
+
+  drawScanningOverlay() {
+    const { ctx, canvas } = this;
+    ctx.save();
+    ctx.fillStyle = 'rgba(10, 15, 30, 0.65)';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    // Center pulsating badge
+    const cx = canvas.width / 2;
+    const cy = canvas.height / 2;
+
+    ctx.fillStyle = 'rgba(6, 182, 212, 0.15)';
+    ctx.strokeStyle = '#06b6d4';
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.roundRect(cx - 180, cy - 35, 360, 70, 16);
+    ctx.fill();
+    ctx.stroke();
+
+    ctx.fillStyle = '#ffffff';
+    ctx.font = 'bold 15px Chakra Petch, sans-serif';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText('🤖 AI กำลังตรวจจับโครงสร้างร่างกาย...', cx, cy - 8);
+
+    ctx.fillStyle = '#67e8f9';
+    ctx.font = '12px IBM Plex Sans Thai, sans-serif';
+    ctx.fillText('MediaPipe Pose Detection & Biometrics Engine', cx, cy + 14);
+
+    ctx.restore();
   }
 
   drawAnglesAndLines() {
@@ -273,7 +417,7 @@ export class PostureAngleTool {
       const c2 = this.toCanvasCoords(p2.x, p2.y);
       ctx.beginPath();
       ctx.strokeStyle = color;
-      ctx.lineWidth = 3;
+      ctx.lineWidth = 3.5;
       if (dashed) ctx.setLineDash([8, 6]);
       else ctx.setLineDash([]);
       ctx.moveTo(c1.x, c1.y);
@@ -310,10 +454,10 @@ export class PostureAngleTool {
       const by = cB.y + Math.sin(midAngle) * 65;
 
       const badgeText = `${label}: ${angleDeg}° ${isPass ? '✓' : '✗'}`;
-      ctx.font = 'bold 13px Prompt, sans-serif';
+      ctx.font = 'bold 13px IBM Plex Sans Thai, sans-serif';
       const textW = ctx.measureText(badgeText).width;
 
-      ctx.fillStyle = isPass ? 'rgba(6, 78, 59, 0.9)' : 'rgba(153, 27, 27, 0.9)';
+      ctx.fillStyle = isPass ? 'rgba(6, 78, 59, 0.92)' : 'rgba(153, 27, 27, 0.92)';
       ctx.strokeStyle = isPass ? '#34D399' : '#F87171';
       ctx.lineWidth = 1.5;
       ctx.beginPath();
@@ -333,13 +477,13 @@ export class PostureAngleTool {
 
       // Glow / outer ring
       ctx.beginPath();
-      ctx.arc(c.x, c.y, isActive ? 16 : 12, 0, Math.PI * 2);
-      ctx.fillStyle = color + '40';
+      ctx.arc(c.x, c.y, isActive ? 18 : 13, 0, Math.PI * 2);
+      ctx.fillStyle = color + '45';
       ctx.fill();
 
       // Border ring
       ctx.beginPath();
-      ctx.arc(c.x, c.y, isActive ? 10 : 8, 0, Math.PI * 2);
+      ctx.arc(c.x, c.y, isActive ? 11 : 8.5, 0, Math.PI * 2);
       ctx.fillStyle = color;
       ctx.strokeStyle = '#ffffff';
       ctx.lineWidth = 2.5;
@@ -391,9 +535,9 @@ export class PostureAngleTool {
       const midY = (cEye.y + cScr.y) / 2;
 
       const eyeText = `ระดับสายตา: ${this.results.eyeLevelPass ? 'กึ่งกลางจอ (ผ่าน)' : 'คลาดเคลื่อน'}`;
-      ctx.font = 'bold 12px Prompt, sans-serif';
+      ctx.font = 'bold 12px IBM Plex Sans Thai, sans-serif';
       const tw = ctx.measureText(eyeText).width;
-      ctx.fillStyle = 'rgba(30, 41, 59, 0.9)';
+      ctx.fillStyle = 'rgba(30, 41, 59, 0.92)';
       ctx.strokeStyle = col;
       ctx.lineWidth = 1.5;
       ctx.beginPath();
@@ -451,14 +595,14 @@ export class PostureAngleTool {
 
   setPreset(type) {
     if (type === 'baseline') {
-      // PDF Baseline values: Elbow 138°, Hip 125°, Knee 65°, Eye passed
-      this.points.shoulder = { x: 0.31, y: 0.40, name: 'หัวไหล่ (Shoulder)', group: 'elbow' };
-      this.points.elbow = { x: 0.50, y: 0.50, name: 'ข้อศอก (Elbow)', group: 'elbow', isVertex: true };
-      this.points.wrist = { x: 0.86, y: 0.48, name: 'ข้อมือ (Wrist)', group: 'elbow' };
-      this.points.hip = { x: 0.46, y: 0.65, name: 'สะโพก (Hip)', group: 'hip', isVertex: true };
-      this.points.knee = { x: 0.54, y: 0.38, name: 'เข่า (Knee)', group: 'knee', isVertex: true };
-      this.points.ankle = { x: 0.58, y: 0.55, name: 'ข้อเท้า (Ankle)', group: 'knee' };
-      this.points.eye = { x: 0.30, y: 0.23, name: 'ระดับสายตา (Eye)', group: 'eye' };
+      // Natural baseline seating posture
+      this.points.shoulder = { x: 0.35, y: 0.38, name: 'หัวไหล่ (Shoulder)', group: 'elbow' };
+      this.points.elbow = { x: 0.48, y: 0.52, name: 'ข้อศอก (Elbow)', group: 'elbow', isVertex: true };
+      this.points.wrist = { x: 0.74, y: 0.52, name: 'ข้อมือ (Wrist)', group: 'elbow' };
+      this.points.hip = { x: 0.38, y: 0.68, name: 'สะโพก (Hip)', group: 'hip', isVertex: true };
+      this.points.knee = { x: 0.62, y: 0.68, name: 'เข่า (Knee)', group: 'knee', isVertex: true };
+      this.points.ankle = { x: 0.56, y: 0.88, name: 'ข้อเท้า (Ankle)', group: 'knee' };
+      this.points.eye = { x: 0.34, y: 0.23, name: 'ระดับสายตา (Eye)', group: 'eye' };
       this.points.screen = { x: 0.77, y: 0.23, name: 'กึ่งกลางจอ (Screen)', group: 'eye' };
       this.results.eyeLevelPass = true;
     } else if (type === 'corrected_90') {
@@ -466,8 +610,8 @@ export class PostureAngleTool {
       this.points.shoulder = { x: 0.35, y: 0.38, name: 'หัวไหล่ (Shoulder)', group: 'elbow' };
       this.points.elbow = { x: 0.36, y: 0.52, name: 'ข้อศอก (Elbow)', group: 'elbow', isVertex: true };
       this.points.wrist = { x: 0.60, y: 0.52, name: 'ข้อมือ (Wrist)', group: 'elbow' };
-      this.points.hip = { x: 0.38, y: 0.65, name: 'สะโพก (Hip)', group: 'hip', isVertex: true };
-      this.points.knee = { x: 0.60, y: 0.65, name: 'เข่า (Knee)', group: 'knee', isVertex: true };
+      this.points.hip = { x: 0.38, y: 0.68, name: 'สะโพก (Hip)', group: 'hip', isVertex: true };
+      this.points.knee = { x: 0.60, y: 0.68, name: 'เข่า (Knee)', group: 'knee', isVertex: true };
       this.points.ankle = { x: 0.60, y: 0.90, name: 'ข้อเท้า (Ankle)', group: 'knee' };
       this.points.eye = { x: 0.34, y: 0.23, name: 'ระดับสายตา (Eye)', group: 'eye' };
       this.points.screen = { x: 0.77, y: 0.23, name: 'กึ่งกลางจอ (Screen)', group: 'eye' };

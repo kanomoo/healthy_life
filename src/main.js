@@ -273,21 +273,63 @@ function initAngleTool() {
   });
 
   // Load sample baseline photo
-  angleTool.loadImage('/sample_baseline.png');
+  angleTool.loadImage('/sample_baseline.png', false);
   angleTool.setPreset('baseline');
 
-  // File Upload
+  // File Upload - automatically runs AI pose detection on ANY uploaded photo
   const fileInput = document.getElementById('imageUploadInput');
   if (fileInput) {
     fileInput.addEventListener('change', (e) => {
       const file = e.target.files[0];
       if (!file) return;
       const reader = new FileReader();
-      reader.onload = (evt) => {
-        angleTool.loadImage(evt.target.result);
-        showToast('โหลดภาพสำเร็จ คุณสามารถลากจุดวัดองศาได้ทันที', 'success');
+      reader.onload = async (evt) => {
+        showToast('กำลังโหลดภาพและตรวจจับโครงสร้างร่างกายด้วย AI (MediaPipe)...', 'info');
+        await angleTool.loadImage(evt.target.result, true);
+        showToast('วิเคราะห์องศาท่านั่งสำเร็จ สามารถลากปรับจุดข้อต่อได้ทันที', 'success');
       };
       reader.readAsDataURL(file);
+    });
+  }
+
+  // Quick Test Buttons for images in the pic folder
+  const testButtons = [
+    { id: 'btnTestPic1', path: '/pic/IMG_20260921_175952_180.jpg', label: 'ภาพจริง 1 (IMG_175952)' },
+    { id: 'btnTestPic2', path: '/pic/IMG_20260921_180340_368.jpg', label: 'ภาพจริง 2 (IMG_180340)' },
+    { id: 'btnTestPic3', path: '/pic/Gemini_Generated_Image_6uge86uge86uge86.jpg', label: 'ภาพ 3 (Ergonomic Chair)' }
+  ];
+
+  testButtons.forEach(({ id, path, label }) => {
+    const btn = document.getElementById(id);
+    if (btn) {
+      btn.addEventListener('click', async () => {
+        showToast(`กำลังโหลด ${label} และตรวจจับองศาด้วย AI...`, 'info');
+        await angleTool.loadImage(path, true);
+        showToast(`ตรวจจับข้อต่อและวัดองศา ${label} เรียบร้อย`, 'success');
+      });
+    }
+  });
+
+  // Re-detect AI button
+  const btnReDetect = document.getElementById('btnReDetectPose');
+  if (btnReDetect) {
+    btnReDetect.addEventListener('click', async () => {
+      showToast('กำลังรัน AI ตรวจจับข้อต่อร่างกายซ้ำ...', 'info');
+      await angleTool.detectAndApplyPose();
+      showToast('ตรวจจับข้อต่อและคำนวณองศาใหม่เรียบร้อย', 'success');
+    });
+  }
+
+  // Switch Side button
+  const btnSwitchSide = document.getElementById('btnSwitchPoseSide');
+  if (btnSwitchSide) {
+    btnSwitchSide.addEventListener('click', () => {
+      const ok = angleTool.switchSide();
+      if (ok) {
+        showToast(`สลับไปวิเคราะห์ด้าน (${angleTool.currentSide === 'right' ? 'ขวา' : 'ซ้าย'}) เรียบร้อย`, 'info');
+      } else {
+        showToast('ไม่สามารถสลับข้างได้ (ไม่มีข้อมูลข้อต่ออีกด้าน หรือยังไม่ได้ตรวจจับด้วย AI)', 'warning');
+      }
     });
   }
 
@@ -295,7 +337,7 @@ function initAngleTool() {
   const btnBaseline = document.getElementById('btnLoadSampleImg');
   if (btnBaseline) {
     btnBaseline.addEventListener('click', () => {
-      angleTool.loadImage('/sample_baseline.png');
+      angleTool.loadImage('/sample_baseline.png', false);
       angleTool.setPreset('baseline');
       showToast('โหลดภาพตัวอย่างและตำแหน่ง Baseline เรียบร้อย', 'info');
     });
@@ -452,6 +494,12 @@ function updateAngleScoreCard(res) {
   if (eyeBadge) {
     eyeBadge.textContent = res.eyeLevelPass ? 'ผ่าน' : 'ไม่ผ่าน';
     eyeBadge.className = `px-1.5 py-0.5 rounded text-[10px] font-semibold border ${res.eyeLevelPass ? 'bg-emerald-950 text-emerald-300 border-emerald-800' : 'bg-rose-950 text-rose-300 border-rose-800'}`;
+  }
+
+  // AI Pose Status
+  const statusEl = document.getElementById('poseAiStatusText');
+  if (statusEl && res.detectionStatus) {
+    statusEl.textContent = res.detectionStatus;
   }
 }
 
