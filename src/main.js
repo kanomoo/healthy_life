@@ -7,7 +7,9 @@ import {
   createBlankEntries, 
   calculateResearchStats, 
   MILESTONE_DAYS,
-  getThailandTime
+  getThailandTime,
+  getThailandDate,
+  DATA_VERSION
 } from './data/storage.js';
 import { PostureAngleTool } from './components/canvasAngleTool.js';
 import { 
@@ -338,18 +340,21 @@ function initAngleTool() {
   if (btnBaseline) {
     btnBaseline.addEventListener('click', () => {
       angleTool.loadImage('/sample_baseline.png', false);
-      angleTool.setPreset('baseline');
-      showToast('โหลดภาพตัวอย่างและตำแหน่ง Baseline เรียบร้อย', 'info');
+      angleTool.setPreset('baseline', 1);
+      showToast('โหลดภาพตัวอย่างและตำแหน่ง Baseline D1 เรียบร้อย', 'info');
     });
   }
 
   const btnPreset90 = document.getElementById('btnResetPosture90');
   if (btnPreset90) {
     btnPreset90.addEventListener('click', () => {
-      angleTool.setPreset('corrected_90');
-      showToast('ปรับจุดอ้างอิงเป็นเกณฑ์ 90-90-90', 'success');
+      const selectDay = document.getElementById('selectMilestoneDay');
+      const dayNum = selectDay ? parseInt(selectDay.value, 10) : 30;
+      angleTool.setPreset('corrected_90', dayNum);
+      showToast(`ปรับจุดอ้างอิงเป็นเกณฑ์ 90-90-90 (สำหรับวัน D${dayNum})`, 'success');
     });
   }
+
 
   // Eye level checkbox
   const checkEye = document.getElementById('checkEyeLevelPass');
@@ -528,12 +533,19 @@ function initScreenTimer() {
   const selectDay = document.getElementById('selectDayForTimer');
   if (selectDay) {
     selectDay.innerHTML = '';
+    const todayStr = getThailandDate();
+    let currentDayVal = 15;
     projectData.entries.forEach(e => {
       const opt = document.createElement('option');
       opt.value = e.day;
       opt.textContent = `D${e.day} (${e.date})`;
+      if (e.date === todayStr) {
+        opt.selected = true;
+        currentDayVal = e.day;
+      }
       selectDay.appendChild(opt);
     });
+    selectDay.value = currentDayVal;
   }
 
   screenTimer = new ScreenTimer({
@@ -943,11 +955,11 @@ function loadMilestoneIntoCanvas(dayNum) {
   const entry = projectData.entries.find(e => e.day === dayNum);
   if (!entry || !angleTool) return;
   const src = entry.annotatedPhoto || entry.photoUrl || '/sample_baseline.png';
-  angleTool.loadImage(src);
+  angleTool.loadImage(src, false);
   if (dayNum === 1) {
-    angleTool.setPreset('baseline');
-  } else if (dayNum === 30) {
-    angleTool.setPreset('corrected_90');
+    angleTool.setPreset('baseline', 1);
+  } else {
+    angleTool.setPreset('corrected_90', dayNum);
   }
   const selectDay = document.getElementById('selectMilestoneDay');
   if (selectDay) selectDay.value = dayNum;
@@ -1292,13 +1304,14 @@ window.addEventListener('DOMContentLoaded', () => {
   const btnDemo = document.getElementById('btnLoadDemo');
   if (btnDemo) {
     btnDemo.addEventListener('click', () => {
-      if (confirm('คุณต้องการโหลดข้อมูลตัวอย่าง 30 วันตามเอกสารวิจัยใช่หรือไม่? (ข้อมูลปัจจุบันจะถูกแทนที่ด้วยข้อมูล Proposal)')) {
-        projectData.entries = generateSampleData();
+      if (confirm('คุณต้องการโหลดชุดข้อมูล 30 วันที่ปรับตามประวัติเปิด-ปิดเครื่องจริง, ตารางเรียน และมุมสรีระวัดจริง (เริ่ม 10 ก.ย. 2569) ใช่หรือไม่?')) {
+        projectData.version = DATA_VERSION;
+        projectData.entries = generateSampleData('2026-09-10');
         saveProjectData(projectData);
         logbookMgr.setEntries(projectData.entries);
         refreshKPIs();
         renderMilestoneGallery();
-        showToast('โหลดข้อมูลตัวอย่าง 30 วันตาม Proposal เรียบร้อยแล้ว', 'success');
+        showToast('โหลดข้อมูล 30 วัน (ประวัติเครื่องจริง, ตารางเรียน, มุมสรีระวัดจริง) เรียบร้อยแล้ว', 'success');
       }
     });
   }

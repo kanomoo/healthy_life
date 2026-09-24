@@ -302,22 +302,22 @@ export class PostureAngleTool {
   calculateAngles() {
     // 1. Elbow: Shoulder -> Elbow (Vertex) -> Wrist
     const elbowDeg = this.calculate3PointAngle(this.points.shoulder, this.points.elbow, this.points.wrist);
-    // Standard ergonomics: 90° - 105°
-    const elbowPass = elbowDeg >= 90 && elbowDeg <= 105;
+    // Ergonomics tolerance window: 85° - 115° (ครอบคลุมท่านั่งทำงานจริงอย่างเป็นธรรมชาติ)
+    const elbowPass = elbowDeg >= 85 && elbowDeg <= 115;
 
     // 2. Hip: Shoulder -> Hip (Vertex) -> Knee
     const hipDeg = this.calculate3PointAngle(this.points.shoulder, this.points.hip, this.points.knee);
-    // Standard ergonomics: 90° - 105°
-    const hipPass = hipDeg >= 90 && hipDeg <= 105;
+    // Ergonomics tolerance window: 85° - 120° (การนั่งเอนพิงพนัก 90°-115° ช่วยลดแรงกดหมอนรองกระดูกสันหลัง)
+    const hipPass = hipDeg >= 85 && hipDeg <= 120;
 
     // 3. Knee: Hip -> Knee (Vertex) -> Ankle
     const kneeDeg = this.calculate3PointAngle(this.points.hip, this.points.knee, this.points.ankle);
-    // Standard ergonomics: 85° - 105°
-    const kneePass = kneeDeg >= 85 && kneeDeg <= 105;
+    // Ergonomics tolerance window: 80° - 115° (เท้าวางราบหรือยื่นเล็กน้อย)
+    const kneePass = kneeDeg >= 80 && kneeDeg <= 115;
 
-    // 4. Eye Level: Check if screen center is within ±8% vertical range of eye
+    // 4. Eye Level: Check if screen center is within ±15% vertical range of eye
     const eyeTilt = Math.abs(this.points.eye.y - this.points.screen.y) * 100;
-    const eyePass = this.results.eyeLevelPass !== undefined ? this.results.eyeLevelPass : (eyeTilt <= 8);
+    const eyePass = this.results.eyeLevelPass !== undefined ? this.results.eyeLevelPass : (eyeTilt <= 15);
 
     let score = 0;
     if (elbowPass) score++;
@@ -593,26 +593,61 @@ export class PostureAngleTool {
     }
   }
 
-  setPreset(type) {
-    if (type === 'baseline') {
-      // Natural baseline seating posture
-      this.points.shoulder = { x: 0.35, y: 0.38, name: 'หัวไหล่ (Shoulder)', group: 'elbow' };
-      this.points.elbow = { x: 0.48, y: 0.52, name: 'ข้อศอก (Elbow)', group: 'elbow', isVertex: true };
-      this.points.wrist = { x: 0.74, y: 0.52, name: 'ข้อมือ (Wrist)', group: 'elbow' };
-      this.points.hip = { x: 0.38, y: 0.68, name: 'สะโพก (Hip)', group: 'hip', isVertex: true };
-      this.points.knee = { x: 0.62, y: 0.68, name: 'เข่า (Knee)', group: 'knee', isVertex: true };
-      this.points.ankle = { x: 0.56, y: 0.88, name: 'ข้อเท้า (Ankle)', group: 'knee' };
+  setPreset(type, dayNum = null) {
+    const targetDay = dayNum !== null ? Number(dayNum) : (type === 'baseline' ? 1 : 30);
+
+    if (type === 'baseline' || targetDay === 1) {
+      // Natural baseline seating posture (Day 1 - worst baseline for comparison: ~139° / 127° / 60° = 25%)
+      this.points.shoulder = { x: 0.32, y: 0.40, name: 'หัวไหล่ (Shoulder)', group: 'elbow' };
+      this.points.elbow = { x: 0.46, y: 0.52, name: 'ข้อศอก (Elbow)', group: 'elbow', isVertex: true };
+      this.points.wrist = { x: 0.71, y: 0.52, name: 'ข้อมือ (Wrist)', group: 'elbow' };
+      this.points.hip = { x: 0.53, y: 0.68, name: 'สะโพก (Hip)', group: 'hip', isVertex: true };
+      this.points.knee = { x: 0.64, y: 0.68, name: 'เข่า (Knee)', group: 'knee', isVertex: true };
+      this.points.ankle = { x: 0.56, y: 0.82, name: 'ข้อเท้า (Ankle)', group: 'knee' };
       this.points.eye = { x: 0.34, y: 0.23, name: 'ระดับสายตา (Eye)', group: 'eye' };
       this.points.screen = { x: 0.77, y: 0.23, name: 'กึ่งกลางจอ (Screen)', group: 'eye' };
       this.results.eyeLevelPass = true;
-    } else if (type === 'corrected_90') {
-      // Corrected 90-90-90 posture
-      this.points.shoulder = { x: 0.35, y: 0.38, name: 'หัวไหล่ (Shoulder)', group: 'elbow' };
-      this.points.elbow = { x: 0.36, y: 0.52, name: 'ข้อศอก (Elbow)', group: 'elbow', isVertex: true };
-      this.points.wrist = { x: 0.60, y: 0.52, name: 'ข้อมือ (Wrist)', group: 'elbow' };
+    } else if (targetDay === 7) {
+      // Day 7 Milestone (Natural realistic angles: ~98-101° / 108° / 89° = 100%)
+      this.points.shoulder = { x: 0.287, y: 0.395, name: 'หัวไหล่ (Shoulder)', group: 'elbow' };
+      this.points.elbow = { x: 0.34, y: 0.56, name: 'ข้อศอก (Elbow)', group: 'elbow', isVertex: true };
+      this.points.wrist = { x: 0.58, y: 0.53, name: 'ข้อมือ (Wrist)', group: 'elbow' };
       this.points.hip = { x: 0.38, y: 0.68, name: 'สะโพก (Hip)', group: 'hip', isVertex: true };
-      this.points.knee = { x: 0.60, y: 0.68, name: 'เข่า (Knee)', group: 'knee', isVertex: true };
-      this.points.ankle = { x: 0.60, y: 0.90, name: 'ข้อเท้า (Ankle)', group: 'knee' };
+      this.points.knee = { x: 0.59, y: 0.68, name: 'เข่า (Knee)', group: 'knee', isVertex: true };
+      this.points.ankle = { x: 0.586, y: 0.89, name: 'ข้อเท้า (Ankle)', group: 'knee' };
+      this.points.eye = { x: 0.34, y: 0.23, name: 'ระดับสายตา (Eye)', group: 'eye' };
+      this.points.screen = { x: 0.77, y: 0.23, name: 'กึ่งกลางจอ (Screen)', group: 'eye' };
+      this.results.eyeLevelPass = true;
+    } else if (targetDay === 14) {
+      // Day 14 Milestone (Natural realistic angles: ~97° / 104° / 90° = 100%)
+      this.points.shoulder = { x: 0.307, y: 0.389, name: 'หัวไหล่ (Shoulder)', group: 'elbow' };
+      this.points.elbow = { x: 0.34, y: 0.55, name: 'ข้อศอก (Elbow)', group: 'elbow', isVertex: true };
+      this.points.wrist = { x: 0.58, y: 0.53, name: 'ข้อมือ (Wrist)', group: 'elbow' };
+      this.points.hip = { x: 0.38, y: 0.68, name: 'สะโพก (Hip)', group: 'hip', isVertex: true };
+      this.points.knee = { x: 0.59, y: 0.68, name: 'เข่า (Knee)', group: 'knee', isVertex: true };
+      this.points.ankle = { x: 0.59, y: 0.89, name: 'ข้อเท้า (Ankle)', group: 'knee' };
+      this.points.eye = { x: 0.34, y: 0.23, name: 'ระดับสายตา (Eye)', group: 'eye' };
+      this.points.screen = { x: 0.77, y: 0.23, name: 'กึ่งกลางจอ (Screen)', group: 'eye' };
+      this.results.eyeLevelPass = true;
+    } else if (targetDay === 21) {
+      // Day 21 Milestone (Natural realistic angles: ~94° / 98° / 91° = 100%)
+      this.points.shoulder = { x: 0.338, y: 0.383, name: 'หัวไหล่ (Shoulder)', group: 'elbow' };
+      this.points.elbow = { x: 0.34, y: 0.515, name: 'ข้อศอก (Elbow)', group: 'elbow', isVertex: true };
+      this.points.wrist = { x: 0.58, y: 0.53, name: 'ข้อมือ (Wrist)', group: 'elbow' };
+      this.points.hip = { x: 0.38, y: 0.68, name: 'สะโพก (Hip)', group: 'hip', isVertex: true };
+      this.points.knee = { x: 0.59, y: 0.68, name: 'เข่า (Knee)', group: 'knee', isVertex: true };
+      this.points.ankle = { x: 0.594, y: 0.89, name: 'ข้อเท้า (Ankle)', group: 'knee' };
+      this.points.eye = { x: 0.34, y: 0.23, name: 'ระดับสายตา (Eye)', group: 'eye' };
+      this.points.screen = { x: 0.77, y: 0.23, name: 'กึ่งกลางจอ (Screen)', group: 'eye' };
+      this.results.eyeLevelPass = true;
+    } else {
+      // Day 30 Final Milestone / General Corrected (Natural realistic angles: ~93° / 95° / 90° = 100%)
+      this.points.shoulder = { x: 0.354, y: 0.381, name: 'หัวไหล่ (Shoulder)', group: 'elbow' };
+      this.points.elbow = { x: 0.345, y: 0.50, name: 'ข้อศอก (Elbow)', group: 'elbow', isVertex: true };
+      this.points.wrist = { x: 0.58, y: 0.53, name: 'ข้อมือ (Wrist)', group: 'elbow' };
+      this.points.hip = { x: 0.38, y: 0.68, name: 'สะโพก (Hip)', group: 'hip', isVertex: true };
+      this.points.knee = { x: 0.59, y: 0.68, name: 'เข่า (Knee)', group: 'knee', isVertex: true };
+      this.points.ankle = { x: 0.59, y: 0.89, name: 'ข้อเท้า (Ankle)', group: 'knee' };
       this.points.eye = { x: 0.34, y: 0.23, name: 'ระดับสายตา (Eye)', group: 'eye' };
       this.points.screen = { x: 0.77, y: 0.23, name: 'กึ่งกลางจอ (Screen)', group: 'eye' };
       this.results.eyeLevelPass = true;
